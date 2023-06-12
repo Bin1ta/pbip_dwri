@@ -22,6 +22,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('subDivision.subDivisionSmuggling',[$subDivision->slug,'language'=>$language])}}">{{__('Smuggling')}}</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{route('subDivision.subDivisionSmuggling',[$subDivision->slug,'language'=>$language])}}">{{__('Forest Detail')}}</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @foreach($subDivision->forestCategories as $forestCategory)
+                                    <a class="dropdown-item" href="{{route('forestCategory.subDivisionForestCategory',[$subDivision,$forestCategory->slug,'language'=>$language])}}">
+                                        {{request()->language=='en' ? $forestCategory->title_en : $forestCategory->title}}
+                                    </a>
+                                @endforeach
+
+                            </li>
+                        </ul>
+
+                    </li>
                 </ul>
             </div>
         </div>

@@ -47,6 +47,7 @@ class listing
         Route::get('subDivision/{subDivision:slug}/document/{subDivisionDocument}', [FrontendController::class, 'subDivisionDocumentDetail'])->name('subDivision.documentDetail');
         Route::get('subDivision/{subDivision:slug}/smuggling', [FrontendController::class, 'subDivisionSmuggling'])->name('subDivision.subDivisionSmuggling');
         Route::get('subDivision/{subDivision:slug}/smuggling/{smuggling}', [FrontendController::class, 'subDivisionSmugglingDetail'])->name('subDivision.smugglingDetail');
+        Route::get('forestCategory/{subDivision:slug}/{forestCategory:slug}', [FrontendController::class, 'subDivisionForest'])->name('forestCategory.subDivisionForestCategory');
 
         Route::get('search', [FrontendController::class, 'search'])->name('frontend.search');
 

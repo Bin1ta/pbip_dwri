@@ -15,7 +15,11 @@ class ForestDetailController extends BaseController
 {
     public function index()
     {
-        $forestDetails = ForestDetail::all();
+        $forestDetails = ForestDetail::where(function ($q) {
+            if (auth()->user()->sub_division_id) {
+                $q->where('sub_division_id', auth()->user()->sub_division_id);
+            }
+        })->get();
         return view('admin.forestDetail.index', compact('forestDetails'));
     }
 
@@ -27,7 +31,9 @@ class ForestDetailController extends BaseController
 
     public function store(StoreForestDetailRequest $request)
     {
-        ForestDetail::create($request->validated());
+        ForestDetail::create($request->validated() + [
+                'sub_division_id' => auth()->user()->sub_division_id ?? null
+            ]);
         toast('Forest Detail Updated Successfully', 'success');
 
         return back();

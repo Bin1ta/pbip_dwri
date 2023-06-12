@@ -66,6 +66,9 @@
                                         <a href="{{route('admin.subDivision.edit', $subDivision)}}" class="text-info">
                                             <i class="lni lni-pencil"></i>
                                         </a>
+                                        <a href="{{route('admin.subDivision.forestDetail.index', $subDivision)}}" class="text-info">
+                                            <i class="lni lni-plus"></i>
+                                        </a>
                                         <form action="{{route('admin.subDivision.destroy',$subDivision)}}" method="POST"
                                               onsubmit="return confirm('Are you sure you want to delete '+{{$subDivision->name}} +'?') ">
                                             @csrf

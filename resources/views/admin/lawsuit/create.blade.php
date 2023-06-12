@@ -122,7 +122,7 @@
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="accused">अभियुवकको संख्या</label>
-                        <input type="text" id="accused" name="accused"
+                        <input type="number"  id="accused" name="accused"
                                placeholder="अभियुवकको संख्या" value="{{old('accused')}}">
                         @error('accused')
                         <p class="text-danger">{{$message}}</p>

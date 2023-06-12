@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h2>वनको विवरण</h2>
+                    <h2>वनको विवरण </h2>
                 </div>
             </div>
             <!-- end col -->
@@ -26,15 +26,14 @@
         </div>
         <!-- end row -->
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card-style mb-30">
                 <div style="display: flex;justify-content: space-between">
-                    <h6 class="mb-10">वनको विवरण</h6>
-                    <a href="{{route('admin.forestDetail.create')}}" class="btn btn-sm btn-primary">Add New</a>
+                    <h6 class="mb-10">वनको विवरण </h6>
+                    <a href="{{route('admin.subDivision.forestDetail.create',$subDivision)}}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
-                <div class=" table-responsive table-hover">
+                <div class="table-wrapper table-responsive table-hover">
                     <table class="table">
                         <thead>
                         <tr>
@@ -51,6 +50,7 @@
                         <!-- end table row-->
                         </thead>
                         <tbody>
+
                         @forelse($forestDetails as $forestDetail)
                             <tr>
                                 <td>
@@ -66,10 +66,10 @@
 
                                 <td>
                                     <div class="action">
-                                        <a href="{{route('admin.forestDetail.edit', $forestDetail)}}" class="text-info">
+                                        <a href="{{route('admin.subDivision.forestDetail.edit', [$subDivision,$forestDetail])}}" class="text-info">
                                             <i class="lni lni-pencil"></i>
                                         </a>
-                                        <form action="{{route('admin.forestDetail.destroy',$forestDetail)}}"
+                                        <form action="{{route('admin.subDivision.forestDetail.destroy',[$subDivision,$forestDetail])}}"
                                               method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -83,7 +83,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center" colspan="8">No Result Found</td>
+                                <td class="text-center" colspan="4">No Result Found</td>
                             </tr>
                         @endforelse
 

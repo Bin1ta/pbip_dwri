@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('forest_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sub_division_id')->nullable()->constrained()->nullOnDelete()->onUpdate('no action');
             $table->string('title');
             $table->string('title_en');
             $table->string('slug');

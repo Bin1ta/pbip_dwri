@@ -2,6 +2,7 @@
 
 namespace App\Models\SubDivision;
 
+use App\Models\ForestCategory;
 use App\Models\Smuggling;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -56,5 +57,9 @@ class SubDivision extends Model
     public function smugglings(): HasMany
     {
         return $this->hasMany(Smuggling::class);
+    }
+    public function forestCategories(): HasMany
+    {
+        return $this->hasMany(ForestCategory::class);
     }
 }

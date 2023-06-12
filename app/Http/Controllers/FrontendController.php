@@ -199,6 +199,7 @@ class FrontendController extends BaseController
 
     public function subDivisionDetail(SubDivision $subDivision)
     {
+        $subDivision->load('forestCategories');
         $subDivisionChief = SubDivisionEmployee::where('sub_division_id', $subDivision->id)->whereIsChief(1)->first();
 
         return view('frontend.sub-division.detail', compact('subDivision', 'subDivisionChief'));
@@ -258,6 +259,11 @@ class FrontendController extends BaseController
         return view('frontend.sub-division.smuggling.detail', compact('subDivision', 'smuggling', 'relatedSmugglings'));
     }
 
+    public function subDivisionForest(SubDivision $subDivision,ForestCategory $forestCategory)
+    {
+        $forestCategory->load('forestDetails');
+       return view('frontend.subDivisionForest',compact('forestCategory','subDivision'));
+    }
     public function photoGalleryDetails(PhotoGallery $photoGallery)
     {
         $photoGallery->load('photos');

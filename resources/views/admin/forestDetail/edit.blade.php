@@ -108,7 +108,7 @@
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="area">क्षेत्रफल (हेक्टरमा)</label>
-                        <input type="text" id="area" name="area"
+                        <input type="number" step="any" id="area" name="area"
                                placeholder="क्षेत्रफल (हेक्टरमा)" value="{{old('area',$forestDetail->area)}}">
                         @error('area')
                         <p class="text-danger">{{$message}}</p>
@@ -119,7 +119,7 @@
                     <div class="input-style-1">
                         <label for="approve_date">कार्ययोजना स्विकृत् मिति</label>
                         <input type="text" id="approve_date" name="approve_date"
-                               placeholder="कार्ययोजना स्विकृत् मिति" value="{{old('approve_date',$forestDetail->approve_date)}}">
+                               placeholder="YYYY-MM-DD" value="{{old('approve_date',$forestDetail->approve_date)}}">
                         @error('approve_date')
                         <p class="text-danger">{{$message}}</p>
                         @enderror
@@ -129,7 +129,7 @@
                     <div class="input-style-1">
                         <label for="end_date">कार्ययोजना समाप्त मिति</label>
                         <input type="text" id="end_date" name="end_date"
-                               placeholder="कार्ययोजना समाप्त मिति" value="{{old('end_date',$forestDetail->end_date)}}">
+                               placeholder="YYYY-MM-DD" value="{{old('end_date',$forestDetail->end_date)}}">
                         @error('end_date')
                         <p class="text-danger">{{$message}}</p>
                         @enderror

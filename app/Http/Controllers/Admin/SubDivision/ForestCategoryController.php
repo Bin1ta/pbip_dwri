@@ -13,7 +13,11 @@ class ForestCategoryController extends BaseController
 {
     public function index()
     {
-        $forestCategories = ForestCategory::all();
+        $forestCategories = ForestCategory::where(function ($q) {
+            if (auth()->user()->sub_division_id) {
+                $q->where('sub_division_id', auth()->user()->sub_division_id);
+            }
+        })->get();
         return view('admin.forestCategory.index', compact('forestCategories'));
     }
 
@@ -24,7 +28,9 @@ class ForestCategoryController extends BaseController
 
     public function store(StoreForestCategoryRequest $request)
     {
-        ForestCategory::create($request->validated());
+        ForestCategory::create($request->validated() + [
+                'sub_division_id' => auth()->user()->sub_division_id ?? null
+            ]);
 
         toast('Forest Category Added Successfully', 'success');
 

@@ -16,7 +16,7 @@
                                 <a href="{{route('admin.dashboard')}}">ड्यासबोर्ड</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{route('admin.forestDetail.index')}}">
+                                <a href="{{route('admin.subDivision.forestDetail.store',$subDivision)}}">
                                     Forest Detail List
                                 </a>
                             </li>
@@ -32,7 +32,7 @@
         <!-- end row -->
     </div>
     <div class="card-style mb-30">
-        <form action="{{route('admin.forestDetail.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.subDivision.forestDetail.store',$subDivision)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">

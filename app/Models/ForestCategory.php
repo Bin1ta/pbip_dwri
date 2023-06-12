@@ -21,6 +21,7 @@ class ForestCategory extends Model
         'title',
         'slug',
         'title_en',
+        'sub_division_id',
     ];
 
     public function forestDetails(): HasMany

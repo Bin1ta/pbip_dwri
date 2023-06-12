@@ -72,6 +72,7 @@ class SubDivisionController extends BaseController
         return view('admin.subDivisions.subDivision.edit', compact('subDivision'));
     }
 
+
     public function update(UpdateSubDivisionRequest $request, SubDivision $subDivision)
     {
         if (empty(auth()->user()->sub_division_id)) {

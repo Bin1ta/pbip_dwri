@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\{AudioController,
     SubDivision\SubDivisionDocumentCategoryController,
     SubDivision\SubDivisionDocumentController,
     SubDivision\SubDivisionEmployeeController,
+    SubDivision\SubDivisionForestController,
     UserManagement\ProfileController,
     UserManagement\RoleController,
     UserManagement\UserController,
@@ -72,6 +73,7 @@ Route::resource('documentCategory/{documentCategory}/category', CategoryControll
 
 Route::prefix('subDivisions')->group(function () {
     Route::resource('subDivision', SubDivisionController::class);
+    Route::resource('subDivision.forestDetail', SubDivisionForestController::class);
     Route::resource('subDivisionEmployee', SubDivisionEmployeeController::class);
     Route::prefix('documents')->group(function () {
         Route::resource('subDivisionDocumentCategory', SubDivisionDocumentCategoryController::class);

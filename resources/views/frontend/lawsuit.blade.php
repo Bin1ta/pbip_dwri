@@ -5,7 +5,7 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('welcome')}}"><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ request()->language=='en' ? $forestCategory->title_en : $forestCategory->title}}</li>
+                <li class="breadcrumb-item active" aria-current="page">{{__('Lawsuits')}}</li>
             </ol>
         </nav>
     </div>
@@ -13,7 +13,7 @@
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="well-heading" style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
-                    <i class="fa fa-clipboard" ></i> {{request()->language=='en' ? $forestCategory->title_en : $forestCategory->title}}
+                    <i class="fa fa-clipboard" ></i> {{__('Lawsuits')}}
                 </div>
             </div>
             <div class="col-md-12">
@@ -22,31 +22,41 @@
                         <thead>
 
                         <tr>
-                            <th>{{__('S.N')}}</th>
-                            <th>{{__('Name of Community Forest')}}</th>
-                            <th>{{__('Address')}}</th>
-                            <th>{{__('House hold')}}</th>
-                            <th>{{__('Area (Hectare)')}}</th>
-                            <th>{{__('Approve Date')}}</th>
-                            <th>{{__('End Date')}}</th>
+                            <th>{{__('मुद्दाको किसिम')}}</th>
+                            <th>{{__('बिगो')}}</th>
+                            <th>{{__('जरिवाना')}}</th>
+                            <th>{{__('कैद')}}</th>
+                            <th>{{__('दर्ता मिति')}}</th>
+                            <th>{{__('दर्ता भएको निकाय')}}</th>
+                            <th>{{__('अभियुवकको संख्या')}}</th>
+                            <th>{{__('कैफियत')}}</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($forestCategory->forestDetails as $forestDetail)
+                        @foreach($lawsuits as $lawsuit)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 @if(request()->language=='en')
-                                    <td>{{$forestDetail->forest_name_en}}</td>
-                                    <td>{{$forestDetail->address_en}}</td>
+                                    <td>{{$lawsuit->type_en}}</td>
+
                                 @else
-                                    <td>{{$forestDetail->forest_name}}</td>
-                                    <td>{{$forestDetail->address}}</td>
+                                    <td>{{$lawsuit->type}}</td>
+
                                 @endif
-                                <td>{{$forestDetail->house_hold}}</td>
-                                <td>{{$forestDetail->area}}</td>
-                                <td>{{$forestDetail->approve_date}}</td>
-                                <td>{{$forestDetail->end_date}}</td>
+                                @if(request()->language=='en')
+                                    <td>{{$lawsuit->bigo_en}}</td>
+
+                                @else
+                                    <td>{{$lawsuit->bigo}}</td>
+
+                                @endif
+                                <td>{{$lawsuit->fine}}</td>
+                                <td>{{$lawsuit->jailed}}</td>
+                                <td>{{$lawsuit->reg_date}}</td>
+                                <td>{{$lawsuit->reg_body}}</td>
+                                <td>{{$lawsuit->accused}}</td>
+                                <td>{{$lawsuit->remarks}}</td>
 
                             </tr>
                         @endforeach
