@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->string('area')->nullable();
             $table->string('approve_date')->nullable();
             $table->string('end_date')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('remarks_en')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

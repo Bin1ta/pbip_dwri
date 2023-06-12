@@ -29,6 +29,7 @@
                             <th>{{__('Area (Hectare)')}}</th>
                             <th>{{__('Approve Date')}}</th>
                             <th>{{__('End Date')}}</th>
+                            <th>{{__('Remarks')}}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -47,7 +48,13 @@
                                 <td>{{$forestDetail->area}}</td>
                                 <td>{{$forestDetail->approve_date}}</td>
                                 <td>{{$forestDetail->end_date}}</td>
+                                @if(request()->language=='en')
+                                    <td>{{$forestDetail->remarks_en}}</td>
 
+                                @else
+                                    <td>{{$forestDetail->remarks}}</td>
+
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

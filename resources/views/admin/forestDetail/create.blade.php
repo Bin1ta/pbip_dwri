@@ -134,6 +134,27 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="remarks">कैफियत</label>
+                        <input type="text" id="remarks" name="remarks"
+                               placeholder="कैफियत" value="{{old('remarks')}}">
+                        @error('remarks')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="remarks_en">कैफियत (English)</label>
+                        <input type="text" id="remarks_en" name="remarks_en"
+                               placeholder="कैफियत (English)" value="{{old('remarks_en')}}">
+                        @error('remarks_en')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-sm btn-primary">
                         Submit

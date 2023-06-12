@@ -119,13 +119,9 @@
                                                 <div class="employee-carousel-caption d-none d-md-block">
                                               @if(request()->language=='en')
                                                     {{$employee ->name_en}}<br>
-                                                    {{$employee->designation->title_en??''}}<br>
                                                 @else
                                                     {{$employee ->name}}<br>
-                                                    {{$employee->designation->title??''}}<br>
                                                 @endif
-                                                    {{$employee->phone??''}}<br>
-                                                    {{$employee->email??''}}
                                             </div>
                                         </div>
                                     </div>

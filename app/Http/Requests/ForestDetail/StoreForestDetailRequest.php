@@ -25,6 +25,8 @@ class StoreForestDetailRequest extends FormRequest
             'area' => ['required'],
             'approve_date' => ['required'],
             'end_date' => ['required'],
+            'remarks' => ['nullable'],
+            'remarks_en' => ['nullable'],
         ];
     }
 }

@@ -27,5 +27,7 @@ class ForestDetail extends Model
         'approve_date',
         'end_date',
         'sub_division_id',
+        'remarks',
+        'remarks_en',
     ];
 }
