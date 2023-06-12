@@ -70,14 +70,14 @@
             </div>
             <div class="col-md-8 col-sm-8 col-xs-8 mt-3 text-center">
                 @foreach($officeSettingHeaders as $officeSettingHeader)
-                    <div
-                        style='font-size:{{$officeSettingHeader->font_size}}px; font-family: {{$officeSettingHeader->font_family}}; color: {{$officeSettingHeader->font_color}}; line-height: 0.8 !important; font-weight: {{$officeSettingHeader->font}};'>
+                    <span
+                        style="font-size:{{$officeSettingHeader->font_size}}px; font-family: {{$officeSettingHeader->font_family}}; color: {{$officeSettingHeader->font_color}}; line-height: 0.8 !important; font-weight: {{$officeSettingHeader->font}};">
                         @if(request()->language=='en')
                             {{$officeSettingHeader->english}}
                         @else
                             {{$officeSettingHeader->nepali}}
                         @endif
-                    </div>
+                    </span><br>
                 @endforeach
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2 hidden-in-sm">
