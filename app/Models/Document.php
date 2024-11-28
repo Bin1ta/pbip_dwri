@@ -15,7 +15,6 @@ class Document extends Model
     use HasFactory, SoftDeletes, Searchable;
 
     protected $dates = [
-        'published_date',
         'created_at',
         'updated_at',
         'deleted_at'

@@ -40,7 +40,7 @@
                             <td>{{$document->documentCategory->title ?? ''}}</td>
                         @endif
                         <td>
-                            {{$document->published_date ? $document->published_date->toDateString() : ''}}
+                            {{$document->published_date }}
                         </td>
                         @if(request()->language=='en')
                         <td>{{$document->publisher_en}}</td>
@@ -68,7 +68,7 @@
                             <td>{{$mainDocument->mainDocumentCategory->title ?? ''}}</td>
                         @endif
                         <td>
-                            {{$mainDocument->published_date ? $mainDocument->published_date->toDateString() : ''}}
+                            {{$mainDocument->published_date }}
                         </td>
                         @if(request()->language=='en')
                             <td>{{$mainDocument->publisher_en}}</td>

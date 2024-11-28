@@ -43,9 +43,9 @@
                                     </h6>
                                     <p class="mt-2">
                                         @if(request()->language=='en')
-                                        {{$document -> published_date->toDateString()}} | {{$document -> publisher_en}}
+                                        {{$document -> published_date}} | {{$document -> publisher_en}}
                                         @else
-                                            {{$document -> published_date->toDateString()}} | {{$document -> publisher}}
+                                            {{$document -> published_date}} | {{$document -> publisher}}
                                         @endif
                                     </p>
                                 </a>
@@ -64,10 +64,10 @@
                                 <a href="{{route('documentDetail',[$document->slug,'language'=>$language])}}" class="card-01 mb-2 border">
                                     @if(request()->language=='en')
                                     <h6 class="heading">{{$document -> title_en}}</h6>
-                                    <p class="mt-2">{{$document -> published_date->toDateString()}} | {{$document -> publisher_en}}</p>
+                                    <p class="mt-2">{{$document -> published_date}} | {{$document -> publisher_en}}</p>
                                     @else
                                     <h6 class="heading">{{$document -> title}}</h6>
-                                    <p class="mt-2">{{$document -> published_date->toDateString()}} | {{$document -> publisher}}</p>
+                                    <p class="mt-2">{{$document -> published_date}} | {{$document -> publisher}}</p>
                                     @endif
                                 </a>
                             @endforeach

@@ -48,7 +48,7 @@
                                     {{$document -> title}}
                                 @endif
                             </td>
-                            <td>{{$document -> published_date->toDateString()}}</td>
+                            <td>{{$document -> published_date}}</td>
                             <td>
                                 <a href="{{route('documentDetail',[$document->slug,'language'=>$language])}}">
                                     <i class="fa fa-download btn btn-primary btn-xs"></i>
@@ -79,7 +79,7 @@
                         <td><img src="{{asset('images/image.png')}}"
                                  width="30" alt=""></td>
                         <td>{{$document -> title}}</td>
-                        <td>{{$document -> published_date->toDateString()}}</td>
+                        <td>{{$document -> published_date}}</td>
                         <td>
                             <a href="{{route('documentDetail',[$document->slug,'language'=>$language])}}">
                                 <i class="fa fa-download btn btn-primary btn-xs"></i>

@@ -50,7 +50,7 @@
                                 @else
                                     <h6 class="heading des">{{$relatedDocument->title}}</h6>
                                 @endif
-                                <p class="mt-2 sub-title">{{$relatedDocument->published_date->toDateString()}} | @if(request()->language=='en') {{$relatedDocument->publisher_en}} @else{{$relatedDocument->publisher}} @endif</p>
+                                <p class="mt-2 sub-title">{{$relatedDocument->published_date}} | @if(request()->language=='en') {{$relatedDocument->publisher_en}} @else{{$relatedDocument->publisher}} @endif</p>
                             </a>
                             @empty
                                 <h6>No Data !!</h6>

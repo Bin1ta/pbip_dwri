@@ -10,7 +10,7 @@
                             @foreach($tickerFiles as $tickerFile)
                                 <li>
                                     <a href="{{route('documentDetail',[$tickerFile->slug,'language'=>$language])}}">
-                                       @if(request()->language=='en') {{$tickerFile->title_en}} @else {{$tickerFile->title}} @endif {{$tickerFile->published_date->toDateString()}}
+                                       @if(request()->language=='en') {{$tickerFile->title_en}} @else {{$tickerFile->title}} @endif {{$tickerFile->published_date}}
                                         <span class="type">{{__('New')}}</span>
                                     </a>
                                 </li>
