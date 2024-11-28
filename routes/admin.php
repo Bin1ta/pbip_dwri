@@ -34,6 +34,8 @@ use App\Http\Controllers\Admin\{AudioController,
     UserManagement\RoleController,
     UserManagement\UserController,
     VideoGalleryController};
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\ContractProgressController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -115,3 +117,4 @@ Route::prefix('forest')->group(function (){
 });
 
 Route::resource('lawsuit', LawsuitController::class);
+Route::resource('contract-progress', ContractProgressController::class);
