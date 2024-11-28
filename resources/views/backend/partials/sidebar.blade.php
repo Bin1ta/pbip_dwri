@@ -110,18 +110,18 @@
 
 
             <li class="nav-item nav-item-has-children">
-                <a href="#" class="{{ request()->is('admin/contract/*') ? '' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#contract" aria-controls="contract"
-                    aria-expanded="{{ request()->is('admin/contract/*') }}" aria-label="Toggle navigation">
+                <a href="#" class="{{ request()->is('admin/contract-progress/*') ? '' : 'collapsed' }}"
+                    data-bs-toggle="collapse" data-bs-target="#contract-progress" aria-controls="contract-progress"
+                    aria-expanded="{{ request()->is('admin/contract-progress/*') }}" aria-label="Toggle navigation">
                     <span class="icon">
                         <i class="mdi mdi-home"></i>
                     </span>
                     <span class="text">समझौत विवरण</span>
                 </a>
-                <ul id="contract" class="collapse dropdown-nav {{ request()->is('admin/setting/*') ? 'show' : '' }}">
+                <ul id="contract-progress" class="collapse dropdown-nav {{ request()->is('admin/contract-progress/*') ? 'show' : '' }}">
                     <li>
-                        <a class="{{ request()->is('admin/setting/officeSetting*') ? 'active' : '' }}"
-                            href="{{ route('admin.officeSetting.index') }}"> contract Progress </a>
+                        <a class="{{ request()->is('admin/contractProgress/contract-progress*') ? 'active' : '' }}"
+                            href="{{ route('admin.contract-progress.index') }}"> contract Progress </a>
                     </li>
                     <li>
                         <a class="{{ request()->is('admin/setting/officeDetail*') ? 'active' : '' }}"
