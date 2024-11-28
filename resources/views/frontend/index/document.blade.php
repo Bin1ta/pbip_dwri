@@ -102,7 +102,7 @@
                         <br>
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" style="overflow-x: hidden">
                     <div id="employeeCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             @foreach($employees as $employee)
