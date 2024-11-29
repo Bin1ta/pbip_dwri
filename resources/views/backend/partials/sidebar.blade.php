@@ -201,6 +201,35 @@
                     </ul>
                 </li>
             @endcan
+            @can('water_consumption_access')
+                <li class="nav-item nav-item-has-children">
+                    <a
+                        href="#"
+                        class="{{request()->is('admin/waterConsumption/*') ? '' : 'collapsed'}}"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#waterConsumption"
+                        aria-controls="WaterConsumptions"
+                        aria-expanded="{{request()->is('admin/waterConsumption/*')}}"
+                        aria-label="Toggle navigation"
+                    >
+              <span class="icon">
+               <i class="mdi mdi-image-search-outline"></i>
+              </span>
+                        <span class="text">Water Consumption</span>
+                    </a>
+                    <ul id="waterConsumption"
+                        class="collapse dropdown-nav {{request()->is('admin/waterConsumption/*') ? 'show' : ''}}">
+                        <li>
+                            <a class="{{request()->is('admin/waterConsumption/committeeCategory*') ? 'active' : ''}}"
+                               href="{{route('admin.committeeCategory.index')}}"> Committee Category </a>
+                            <a class="{{request()->is('admin/waterConsumption/committee*') ? 'active' : ''}}"
+                               href="{{route('admin.committee.index')}}"> Committee</a>
+                            <a class="{{request()->is('admin/waterConsumption/committeeMember*') ? 'active' : ''}}"
+                               href="{{route('admin.committeeMember.index')}}"> Committee Member</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item nav-item-has-children">
                 <a
                     href="#"

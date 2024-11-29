@@ -110,6 +110,10 @@ class PermissionSeeder extends Seeder
             ['title' => "ex_employee_create"],
             ['title' => "ex_employee_edit"],
             ['title' => "ex_employee_delete"],
+            ['title' => "water_consumption_access"],
+            ['title' => "water_consumption_create"],
+            ['title' => "water_consumption_edit"],
+            ['title' => "water_consumption_delete"],
 
         ];
 

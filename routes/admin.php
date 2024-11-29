@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\{AudioController,
     BillController,
     CategoryController,
     ColorController,
+    CommitteeCategoryController,
+    CommitteeController,
+    CommitteeMemberController,
     ContactMessageController,
     DashboardController,
     DepartmentController,
@@ -93,6 +96,12 @@ Route::prefix('gallery')->group(function () {
     Route::resource('photoGallery', PhotoGalleryController::class);
     Route::resource('videoGallery', VideoGalleryController::class);
     Route::resource('audio', AudioController::class);
+});
+
+Route::prefix('waterConsumption')->group(function () {
+   Route::resource('committeeCategory', CommitteeCategoryController::class);
+   Route::resource('committee', CommitteeController::class);
+   Route::resource('committeeMember', CommitteeMemberController::class);
 });
 
 

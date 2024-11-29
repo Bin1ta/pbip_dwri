@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\DocumentCategory;
 use App\Models\Employee;
+use Illuminate\Pagination\Paginator;
 use App\Models\Menu;
 use App\Models\OfficeDetail;
 use App\Models\SubDivision\SubDivisionEmployee;
@@ -31,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         OfficeDetail::observe(OfficeDetailObserver::class);
         SubDivisionEmployee::observe(SubDivisionEmployeeObserver::class);
         DocumentCategory::observe(DocumentCategoryObserver::class);
+        Paginator::useBootstrap();
+
     }
 }
