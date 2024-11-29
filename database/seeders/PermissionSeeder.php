@@ -110,6 +110,10 @@ class PermissionSeeder extends Seeder
             ['title' => "ex_employee_create"],
             ['title' => "ex_employee_edit"],
             ['title' => "ex_employee_delete"],
+            ['title' => "contract_progress_access"],
+            ['title' => "contract_progress_create"],
+            ['title' => "contract_progress_edit"],
+            ['title' => "contract_progress_delete"],
 
         ];
 

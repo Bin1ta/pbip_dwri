@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-class ContractProgressController extends Controller
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ContractProgress\StoreContractProgressRequest;
+use App\Http\Requests\ContractProgress\UpdateContractProgressRequest;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+
+use App\Models\ContractProgress;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use Spatie\LaravelIgnition\Http\Controllers\UpdateConfigController;
+
+class ContractProgressController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +22,13 @@ class ContractProgressController extends Controller
      */
     public function index()
     {
-        return view('admin.contractProgress.index');
+        abort_if(
+            Gate::denies('contract_progress_access'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+        $contractProgresses = ContractProgress::latest()->paginate(10);
+        return view('admin.contractProgress.index', compact('contractProgresses'));
     }
 
     /**
@@ -24,7 +38,12 @@ class ContractProgressController extends Controller
      */
     public function create()
     {
-        //
+        abort_if(
+            Gate::denies('contract_progress_create'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+        return view('admin.contractProgress.create');
     }
 
     /**
@@ -33,9 +52,17 @@ class ContractProgressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContractProgressRequest $request)
     {
-        //
+
+        abort_if(
+            Gate::denies('contract_progress_create'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+        ContractProgress::create($request->validated());
+        toast('Contract Progress Added Successfully', 'success');
+        return redirect(route('admin.contract-progress.index'));
     }
 
     /**
@@ -55,9 +82,15 @@ class ContractProgressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ContractProgress $contractProgress)
     {
-        //
+        abort_if(
+            Gate::denies('contract_progress_edit'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+
+        return view('admin.contractProgress.edit',compact('contractProgress'));
     }
 
     /**
@@ -67,9 +100,17 @@ class ContractProgressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateContractProgressRequest $request, ContractProgress $contractProgress)
     {
-        //
+        abort_if(
+            Gate::denies('contract_progress_edit'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+
+        $contractProgress->update($request->validated());
+        toast('Contract Progress updated Successfully', 'success');
+        return redirect(route('admin.contract-progress.index'));
     }
 
     /**
@@ -78,8 +119,33 @@ class ContractProgressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ContractProgress $contractProgress)
     {
-        //
+        abort_if(
+            Gate::denies('contract_progress_delete'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+        $contractProgress->delete();
+        toast('Contract Progress Deleted', 'success');
+        return back();
     }
+
+    public function updateStatus(ContractProgress $contractProgress)
+    {
+        abort_if(
+            Gate::denies('contract_progress_edit'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+
+        $contractProgress->update([
+            'status' => !$contractProgress->status
+        ]);
+
+        toast('Updated Successfully', 'success');
+
+        return back();
+    }
+
 }

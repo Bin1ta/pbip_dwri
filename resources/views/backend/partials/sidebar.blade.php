@@ -114,7 +114,8 @@
                     data-bs-toggle="collapse" data-bs-target="#contract-progress" aria-controls="contract-progress"
                     aria-expanded="{{ request()->is('admin/contract-progress/*') }}" aria-label="Toggle navigation">
                     <span class="icon">
-                        <i class="mdi mdi-home"></i>
+                        <i class="mdi mdi-file-document"></i>
+
                     </span>
                     <span class="text">समझौत विवरण</span>
                 </a>
