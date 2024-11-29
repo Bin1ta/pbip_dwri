@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\{AudioController,
     CommitteeController,
     CommitteeMemberController,
     ContactMessageController,
+    ContractProgressController,
     DashboardController,
     DepartmentController,
     DesignationController,
@@ -124,3 +125,5 @@ Route::prefix('forest')->group(function (){
 });
 
 Route::resource('lawsuit', LawsuitController::class);
+Route::resource('contract-progress', ContractProgressController::class);
+Route::get('contract-progress/{contractProgress}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('contractProgress.status');
