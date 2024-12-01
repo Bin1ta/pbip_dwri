@@ -47,7 +47,7 @@
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="work_name">Work Name*</label>
-                        <input type="text" id="work_name" name="work_name" placeholder="कामको नाम*"
+                        <input type="text" id="work_name" name="work_name" placeholder="Work name*"
                             value="{{ old('work_name') }}">
                         @error('work_name')
                             <p class="text-danger">{{ $message }}</p>
@@ -68,7 +68,7 @@
                     <div class="col-md-6">
                         <div class="input-style-1">
                             <label for="contractor_name"> Contractor Name*</label>
-                            <input type="text" id="contractor_name" name="contractor_name" placeholder=" ठेकेदारको नाम"
+                            <input type="text" id="contractor_name" name="contractor_name" placeholder=" contractoe name"
                                 value="{{ old('contractor_name') }}">
                             @error('contractor_name')
                                 <p class="text-danger">{{ $message }}</p>
@@ -100,7 +100,7 @@
                     <div class="input-style-1">
                         <label for="completion_date">Completion Date*</label>
                         <input type="text" id="completion_date" class="nepali-date" name="completion_date"
-                            placeholder="पूरा हुने मिति" value="{{ old('completion_date') }}">
+                            placeholder="completion date" value="{{ old('completion_date') }}">
                         @error('completion_date')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -131,9 +131,9 @@
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="times_extended">Times Extended Reversed</label>
-                        <input type="text" id="times_extended_reserved" name="times_extended_reserved"
-                        placeholder="Times Extended Reversed" value="{{ old('times_extended_reserved') }}">
-                        @error('times_extended_reserved')
+                        <input type="text" id="times_extended_reversed" name="times_extended_reversed"
+                        placeholder="Times Extended Reversed" value="{{ old('times_extended_reversed') }}">
+                        @error('times_extended_reversed')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -144,7 +144,7 @@
                     <div class="input-style-1">
                         <label for="financial_progress_amount">Financial Progress Amount</label>
                         <input type="number" id="financial_progress_amount" name="financial_progress_amount"
-                            placeholder='आर्थिक प्रगति रकम' value="{{ old('financial_progress_amount') }}">
+                            placeholder='Financial Progress Amount' value="{{ old('financial_progress_amount') }}">
                         @error('financial_progress_amount')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -154,7 +154,7 @@
                     <div class="input-style-1">
                         <label for="financial_progress_Percent">Financial Progress Percent</label>
                         <input type="number" id="financial_progress_percent" name="financial_progress_percent"
-                        placeholder="आर्थिक प्रगति प्रतिशत" value="{{ old('financial_progress_percent') }}">
+                        placeholder="Financial Progress Percent" value="{{ old('financial_progress_percent') }}">
                         @error('financial_progress_Percent')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror

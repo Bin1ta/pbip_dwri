@@ -72,7 +72,7 @@
 
                                             @can('contract_progress_edit')
                                                 <a href="{{route('admin.contractProgress.status',$contractProgress)}}">
-                                                    @if($contractProgress->status==1)
+                                                    @if($contractProgress->progress_status==1)
                                                         <i class="mdi mdi-check mdi-24px text-success"></i>
                                                     @else
                                                         <i class="mdi mdi-window-close mdi-24px text-danger"></i>

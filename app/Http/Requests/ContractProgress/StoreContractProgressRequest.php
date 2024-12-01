@@ -23,7 +23,7 @@ class StoreContractProgressRequest extends FormRequest
             'completion_date'=>['required', 'string'],
             'completion_date_due'=>['nullable', 'string'],
             'times_extended'=>['nullable', 'string'],
-            'time_extended_reserved' => ['nullable', 'string'],
+            'times_extended_reversed' => ['nullable', 'string'],
             'financial_progress_amount'=>['nullable', 'numeric'],
             'financial_progress_percent' => ['required', 'numeric'],
             'financial_progress_date'=>['nullable', 'string'],

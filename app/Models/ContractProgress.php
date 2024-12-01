@@ -25,7 +25,7 @@ class ContractProgress extends Model
         'completion_date',
         'completion_date_due',
         'times_extended',
-        'time_extended_reserved',
+        'times_extended_reversed',
         'financial_progress_amount',
         'financial_progress_percent',
         'financial_progress_date',

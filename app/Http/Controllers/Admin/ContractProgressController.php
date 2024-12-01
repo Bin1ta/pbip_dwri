@@ -140,7 +140,7 @@ class ContractProgressController extends BaseController
         );
 
         $contractProgress->update([
-            'status' => !$contractProgress->status
+            'progress_status' => !$contractProgress->progress_status
         ]);
 
         toast('Updated Successfully', 'success');
