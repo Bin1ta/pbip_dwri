@@ -46,20 +46,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="work_name">कामको नाम*</label>
+                        <label for="work_name">Work Name*</label>
                         <input type="text" id="work_name" name="work_name" placeholder="कामको नाम*"
                             value="{{ old('work_name') }}">
                         @error('work_name')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-style-1">
-                        <label for="work_name_en">कामको नाम (English)*</label>
-                        <input type="text" id="work_name_en" name="work_name_en" placeholder="कामको नाम (English)"
-                            value="{{ old('work_name_en') }}">
-                        @error('work_name_en')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -74,10 +64,10 @@
                         @enderror
                     </div>
                 </div>
-                @if (config('default.dual_language'))
+
                     <div class="col-md-6">
                         <div class="input-style-1">
-                            <label for="contractor_name"> ठेकेदारको नाम*</label>
+                            <label for="contractor_name"> Contractor Name*</label>
                             <input type="text" id="contractor_name" name="contractor_name" placeholder=" ठेकेदारको नाम"
                                 value="{{ old('contractor_name') }}">
                             @error('contractor_name')
@@ -85,17 +75,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="input-style-1">
-                            <label for="contractor_name_en"> ठेकेदारको नाम*(English)</label>
-                            <input type="text" id="contractor_name_en" name="contractor_name_en"
-                                placeholder=" ठेकेदारको नाम English" value="{{ old('contractor_name_en') }}">
-                            @error('contractor_name_en')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                @endif
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="contractor_amount">Contractor Amount*</label>
@@ -109,7 +88,7 @@
 
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="agreement_date">सम्झौता मिति*</label>
+                        <label for="agreement_date">Agreement Date*</label>
                         <input type="text" id="agreement_date" class="nepali-date" name="agreement_date"
                             placeholder="सम्झौता मिति" value="{{ old('agreement_date') }}">
                         @error('agreement_date')
@@ -119,7 +98,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="completion_date">पूरा हुने मिति*</label>
+                        <label for="completion_date">Completion Date*</label>
                         <input type="text" id="completion_date" class="nepali-date" name="completion_date"
                             placeholder="पूरा हुने मिति" value="{{ old('completion_date') }}">
                         @error('completion_date')
@@ -129,9 +108,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="completion_date_due">पूरा बाँकी हुने मिति</label>
+                        <label for="completion_date_due">Completion Date Due </label>
                         <input type="text" id="completion_date_due" class="nepali-date" name="completion_date_due"
-                            placeholder="पूरा बाँकी हुने मिति" value="{{ old('completion_date_due') }}">
+                            placeholder="Completion Date Due" value="{{ old('completion_date_due') }}">
                         @error('completion_date_due')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -140,17 +119,30 @@
 
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="time_extended_reserved">Times Extended Reversed</label>
-                        <input type="text" id="time_extended_reserved" name="time_extended_reserved"
-                        placeholder="Times Extended Reversed" value="{{ old('time_extended_reserved') }}">
-                        @error('time_extended_reserved')
+                        <label for="times_extended">Times Extended</label>
+                        <input type="text" id="times_extended" name="times_extended"
+                        placeholder="Times Extended Reversed" value="{{ old('times_extended') }}">
+                        @error('times_extended')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="financial_progress_amount">आर्थिक प्रगति रकम</label>
+                        <label for="times_extended">Times Extended Reversed</label>
+                        <input type="text" id="times_extended_reserved" name="times_extended_reserved"
+                        placeholder="Times Extended Reversed" value="{{ old('times_extended_reserved') }}">
+                        @error('times_extended_reserved')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="financial_progress_amount">Financial Progress Amount</label>
                         <input type="number" id="financial_progress_amount" name="financial_progress_amount"
                             placeholder='आर्थिक प्रगति रकम' value="{{ old('financial_progress_amount') }}">
                         @error('financial_progress_amount')
@@ -160,7 +152,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="financial_progress_Percent">आर्थिक प्रगति प्रतिशत</label>
+                        <label for="financial_progress_Percent">Financial Progress Percent</label>
                         <input type="number" id="financial_progress_percent" name="financial_progress_percent"
                         placeholder="आर्थिक प्रगति प्रतिशत" value="{{ old('financial_progress_percent') }}">
                         @error('financial_progress_Percent')
@@ -170,9 +162,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="financial_progress_date">आर्थिक प्रगति मिति</label>
+                        <label for="financial_progress_date">Financial Progress Date</label>
                         <input type="text" id="financial_progress_date" class="nepali-date"
-                            name="financial_progress_date" placeholder="आर्थिक प्रगति मिति"
+                            name="financial_progress_date" placeholder="Financial Progress Date"
                             value="{{ old('financial_progress_date') }}">
                         @error('financial_progress_date')
                             <p class="text-danger">{{ $message }}</p>
@@ -181,9 +173,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="physical_progress_Percent">भौतिक प्रगति प्रतिशत</label>
+                        <label for="physical_progress_Percent">Physical Progress Percent</label>
                         <input type="number" id="physical_progress_percent" name="physical_progress_percent"
-                        placeholder="भौतिक प्रगति प्रतिशत" value="{{ old('physical_progress_percent') }}">
+                        placeholder="Physical Progress Percent" value="{{ old('physical_progress_percent') }}">
                         @error('physical_progress_percent')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -191,9 +183,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="physical_progress_date">Physical Progress Date(भौतिक प्रगति मिति)</label>
+                        <label for="physical_progress_date">Physical Progress Date</label>
                         <input type="text" id="physical_progress_date" class="nepali-date"
-                            name="physical_progress_date" placeholder="भौतिक प्रगति मिति"
+                            name="physical_progress_date" placeholder="Physical Progress Date"
                             value="{{ old('physical_progress_date') }}">
                         @error('physical_progress_date')
                             <p class="text-danger">{{ $message }}</p>
@@ -203,7 +195,7 @@
 
                 <div class="col-md-12">
                     <div class="input-style-1">
-                        <label for="remarks">कैफियत</label>
+                        <label for="remarks">Remarks</label>
                         <textarea name="remarks" id="remarks" cols="30" rows="4" placeholder="विवरण"></textarea>
                         @error('remarks')
                             <p class="text-danger">{{ $message }}</p>
@@ -211,15 +203,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="input-style-1">
-                        <label for="remarks_en">कैफियत (English)</label>
-                        <textarea name="remarks_en" id="remarks_en" cols="30" rows="4" placeholder="विवरण English"></textarea>
-                        @error('remarks_en')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
+
 
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-sm btn-primary">

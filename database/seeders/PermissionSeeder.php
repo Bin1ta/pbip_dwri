@@ -114,6 +114,14 @@ class PermissionSeeder extends Seeder
             ['title' => "water_consumption_create"],
             ['title' => "water_consumption_edit"],
             ['title' => "water_consumption_delete"],
+            ['title' => "contract_progress_access"],
+            ['title' => "contract_progress_create"],
+            ['title' => "contract_progress_edit"],
+            ['title' => "contract_progress_delete"],
+            ['title' => "current_contract_access"],
+            ['title' => "current_contract_create"],
+            ['title' => "current_contract_edit"],
+            ['title' => "current_contract_delete"],
 
         ];
 

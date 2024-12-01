@@ -18,23 +18,21 @@ class ContractProgress extends Model
 
     protected $fillable=[
         'work_name',
-        'work_name_en',
         'contract_id',
         'contractor_name',
-        'contractor_name_en',
         'contractor_amount',
         'agreement_date',
         'completion_date',
         'completion_date_due',
+        'times_extended',
         'time_extended_reserved',
         'financial_progress_amount',
         'financial_progress_percent',
         'financial_progress_date',
-        'physical_progress_date',
         'physical_progress_percent',
+        'physical_progress_date',
         'remarks',
-        'remarks_en',
-        'status',
+        'progress_status',
 
     ];
 }

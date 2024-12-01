@@ -11,23 +11,21 @@ return new class extends Migration
         Schema::create('contract_progress', function (Blueprint $table) {
             $table->id();
             $table->string('work_name');
-            $table->string('work_name_en')->nullable();
             $table->string('contract_id');
             $table->string('contractor_name');
-            $table->string('contractor_name_en')->nullable();
             $table->string('contractor_amount');
             $table->string('agreement_date');
             $table->string('completion_date')->nullable();
             $table->string('completion_date_due')->nullable();
-            $table->string('time_extended_reserved')->nullable();
+            $table->string('times_extended')->nullable();
+            $table->string('times_extended_reversed')->nullable();
             $table->string('financial_progress_amount')->nullable();
-            $table->string('financial_progress_Percent')->nullable();
+            $table->string('financial_progress_percent')->nullable();
             $table->string('financial_progress_date')->nullable();
-            $table->string('physical_progress_date')->nullable();
             $table->string('physical_progress_percent')->nullable();
+            $table->string('physical_progress_date')->nullable();
             $table->longText('remarks')->nullable();
-            $table->longText('remarks_en')->nullable();
-            $table->boolean('status')->default(false);
+            $table->boolean('progress_status')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
