@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\{AudioController,
     ExEmployeeController,
     FaqController,
     FileController,
+    FinishedContractController,
     LinkController,
     MenuController,
     OfficeDetailController,
@@ -130,3 +131,5 @@ Route::resource('contract-progress', ContractProgressController::class);
 Route::get('contract-progress/{contractProgress}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('contractProgress.status');
 Route::resource('current-contract',CurrentContractController::class);
 Route::get('current-contract/{currentContract}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('currentContact.currentstatus');
+Route::resource('finished-contract',FinishedContractController::class);
+Route::get('current-contract/{finishedContract}/currentStatus', [FinishedContractController::class, 'currentStatus'])->name('finished-contract.currentStatus');

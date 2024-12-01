@@ -129,8 +129,8 @@
                             href="{{ route('admin.current-contract.index') }}"> Current Contract </a>
                     </li>
                     <li>
-                        <a class="{{ request()->is('admin/setting/officeDetail*') ? 'active' : '' }}"
-                            href="{{ route('admin.officeDetail.index') }}"> कार्यालय विवरण </a>
+                        <a class="{{ request()->is('admin/finishedContract/finished-contract*') ? 'active' : '' }}"
+                            href="{{ route('admin.finished-contract.index') }}"> Finished Contract  </a>
                     </li>
 
                 </ul>

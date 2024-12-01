@@ -122,6 +122,10 @@ class PermissionSeeder extends Seeder
             ['title' => "current_contract_create"],
             ['title' => "current_contract_edit"],
             ['title' => "current_contract_delete"],
+            ['title' => "finished_contract_access"],
+            ['title' => "finished_contract_create"],
+            ['title' => "finished_contract_edit"],
+            ['title' => "finished_contract_delete"],
 
         ];
 

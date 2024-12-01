@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h2>Current Contract </h2>
+                    <h2>Finished Contract </h2>
                 </div>
             </div>
             <!-- end col -->
@@ -16,7 +16,7 @@
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Current Contract
+                                Finished Contract
                             </li>
                         </ol>
                     </nav>
@@ -31,8 +31,8 @@
         <div class="col-lg-12">
             <div class="card-style mb-30">
                 <div style="display: flex;justify-content: space-between">
-                    <h6 class="mb-10">Current Contract</h6>
-                    <a href="{{ route('admin.current-contract.create') }}" class="btn btn-sm btn-primary">Add New</a>
+                    <h6 class="mb-10">Finished Contract</h6>
+                    <a href="{{ route('admin.finished-contract.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
                 <div class=" table-responsive table-hover">
                     <table class="table">
@@ -54,26 +54,26 @@
                             <!-- end table row-->
                         </thead>
                         <tbody>
-                            @forelse($currentContracts as $currentContract)
+                            @forelse($finishedContracts as $finishedContract)
                                 <tr>
                                     <td>
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td>{{ $currentContract->name ?? '' }}</td>
-                                    <td>{{ $currentContract->place_id ?? '' }}</td>
-                                    <td>{{ $currentContract->work ?? '' }}</td>
-                                    <td>{{ $currentContract->identification_no ?? '' }}</td>
-                                    <td>{{ $currentContract->contractor_detail ?? '' }}</td>
+                                    <td>{{ $finishedContract->name ?? '' }}</td>
+                                    <td>{{ $finishedContract->place_id ?? '' }}</td>
+                                    <td>{{ $finishedContract->work ?? '' }}</td>
+                                    <td>{{ $finishedContract->identification_no ?? '' }}</td>
+                                    <td>{{ $finishedContract->contractor_detail ?? '' }}</td>
 
-                                    <td>{{ $currentContract->agreement_date ?? '' }}</td>
+                                    <td>{{ $finishedContract->agreement_date ?? '' }}</td>
 
-                                    <td>{{ $currentContract->completion_date ?? '' }}</td>
-                                    <td>Rs.{{ $currentContract->agreement_amount ?? '' }}</td>
+                                    <td>{{ $finishedContract->completion_date ?? '' }}</td>
+                                    <td>Rs.{{ $finishedContract->agreement_amount ?? '' }}</td>
                                     <td>
 
                                         @can('current_contract_edit')
-                                            <a href="{{ route('admin.currentContact.currentstatus', $currentContract) }}">
-                                                @if ($currentContract->current_status == 1)
+                                            <a href="{{ route('admin.finished-contract.currentStatus', $finishedContract) }}">
+                                                @if ($finishedContract->current_status == 1)
                                                     <i class="mdi mdi-check mdi-24px text-success"></i>
                                                 @else
                                                     <i class="mdi mdi-window-close mdi-24px text-danger"></i>
@@ -85,11 +85,11 @@
 
                                     <td>
                                         <div class="action">
-                                            <a href="{{ route('admin.current-contract.edit', $currentContract) }}"
+                                            <a href="{{ route('admin.current-contract.edit', $finishedContract) }}"
                                                 class="text-info">
                                                 <i class="lni lni-pencil"></i>
                                             </a>
-                                            <form action="{{ route('admin.current-contract.destroy', $currentContract) }}"
+                                            <form action="{{ route('admin.current-contract.destroy', $finishedContract) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -109,7 +109,7 @@
 
                         </tbody>
                     </table>
-                    {{ $currentContracts->links() }}
+                    {{ $finishedContracts->links() }}
                     <!-- end table -->
                 </div>
             </div>
