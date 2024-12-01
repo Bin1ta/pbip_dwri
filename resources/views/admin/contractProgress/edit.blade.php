@@ -135,8 +135,8 @@
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="times_extended_reserved">Times Extended Reversed</label>
-                        <input type="text" id="times_extended_reserved" name="times_extended_reserved"
-                            placeholder='Times Extended Reversed' value="{{ old('times_extended_reserved', $contractProgress->times_extended_reserved )}}">
+                        <input type="text" id="times_extended_reserved" name="times_extended_reversed"
+                            placeholder='Times Extended Reversed' value="{{ old('times_extended_reversed', $contractProgress->times_extended_reversed )}}">
                         @error('times_extended_reserved')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -155,10 +155,10 @@
                 <div class="col-md-6">
                     <div class="input-style-1">
                         <label for="financial_progress_Percent">Financial Progress Percent</label>
-                        <input type="number" id="financial_progress_Percent" name="financial_progress_Percent"
+                        <input type="number" id="financial_progress_Percent" name="financial_progress_percent"
                             placeholder="Financial Progress Percent"
-                            value="{{ old('financial_progress_Percent', $contractProgress->financial_progress_Percent) }}">
-                        @error('financial_progress_Percent')
+                            value="{{ old('financial_progress_percent', $contractProgress->financial_progress_percent) }}">
+                        @error('financial_progress_percent')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

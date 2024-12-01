@@ -18,23 +18,19 @@ class CurrentContract extends Model
 
     protected $fillable = [
         'name',
-        'name_en',
-        'place',
+        'place_id',
         'work',
-        'work_en',
         'identification_no',
         'contractor_detail',
-        'contractor_detail_en',
         'agreement_date',
-        'agreement_amount',
         'completion_date',
+        'agreement_amount',
         'extension_time',
         'extension_duration',
         'completion_date_revised',
+        'current_status',
         'updated_progress',
-        'updated_progress_en',
-        'authrized_person',
-        'authrized_person_en',
+        'authorised_person',
 
     ];
 }

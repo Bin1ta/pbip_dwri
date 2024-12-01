@@ -40,13 +40,13 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>कामको नाम</th>
+                                <th>Work Name</th>
                                 <th>Contract Id</th>
-                                <th>ठेकेदारको नाम</th>
-                                <th>Contractor रकम</th>
-                                <th>सम्झौता मिति</th>
-                                <th>पूरा हुने मिति</th>
-                                <th>आर्थिक प्रगति रकम</th>
+                                <th>Contractor Name</th>
+                                <th>Contractor Amount</th>
+                                <th>Agreement Date</th>
+                                <th>Completion Date</th>
+                                <th>Fin. Prog. Amount</th>
                                 <th>Status</th>
 
                                 <th>Action</th>
@@ -62,12 +62,12 @@
                                     <td>{{ $contractProgress->work_name ?? '' }}</td>
                                     <td>{{ $contractProgress->contract_id ?? '' }}</td>
                                     <td>{{ $contractProgress->contractor_name ?? '' }}</td>
-                                    <td>{{ $contractProgress->contractor_amount ?? '' }}</td>
+                                    <td>Rs.{{ $contractProgress->contractor_amount ?? '' }}</td>
                                     <td>{{ $contractProgress->agreement_date ?? '' }}</td>
 
                                     <td>{{ $contractProgress->completion_date ?? '' }}</td>
 
-                                    <td>{{ $contractProgress->financial_progress_amount ?? '' }}</td>
+                                    <td>Rs.{{ $contractProgress->financial_progress_amount ?? '' }}</td>
                                     <td>
 
                                             @can('contract_progress_edit')
@@ -109,6 +109,7 @@
 
                         </tbody>
                     </table>
+                 {{ $contractProgresses->links()  }}
                     <!-- end table -->
                 </div>
             </div>

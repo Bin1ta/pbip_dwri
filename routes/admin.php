@@ -129,4 +129,4 @@ Route::resource('lawsuit', LawsuitController::class);
 Route::resource('contract-progress', ContractProgressController::class);
 Route::get('contract-progress/{contractProgress}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('contractProgress.status');
 Route::resource('current-contract',CurrentContractController::class);
-Route::get('current-contract/{currentContract}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('currentContact.status');
+Route::get('current-contract/{currentContract}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('currentContact.currentstatus');
