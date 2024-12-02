@@ -27,7 +27,7 @@ class UpdateContractProgressRequest extends FormRequest
             'financial_progress_amount'=>['nullable', 'numeric'],
             'financial_progress_percent' => ['required', 'numeric'],
             'financial_progress_date'=>['nullable', 'string'],
-            'physical_progress_percent' => ['required', 'numeric'],
+            'physical_progress_percent' => ['nullable', 'numeric'],
             'physical_progress_date'=>['nullable','string'],
             'remarks'=>['nullable','string'],
             'progress_status' => ['nullable', 'boolean'],
