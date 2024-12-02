@@ -5,7 +5,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h2>सम्झौता प्रगति </h2>
+                    <h3>Contact Progress </h3>
                 </div>
             </div>
             <!-- end col -->
@@ -17,7 +17,7 @@
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                सम्झौता प्रगति
+                                Contact Progress
                             </li>
                         </ol>
                     </nav>
@@ -32,11 +32,11 @@
         <div class="col-lg-12">
             <div class="card-style mb-30">
                 <div style="display: flex;justify-content: space-between">
-                    <h6 class="mb-10">सम्झौता प्रगति</h6>
+                    <h6 class="mb-10">Contact Progress</h6>
                     <a href="{{ route('admin.contract-progress.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
                 <div class=" table-responsive table-hover">
-                    <table class="table">
+                    <table class="table" style="width: 100rem;">
                         <thead>
                             <tr>
                                 <th>SN</th>
