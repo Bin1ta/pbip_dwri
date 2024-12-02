@@ -23,7 +23,7 @@ class updateFinishedContractRequest extends FormRequest
             'identification_no'=>['required','string'],
             'contractor_detail'=>['required','string'],
             'agreement_date'=>['required','string'],
-            'agreement_amount'=>['required','string'],
+            'agreement_amount'=>['required','numeric'],
             'completion_date'=>['required','string'],
             'actual_expenditure'=>['nullable','string'],
             'contractors_liability_status'=>['nullable','boolean'],

@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\{AudioController,
     SubDivision\SubDivisionDocumentController,
     SubDivision\SubDivisionEmployeeController,
     SubDivision\SubDivisionForestController,
+    TotalProgressController,
     UserManagement\ProfileController,
     UserManagement\RoleController,
     UserManagement\UserController,
@@ -133,3 +134,5 @@ Route::resource('current-contract',CurrentContractController::class);
 Route::get('current-contract/{currentContract}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('currentContact.currentstatus');
 Route::resource('finished-contract',FinishedContractController::class);
 Route::get('current-contract/{finishedContract}/currentStatus', [FinishedContractController::class, 'currentStatus'])->name('finished-contract.currentStatus');
+Route::get('current-contract/{finishedContract}/contractorLiabilityStatus', [FinishedContractController::class, 'contractorLiabilityStatus'])->name('finished-contract.contractorLiabilityStatus');
+Route::resource('total-progress',TotalProgressController::class);

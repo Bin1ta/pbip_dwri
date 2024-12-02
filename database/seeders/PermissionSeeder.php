@@ -126,6 +126,10 @@ class PermissionSeeder extends Seeder
             ['title' => "finished_contract_create"],
             ['title' => "finished_contract_edit"],
             ['title' => "finished_contract_delete"],
+            ['title' => "total_progress_access"],
+            ['title' => "total_progress_create"],
+            ['title' => "total_progress_edit"],
+            ['title' => "total_progress_delete"],
 
         ];
 

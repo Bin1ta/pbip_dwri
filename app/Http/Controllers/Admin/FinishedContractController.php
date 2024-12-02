@@ -131,4 +131,20 @@ class FinishedContractController extends BaseController
 
         return back();
     }
+    public function contractorLiabilityStatus(FinishedContract $finishedContract)
+    {
+        abort_if(
+            Gate::denies('contract_progress_edit'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+
+        $finishedContract->update([
+            'contractors_liability_status' => !$finishedContract->contractors_liability_status
+        ]);
+
+        toast('Updated Successfully', 'success');
+
+        return back();
+    }
 }
