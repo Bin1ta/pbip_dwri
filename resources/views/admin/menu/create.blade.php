@@ -76,6 +76,9 @@
                                 <option value="">- - छान्नुहोस् - -</option>
                                 @foreach($mainMenus as $mainMenu)
                                     <option value="{{$mainMenu->id}}">{{$mainMenu->title}}</option>
+                                    @foreach ($mainMenu->menus as $menu )
+                                    <option value="{{$menu->id}}">-- {{$menu->title}}</option>
+                                    @endforeach
                                 @endforeach
                             </select>
                         </div>

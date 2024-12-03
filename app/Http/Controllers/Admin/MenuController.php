@@ -44,7 +44,7 @@ class MenuController extends BaseController
             '403 Forbidden | you are not allowed to access this resource'
         );
 
-        $mainMenus = Menu::whereNull('menu_id')->get();
+        $mainMenus = Menu::with('menus')->whereNull('menu_id')->get();
 
         return view('admin.menu.create', compact('mainMenus'));
     }
@@ -81,7 +81,7 @@ class MenuController extends BaseController
             '403 Forbidden | you are not allowed to access this resource'
         );
 
-        $mainMenus = Menu::whereNull('menu_id')->get();
+        $mainMenus = Menu::with('menus')->whereNull('menu_id')->get();
 
         return view('admin.menu.edit', compact('mainMenus', 'menu'));
     }
@@ -136,14 +136,16 @@ class MenuController extends BaseController
 
     public function checkMenuType($request): array
     {
+
         $menuType = null;
-        if($menuType=$request->input('menu_type')){
-            match ($menuType){
-                'officeDetail'=>$menuType=OfficeDetail::class,
-                'category'=>$menuType=DocumentCategory::class,
-                'subDivision'=>$menuType=SubDivision::class,
-                'forestCategory'=>$menuType=ForestCategory::class,
-            };
+        if ($request->input('menu_type') == "officeDetail") {
+            $menuType = OfficeDetail::class;
+        } elseif ($request->input('menu_type') == "category") {
+            $menuType = DocumentCategory::class;
+        } elseif ($request->input('menu_type') == "subDivision") {
+            $menuType = SubDivision::class;
+        } elseif ($request->input('menu_type') == "forestCategory") {
+            $menuType = ForestCategory::class;
         }
 
         return [

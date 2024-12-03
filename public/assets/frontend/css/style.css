@@ -649,9 +649,12 @@ img.flag {
     background-color: transparent;
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-dark .navbar-nav  {
     color: #FFFFFF !important;
     font-weight: 600;
+}
+.nav-link{
+color: black !important;
 }
 /*marquee css*/
 .newsbar-container {

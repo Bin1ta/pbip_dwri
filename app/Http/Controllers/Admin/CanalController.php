@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\canal\StorecanalRequest;
-use App\Http\Requests\canal\UpdatecanalRequest;
+use App\Http\Requests\canal\StoreCanalRequest;
+use App\Http\Requests\canal\UpdateCanalRequest;
 use App\Models\Canal;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -32,7 +32,7 @@ class CanalController extends BaseController
     }
 
 
-    public function store(StorecanalRequest $request)
+    public function store(StoreCanalRequest $request)
     {
         abort_if(
             Gate::denies('canal_create'),
@@ -60,7 +60,7 @@ class CanalController extends BaseController
         return view('admin.canal.edit', compact('canal'));
     }
 
-    public function update(UpdatecanalRequest $request, Canal $canal)
+    public function update(UpdateCanalRequest $request, Canal $canal)
     {
         abort_if(
             Gate::denies('canal_edit'),
