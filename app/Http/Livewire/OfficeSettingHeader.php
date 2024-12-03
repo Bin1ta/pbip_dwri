@@ -28,12 +28,12 @@ class OfficeSettingHeader extends Component
 
     protected $rules = [
 
-        'officeSettingHeaders.*.english' => ['required|string|max:255'],
-        'officeSettingHeaders.*.nepali' => ['required|string|max:255'],
+        'officeSettingHeaders.*.english' => ['required','string','max:255'],
+        'officeSettingHeaders.*.nepali' => ['required','string','max:255'],
         'officeSettingHeaders.*.font_color' => ['nullable'],
-        'officeSettingHeaders.*.font_family' => ['required|max:255'],
-        'officeSettingHeaders.*.font_size' => ['required|max:255'],
-        'officeSettingHeaders.*.position' => ['required|integer'],
+        'officeSettingHeaders.*.font_family' => ['required','max:255'],
+        'officeSettingHeaders.*.font_size' => ['required','max:255'],
+        'officeSettingHeaders.*.position' => ['required','integer'],
         'officeSettingHeaders.*.font' => ['required'],
 
 
