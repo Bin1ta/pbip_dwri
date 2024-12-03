@@ -130,6 +130,10 @@ class PermissionSeeder extends Seeder
             ['title' => "canal_create"],
             ['title' => "canal_edit"],
             ['title' => "canal_delete"],
+            ['title' => "total_progress_access"],
+            ['title' => "total_progress_create"],
+            ['title' => "total_progress_edit"],
+            ['title' => "total_progress_delete"],
 
         ];
 

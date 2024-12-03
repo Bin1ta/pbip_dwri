@@ -35,7 +35,8 @@
                     <a href="{{ route('admin.finished-contract.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
                 <div class=" table-responsive table-hover">
-                    <table class="table">
+
+                    <table class="table" style="width:100rem;">
                         <thead>
                             <tr>
                                 <th>SN</th>
@@ -47,6 +48,7 @@
                                 <th>Agreement Date</th>
                                 <th>completion Date</th>
                                 <th>Agreement Date</th>
+                                <th>Contractor's ability status</th>
                                 <th>Status</th>
 
                                 <th>Action</th>
@@ -69,7 +71,7 @@
 
                                     <td>{{ $finishedContract->completion_date ?? '' }}</td>
                                     <td>Rs.{{ $finishedContract->agreement_amount ?? '' }}</td>
-                                    <td>
+                                    <td class="d-flex gap-1 text-center">
 
                                         @can('current_contract_edit')
                                             <a href="{{ route('admin.finished-contract.currentStatus', $finishedContract) }}">
@@ -81,15 +83,28 @@
                                             </a>
                                         @endcan
 
+
+
+                                    </td>
+                                    <td>
+                                        @can('current_contract_edit')
+                                        <a href="{{ route('admin.finished-contract.contractorLiabilityStatus', $finishedContract) }}">
+                                            @if ($finishedContract->contractors_liability_status == 1)
+                                                <i class="mdi mdi-check mdi-24px text-success"></i>
+                                            @else
+                                                <i class="mdi mdi-window-close mdi-24px text-danger"></i>
+                                            @endif
+                                        </a>
+                                    @endcan
                                     </td>
 
                                     <td>
                                         <div class="action">
-                                            <a href="{{ route('admin.current-contract.edit', $finishedContract) }}"
+                                            <a href="{{ route('admin.finished-contract.edit', $finishedContract) }}"
                                                 class="text-info">
                                                 <i class="lni lni-pencil"></i>
                                             </a>
-                                            <form action="{{ route('admin.current-contract.destroy', $finishedContract) }}"
+                                            <form action="{{ route('admin.finished-contract.destroy', $finishedContract) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')

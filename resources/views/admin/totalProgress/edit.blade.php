@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h2>Finished Contract थप्नुहोस</h2>
+                    <h3>Total Progress Add</h3>
                 </div>
             </div>
             <!-- end col -->
@@ -17,11 +17,11 @@
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="{{ route('admin.contract-progress.index') }}">
-                                    Finished Contract लिस्ट
+                                    Total Progress List
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Finished Contract थप्नुहोस
+                                Total Progress Add
                             </li>
                         </ol>
                     </nav>
@@ -41,47 +41,47 @@
         </div>
     @endif
     <div class="card-style mb-30">
-        <form action="{{ route('admin.finished-contract.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.total-progress.update',$totalProgress) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="name">Name <span class="text-danger">*</span></label>
-                        <input type="text" id="name" name="name" placeholder="Name"
-                            value="{{ old('name') }}">
-                        @error('name')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="place" class="form-label">Place <span class="text-danger">*</span></label>
-                        <select name="place_id" id="place" class="form-control" required>
-                            <option value="">Select Place</option>
-                            @foreach (\App\Enums\ProjectTypeEnum::cases() as $place)
-                                <option value="{{ $place->value }}"> {{ $place->label() }} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="input-style-1">
-                        <label for="work">Work Name <span class="text-danger">*</span></label>
-                        <input type="text" id="work" name="work" placeholder="Work name"
-                            value="{{ old('work') }}">
-                        @error('work')
+                        <label for="year">Year <span class="text-danger">*</span></label>
+                        <input type="text" id="year" name="year" placeholder="year"
+                            value="{{ old('year',$totalProgress->year) }}">
+                        @error('year')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="identification_no">Identification No. <span class="text-danger">*</span></label>
-                        <input type="text" id="identification_no" name="identification_no" placeholder="Contract id"
-                            value="{{ old('identification_no') }}">
-                        @error('identification_no')
+                        <label for="periodicity" class="form-label">Periodicity <span class="text-danger">*</span></label>
+                        <input type="text" id="periodicity" name="periodicity" placeholder="periodicity"
+                        value="{{ old('periodicity',$totalProgress->periodicity) }}">
+                        @error('periodicity')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="financial_progress_periodic">Financial progress periodic</label>
+                        <input type="text" id="financial_progress_periodic" name="financial_progress_periodic" placeholder="financial_progress_periodic name"
+                            value="{{ old('financial_progress_periodic',$totalProgress->financial_progress_periodic) }}">
+                        @error('financial_progress_periodic')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="financial_progress_cumulative">Financial progress cumulative</label>
+                        <input type="text" id="financial_progress_cumulative" name="financial_progress_cumulative" placeholder="Financial progress cumulative"
+                            value="{{ old('financial_progress_cumulative',$totalProgress->financial_progress_cumulative) }}">
+                        @error('financial_progress_cumulative')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -89,71 +89,66 @@
 
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="contractor_detail"> Contractor Detail <span class="text-danger">*</span></label>
-                        <input type="text" id="contractor_detail" name="contractor_detail" placeholder=" Contractor detail"
-                            value="{{ old('contractor_detail') }}">
-                        @error('contractor_detail')
+                        <label for="financial_progress_rs"> Financial progress Amount</label>
+                        <input type="text" id="financial_progress_rs" name="financial_progress_rs" placeholder="Rs.123****"
+                            value="{{ old('financial_progress_rs',$totalProgress->financial_progress_rs) }}">
+                        @error('financial_progress_rs')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="periodic_percentage">periodic_percentage</label>
+                        <input type="text" id="periodic_percentage"  name="periodic_percentage"
+                            placeholder="Enter number" value="{{ old('periodic_percentage',$totalProgress->periodic_percentage) }}">
+                        @error('periodic_percentage')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="agreement_date">Agreement Date <span class="text-danger">*</span></label>
-                        <input type="text" id="agreement_date" name="agreement_date" class="nepali-date"
-                            placeholder="yyyy/mm/dd" value="{{ old('agreement_date') }}">
-                        @error('agreement_date')
+                        <label for="yearly_percentage">Yearly percentage</label>
+                        <input type="text" id="yearly_percentage"  name="yearly_percentage"
+                            placeholder="yearly percentage" value="{{ old('yearly_percentage',$totalProgress->yearly_percentage) }}">
+                        @error('yearly_percentage')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-style-1">
+                        <label for="periodic_physical_progress">periodic physical progress</label>
+                        <input type="text" id="periodic_physical_progress"  name="periodic_physical_progress"
+                            placeholder="periodic physical progress " value="{{ old('periodic_physical_progress',$totalProgress->periodic_physical_progress) }}">
+                        @error('periodic_physical_progress')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="agreement_amount">Agreement Amount <span class="text-danger">*</span></label>
-                        <input type="text" id="agreement_amount"  name="agreement_amount"
-                            placeholder="agreement amount" value="{{ old('agreement_amount') }}">
-                        @error('agreement_amount')
+                        <label for="periodic_physical_cumulative">periodic physical Cumulative</label>
+                        <input type="text" id="periodic_physical_cumulative"  name="periodic physical cumulative"
+                            placeholder="periodic physical progress " value="{{ old('periodic_physical_cumulative',$totalProgress->periodic_physical_cumulative) }}">
+                        @error('periodic_physical_cumulative')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-12">
                     <div class="input-style-1">
-                        <label for="completion_date">Completion Date <span class="text-danger">*</span></label>
-                        <input type="text" id="completion_date" class="nepali-date" name="completion_date"
-                            placeholder="yyyy/mm/dd " value="{{ old('completion_date') }}">
-                        @error('completion_date')
+                        <label for="remarks">Remarks</label>
+                        <textarea name="remarks" id="remarks" cols="30" rows="4" placeholder="remarks">{{ old('remarks',$totalProgress->remarks) }}</textarea>
+                        @error('remarks')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-
-
-                <div class="col-md-6">
-                    <div class="input-style-1">
-                        <label for="actual_expenditure">Actual Expenditure </label>
-                        <input type="text" id="actual_expenditure"  name="actual_expenditure"
-                            placeholder="actual expenditure" value="{{ old('actual_expenditure') }}">
-                        @error('actual_expenditure')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-6">
-                    <div class="input-style-1">
-                        <label for="work_completed">Work completed Date</label>
-                        <input type="text" id="work_completed" class="nepali-date" name="work_completed"
-                            placeholder="yyyy/mm/dd " value="{{ old('work_completed') }}">
-                        @error('work_completed')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-
 
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-sm btn-primary">

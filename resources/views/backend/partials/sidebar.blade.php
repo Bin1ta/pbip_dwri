@@ -143,6 +143,10 @@
                         <a class="{{ request()->is('admin/finishedContract/finished-contract*') ? 'active' : '' }}"
                             href="{{ route('admin.finished-contract.index') }}"> Finished Contract  </a>
                     </li>
+                    <li>
+                        <a class="{{ request()->is('admin/totalProgress/total-progress*') ? 'active' : '' }}"
+                            href="{{ route('admin.total-progress.index') }}"> Total Progress</a>
+                    </li>
 
                 </ul>
             </li>

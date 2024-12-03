@@ -1,11 +1,10 @@
-
 @extends('layouts.app')
 @section('content')
     <div class="title-wrapper pt-30">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h3>Contact Progress </h3>
+                    <h3>Total Progress </h3>
                 </div>
             </div>
             <!-- end col -->
@@ -17,7 +16,7 @@
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Contact Progress
+                                Total Progress
                             </li>
                         </ol>
                     </nav>
@@ -32,64 +31,53 @@
         <div class="col-lg-12">
             <div class="card-style mb-30">
                 <div style="display: flex;justify-content: space-between">
-                    <h6 class="mb-10">Contact Progress</h6>
-                    <a href="{{ route('admin.contract-progress.create') }}" class="btn btn-sm btn-primary">Add New</a>
+                    <h6 class="mb-10">Total Progress</h6>
+                    <a href="{{ route('admin.total-progress.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
                 <div class=" table-responsive table-hover">
-                    <table class="table" style="width: 100rem;">
+                    <table class="table" style="width:100rem;">
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Work Name</th>
-                                <th>Contract Id</th>
-                                <th>Contractor Name</th>
-                                <th>Contractor Amount</th>
-                                <th>Agreement Date</th>
-                                <th>Completion Date</th>
-                                <th>Fin. Prog. Amount</th>
-                                <th>Status</th>
+                                <th> Year</th>
+                                <th>periodicity</th>
+                                <th>financial progress periodic</th>
+                                <th>financial progress cumulative</th>
+                                <th>financial progress Amount</th>
+                                <th>periodic percentage</th>
+                                <th>yearly percentage </th>
+                                <th>periodic physical progress</th>
+
 
                                 <th>Action</th>
                             </tr>
                             <!-- end table row-->
                         </thead>
                         <tbody>
-                            @forelse($contractProgresses as $contractProgress)
+                            @forelse($totalProgresses as $totalProgress)
                                 <tr>
                                     <td>
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td>{{ $contractProgress->work_name ?? '' }}</td>
-                                    <td>{{ $contractProgress->contract_id ?? '' }}</td>
-                                    <td>{{ $contractProgress->contractor_name ?? '' }}</td>
-                                    <td>Rs.{{ $contractProgress->contractor_amount ?? '' }}</td>
-                                    <td>{{ $contractProgress->agreement_date ?? '' }}</td>
+                                    <td>{{ $totalProgress->year ?? '' }}</td>
+                                    <td>{{ $totalProgress->periodicity ?? '' }}</td>
+                                    <td>{{ $totalProgress->financial_progress_periodic ?? '' }}</td>
+                                    <td>{{ $totalProgress->financial_progress_cumulative ?? '' }}</td>
+                                    <td>Rs.{{ $totalProgress->financial_progress_rs ?? '' }}</td>
 
-                                    <td>{{ $contractProgress->completion_date ?? '' }}</td>
+                                    <td>{{ $totalProgress->periodic_percentage ?? '' }}%</td>
 
-                                    <td>Rs.{{ $contractProgress->financial_progress_amount ?? '' }}</td>
-                                    <td>
+                                    <td>{{ $totalProgress->yearly_percentage ?? '' }}</td>
+                                    <td>{{ $totalProgress->periodic_physical_progress ?? '' }}</td>
 
-                                            @can('contract_progress_edit')
-                                                <a href="{{route('admin.contractProgress.status',$contractProgress)}}">
-                                                    @if($contractProgress->progress_status==1)
-                                                        <i class="mdi mdi-check mdi-24px text-success"></i>
-                                                    @else
-                                                        <i class="mdi mdi-window-close mdi-24px text-danger"></i>
-                                                    @endif
-
-                                                </a>
-                                            @endcan
-
-                                    </td>
 
                                     <td>
                                         <div class="action">
-                                            <a href="{{ route('admin.contract-progress.edit', $contractProgress) }}"
+                                            <a href="{{ route('admin.total-progress.edit', $totalProgress) }}"
                                                 class="text-info">
                                                 <i class="lni lni-pencil"></i>
                                             </a>
-                                            <form action="{{ route('admin.contract-progress.destroy', $contractProgress) }}"
+                                            <form action="{{ route('admin.total-progress.destroy', $totalProgress) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -109,7 +97,7 @@
 
                         </tbody>
                     </table>
-                 {{ $contractProgresses->links()  }}
+                    {{ $totalProgresses->links() }}
                     <!-- end table -->
                 </div>
             </div>
