@@ -13,4 +13,8 @@ return [
     'exEmployee',
     'exChief',
     'lawsuit',
+    'contractProgress',
+    'totalProgress',
+    'finishedContract',
+    'currentContract'
 ];

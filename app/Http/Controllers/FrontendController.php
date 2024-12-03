@@ -6,6 +6,8 @@ use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\Audio;
 use App\Models\Bill;
 use App\Models\ContactMessage;
+use App\Models\ContractProgress;
+use App\Models\CurrentContract;
 use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\Employee;
@@ -22,6 +24,8 @@ use App\Models\Smuggling;
 use App\Models\SubDivision\SubDivision;
 use App\Models\SubDivision\SubDivisionDocument;
 use App\Models\SubDivision\SubDivisionEmployee;
+use App\Models\TotalProgress;
+use App\Models\FinishedContract;
 use App\Models\VideoGallery;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -172,6 +176,19 @@ class FrontendController extends BaseController
             case 'smuggling':
                 $smugglings = Smuggling::whereNull('sub_division_id')->latest()->get();
                 return view('frontend.smuggling.index', compact('smugglings'));
+            case 'contractProgress':
+                $contractProgresses = ContractProgress::where('progress_status',1)->latest()->paginate(10);
+                return view('frontend.contracts.contractProgress', compact('contractProgresses'));
+            case 'totalProgress':
+                $totalProgresses = TotalProgress::latest()->paginate(10);
+                return view('frontend.contracts.totalProgress', compact('totalProgresses'));
+            case 'finishedContract':
+                $finishedContracts =FinishedContract::where('place_id','badkapath')->latest()->paginate(10);
+                return view('frontend.contracts.finishedContract', compact('finishedContracts'));
+            case 'currentContract':
+                $currentContracts =CurrentContract::latest()->paginate(10);
+                return view('frontend.contracts.currentContract', compact('currentContracts'));
+
             case 'allExEmployee':
                 $exEmployees = ExEmployee::orderBy('leaving_date', 'asc')->get();
                 return view('frontend.allExEmployee', compact('exEmployees'));
