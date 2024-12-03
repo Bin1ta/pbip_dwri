@@ -234,17 +234,17 @@
               <span class="icon">
                <i class="mdi mdi-image-search-outline"></i>
               </span>
-                        <span class="text">Water Consumption</span>
+                        <span class="text">जल उपभोक्ता समिति</span>
                     </a>
                     <ul id="waterConsumption"
                         class="collapse dropdown-nav {{request()->is('admin/waterConsumption/*') ? 'show' : ''}}">
                         <li>
                             <a class="{{request()->is('admin/waterConsumption/committeeCategory*') ? 'active' : ''}}"
-                               href="{{route('admin.committeeCategory.index')}}"> Committee Category </a>
+                               href="{{route('admin.committeeCategory.index')}}"> समितिको वर्ग </a>
                             <a class="{{request()->is('admin/waterConsumption/committee*') ? 'active' : ''}}"
-                               href="{{route('admin.committee.index')}}"> Committee</a>
+                               href="{{route('admin.committee.index')}}"> समिति</a>
                             <a class="{{request()->is('admin/waterConsumption/committeeMember*') ? 'active' : ''}}"
-                               href="{{route('admin.committeeMember.index')}}"> Committee Member</a>
+                               href="{{route('admin.committeeMember.index')}}"> सदस्यहरु</a>
                         </li>
                     </ul>
                 </li>
