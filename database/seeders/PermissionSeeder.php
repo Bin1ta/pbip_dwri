@@ -126,6 +126,10 @@ class PermissionSeeder extends Seeder
             ['title' => "finished_contract_create"],
             ['title' => "finished_contract_edit"],
             ['title' => "finished_contract_delete"],
+            ['title' => "canal_access"],
+            ['title' => "canal_create"],
+            ['title' => "canal_edit"],
+            ['title' => "canal_delete"],
 
         ];
 

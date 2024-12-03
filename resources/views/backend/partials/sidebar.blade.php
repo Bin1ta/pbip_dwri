@@ -73,6 +73,17 @@
                     </a>
                 </li>
             @endcan
+            @can('canal_access')
+                {{-- canal --}}
+                <li class="nav-item {{ request()->is('admin/canal*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.canal.index') }}">
+                        <span class="icon">
+                            <i class="mdi mdi-abacus"></i>
+                        </span>
+                        <span class="text">केनल</span>
+                    </a>
+                </li>
+            @endcan
 
             @can('employee_access')
                 {{-- Employee --}}
