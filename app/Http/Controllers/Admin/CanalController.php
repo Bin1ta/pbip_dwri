@@ -45,7 +45,6 @@ class CanalController extends BaseController
         toast('Canal Added Successfully', 'success');
 
         return back();
-
     }
 
 
