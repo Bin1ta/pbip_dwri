@@ -1,9 +1,16 @@
+@font-face {
+    font-family: 'Kalimati';
+    src: url('./Kalimati.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body{
     background-color: #f2f2f2 !important;
     margin: auto;
-    font-family: "Nunito Sans",sans-serif;
+
+    font-family: "Kalimati", sans-serif !important;
     line-height: 1.5;
-    /* overflow-x: hidden !important; */
+
 }
 .modal {
     position: fixed;
@@ -642,9 +649,12 @@ img.flag {
     background-color: transparent;
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-dark .navbar-nav  {
     color: #FFFFFF !important;
     font-weight: 600;
+}
+.nav-link{
+color: black !important;
 }
 /*marquee css*/
 .newsbar-container {

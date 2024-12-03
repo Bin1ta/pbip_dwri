@@ -75,9 +75,14 @@
                         <select name="menu_id" id="menu_id" class="form-control">
                             <option value="">- - छान्नुहोस् - -</option>
                             @foreach($mainMenus as $mainMenu)
-                                <option value="{{$mainMenu->id}}" @selected($mainMenu->id==$menu->menu_id)>
-                                    {{$mainMenu->title}}
+                                <option value="{{ $mainMenu->id }}" {{ old('menu_id') == $mainMenu->id ? 'selected' : '' }}>
+                                    {{ $mainMenu->title }}
                                 </option>
+                                @foreach ($mainMenu->menus as $menu)
+                                    <option value="{{ $menu->id }}" {{ old('menu_id') == $menu->id ? 'selected' : '' }}>
+                                        -- {{ $menu->title }}
+                                    </option>
+                                @endforeach
                             @endforeach
                         </select>
                         @error('menu_id')

@@ -63,6 +63,16 @@ class CommitteeMemberController extends BaseController
         $committees = Committee::all();
         return view('admin.committeeMember.edit', compact('committeeMember', 'committees'));
     }
+    public function show(CommitteeMember $committeeMember)
+    {
+        abort_if(
+            Gate::denies('water_consumption_access'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
+        $committees = Committee::all();
+        return view('admin.committeeMember.show', compact('committeeMember', 'committees'));
+    }
 
     public function update(UpdateCommitteeMemberRequest $request, CommitteeMember $committeeMember)
     {
@@ -84,6 +94,11 @@ class CommitteeMemberController extends BaseController
 
     public function destroy(CommitteeMember $committeeMember)
     {
+        abort_if(
+            Gate::denies('water_consumption_delete'),
+            ResponseAlias::HTTP_FORBIDDEN,
+            '403 Forbidden | you are not allowed to access this resource'
+        );
         $committeeMember->delete();
         return redirect()->route('admin.committeeMember.index')->with('success', 'Committee Member deleted successfully.');
     }

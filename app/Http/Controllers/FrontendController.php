@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\Audio;
 use App\Models\Bill;
+use App\Models\Canal;
 use App\Models\ContactMessage;
+use App\Models\ContractProgress;
+use App\Models\CurrentContract;
 use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\Employee;
@@ -22,6 +25,8 @@ use App\Models\Smuggling;
 use App\Models\SubDivision\SubDivision;
 use App\Models\SubDivision\SubDivisionDocument;
 use App\Models\SubDivision\SubDivisionEmployee;
+use App\Models\TotalProgress;
+use App\Models\FinishedContract;
 use App\Models\VideoGallery;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +46,7 @@ class FrontendController extends BaseController
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
             $sliders = Slider::latest()->get();
+            $canals = Canal::latest()->get();
             $categories = DocumentCategory::with([
                 'documentCategories' => function ($query) {
                     $query->whereShowOnIndex(1)->orderBy('position');
@@ -62,7 +68,7 @@ class FrontendController extends BaseController
             $subDivisions = SubDivision::latest()->get();
             $employees = Employee::with('designation','department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            return view('frontend.index', compact('audios','employees','officeDetail', 'tickerFiles', 'sliders', 'categories', 'galleries','subDivisions','noticePopups'));
+            return view('frontend.index', compact('audios','employees','officeDetail', 'tickerFiles', 'sliders','canals', 'categories', 'galleries','subDivisions','noticePopups'));
         }
         else
         {
@@ -172,6 +178,19 @@ class FrontendController extends BaseController
             case 'smuggling':
                 $smugglings = Smuggling::whereNull('sub_division_id')->latest()->get();
                 return view('frontend.smuggling.index', compact('smugglings'));
+            case 'contractProgress':
+                $contractProgresses = ContractProgress::where('progress_status',1)->latest()->paginate(10);
+                return view('frontend.contracts.contractProgress', compact('contractProgresses'));
+            case 'totalProgress':
+                $totalProgresses = TotalProgress::latest()->paginate(10);
+                return view('frontend.contracts.totalProgress', compact('totalProgresses'));
+            case 'finishedContract':
+                $finishedContracts =FinishedContract::where('place_id','badkapath')->latest()->paginate(10);
+                return view('frontend.contracts.finishedContract', compact('finishedContracts'));
+            case 'currentContract':
+                $currentContracts =CurrentContract::latest()->paginate(10);
+                return view('frontend.contracts.currentContract', compact('currentContracts'));
+
             case 'allExEmployee':
                 $exEmployees = ExEmployee::orderBy('leaving_date', 'asc')->get();
                 return view('frontend.allExEmployee', compact('exEmployees'));

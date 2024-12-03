@@ -62,27 +62,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    @if($menu->menus_count > 0)
-                                        Main Menu
-                                    @else
-                                        @if(!empty($menu->model))
-                                            @switch($menu->type)
-                                                @case('category')
-                                                    {{route('documentCategory', $menu->model->slug)}}
-                                                    @break
-                                                @case('subDivision')
-                                                    {{route('subDivision', $menu->model->slug)}}
-                                                    @break
-                                                @case('forestCategory')
-                                                    {{route('forestCategory', $menu->model->slug)}}
-                                                    @break
-                                                @default
-                                                    {{route('officeDetail', $menu->model->slug)}}
-                                            @endswitch
-                                        @else
-                                            {{route('static',$menu->slug)}}
-                                        @endif
-                                    @endif
+                                   <a href="{{App\Helpers\Helpers::getFrontUrl($menu)}}"><i class="fa fa-link"></i></a>
                                 </td>
                                 <td>
                                     <div class="action">
@@ -101,57 +81,10 @@
                                     </div>
                                 </td>
                             </tr>
-                            @foreach($menu->menus as $subMenu)
-                                <tr style="background-color: #e0e7f2">
-                                    <td> {{$loop->parent->iteration}}.{{$loop->iteration}}</td>
-                                    <td>{{$subMenu->title}}</td>
-                                    <td>
-                                        <a href="{{route('admin.menu.updateStatus',$menu)}}">
-                                            @if($subMenu->status==1)
-                                                <i class="mdi mdi-check mdi-24px text-success"></i>
-                                            @else
-                                                <i class="mdi mdi-window-close mdi-24px text-danger"></i>
-                                            @endif
+                            @if ($menu->menus_count > 0)
+                                <x-backend.child-menu-list-component :menu="$menu" iterationCount="{{$loop->iteration}}"  />
+                            @endif
 
-                                        </a>
-                                    </td>
-                                    <td>
-                                        @if(!empty($subMenu->model))
-                                            @switch($subMenu->type)
-                                                @case('category')
-                                                    {{route('documentCategory', $subMenu->model->slug)}}
-                                                    @break
-                                                @case('subDivision')
-                                                    {{route('subDivision', $subMenu->model->slug)}}
-                                                    @break
-                                                @case('forestCategory')
-                                                    {{route('forestCategory', $subMenu->model->slug)}}
-                                                    @break
-                                                @default
-                                                    {{route('officeDetail', $subMenu->model->slug)}}
-                                            @endswitch
-                                        @else
-                                            {{route('static',$subMenu->slug)}}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="action">
-                                            <a href="{{route('admin.menu.edit', $subMenu)}}" class="text-info">
-                                                <i class="lni lni-pencil"></i>
-                                            </a>
-                                            <form action="{{route('admin.menu.destroy',$subMenu)}}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="text-danger show_confirm">
-                                                    <i class="lni lni-trash-can"></i>
-                                                </button>
-                                            </form>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
                         @empty
                             <tr>
                                 <td class="text-center" colspan="4">No Result Found</td>
