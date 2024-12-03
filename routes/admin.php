@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\{AudioController,
     BillController,
+    CanalController,
     CategoryController,
     ColorController,
     CommitteeCategoryController,
@@ -61,6 +62,7 @@ Route::prefix('userManagement')->group(function () {
 });
 
 Route::resource('slider', SliderController::class);
+Route::resource('canal', CanalController::class);
 
 Route::prefix('employees')->group(function () {
     Route::resource('department', DepartmentController::class);

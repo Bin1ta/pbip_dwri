@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('post')->nullable();
             $table->string('post_en')->nullable();
+            $table->string('remarks')->nullable();
             $table->foreignId('committee_id')->nullable()->constrained()->nullOnDelete()->onUpdate('no action');
             $table->softDeletes();
             $table->timestamps();

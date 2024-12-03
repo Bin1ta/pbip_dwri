@@ -82,34 +82,27 @@
                     </div>
                 @endif
                 @if (config('default.subDivision'))
-                    <div class="col-md-4 order-3 order-lg-1">
-                        <h5 class="text-white text-center" style="background-color: rgb(31, 31, 143); padding:10px;">
-                            Main Canals
-                        </h5>
-                        <div class="cannel-carousel" id="customCarousel">
-                            <div class="cannel-carousel-inner">
-                                <div class="cannel-carousel-item">
-                                    <div class="img-box"><img
-                                            src="https://images.unsplash.com/photo-1526239187794-f8c27c7872ee?q=80&w=1767&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="Image 1"></div>
+                        <div class="col-md-4 order-3 order-lg-1">
+                            <h5 class="text-white text-center" style="background-color: rgb(31, 31, 143); padding:10px;">
+                                Main Canals
+                            </h5>
+                            <div class="cannel-carousel" id="customCarousel">
+                                <div class="cannel-carousel-inner">
+                                    @foreach ($canals as $index => $canal)
+                                        <div class="cannel-carousel-item {{ $loop->first ? 'active' : '' }}" data-index="{{ $index }}">
+                                            <div class="img-box">
+                                                <img src="{{ $canal->photo }}" alt="{{ $canal->title }}" class="img-fluid" />
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <div class="cannel-carousel-item">
-                                    <div class="img-box"><img
-                                            src="https://images.unsplash.com/photo-1526239187794-f8c27c7872ee?q=80&w=1767&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="Image 2"></div>
-                                </div>
-                                <div class="cannel-carousel-item">
-                                    <div class="img-box"><img
-                                            src="https://images.unsplash.com/photo-1526239187794-f8c27c7872ee?q=80&w=1767&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="Image 2"></div>
-                                </div>
+                                <!-- Navigation Arrows -->
+                                <button class="cannel-carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
+                                <button class="cannel-carousel-control next" onclick="moveSlide(1)">&#10095;</button>
                             </div>
-                            <div class="cannel-carousel-control prev" onclick="moveSlide(-1)">&#10094;</div>
-                            <div class="cannel-carousel-control next" onclick="moveSlide(1)">&#10095;</div>
                         </div>
 
-                    </div>
-                @endif
+                    @endif
 
                 <div class=" @if (config('default.subDivision')) col-md-4 @else col-lg-4 @endif  order-2 order-lg-3">
                     <div class="row">

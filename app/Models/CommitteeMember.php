@@ -27,6 +27,7 @@ class CommitteeMember extends Model
         'post',
         'post_en',
         'committee_id',
+        'remarks'
     ];
 
     public function committee(): BelongsTo

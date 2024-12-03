@@ -24,6 +24,7 @@ class UpdateCommitteeMemberRequest extends FormRequest
             'photo' => ['nullable', 'image', 'mimes:jpg,png,jpeg'],
             'post' => ['nullable', 'string'],
             'post_en' => ['nullable', 'string'],
+            'remarks' => ['nullable', 'string'],
             'committee_id' => ['nullable', Rule::exists('committees', 'id')->withoutTrashed()],
 
         ];

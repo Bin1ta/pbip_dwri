@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\Audio;
 use App\Models\Bill;
+use App\Models\Canal;
 use App\Models\ContactMessage;
 use App\Models\ContractProgress;
 use App\Models\CurrentContract;
@@ -45,6 +46,7 @@ class FrontendController extends BaseController
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
             $sliders = Slider::latest()->get();
+            $canals = Canal::latest()->get();
             $categories = DocumentCategory::with([
                 'documentCategories' => function ($query) {
                     $query->whereShowOnIndex(1)->orderBy('position');
@@ -66,7 +68,7 @@ class FrontendController extends BaseController
             $subDivisions = SubDivision::latest()->get();
             $employees = Employee::with('designation','department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            return view('frontend.index', compact('audios','employees','officeDetail', 'tickerFiles', 'sliders', 'categories', 'galleries','subDivisions','noticePopups'));
+            return view('frontend.index', compact('audios','employees','officeDetail', 'tickerFiles', 'sliders','canals', 'categories', 'galleries','subDivisions','noticePopups'));
         }
         else
         {
