@@ -20,12 +20,14 @@ use App\Http\Controllers\Admin\{AudioController,
     FaqController,
     FileController,
     FinishedContractController,
+    InvoiceController,
     LinkController,
     MenuController,
     OfficeDetailController,
     OfficeSettingController,
     OfficeSettingHeaderController,
     PhotoGalleryController,
+    RegistrationController,
     SliderController,
     SmugglingController,
     SubDivision\ForestCategoryController,
@@ -126,6 +128,12 @@ Route::prefix('forest')->group(function (){
     Route::resource('forestCategory', ForestCategoryController::class);
     Route::resource('forestDetail', ForestDetailController::class);
 });
+Route::prefix('registrations')->group(function (){
+    Route::resource('registration', RegistrationController::class);
+    Route::resource('invoice', InvoiceController::class);
+
+});
+
 
 Route::resource('lawsuit', LawsuitController::class);
 Route::resource('contract-progress', ContractProgressController::class);

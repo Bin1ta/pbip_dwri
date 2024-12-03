@@ -130,6 +130,14 @@ class PermissionSeeder extends Seeder
             ['title' => "total_progress_create"],
             ['title' => "total_progress_edit"],
             ['title' => "total_progress_delete"],
+            ['title' => "registration_access"],
+            ['title' => "registration_create"],
+            ['title' => "registration_edit"],
+            ['title' => "registration_delete"],
+            ['title' => "invoice_access"],
+            ['title' => "invoice_create"],
+            ['title' => "invoice_edit"],
+            ['title' => "invoice_delete"],
 
         ];
 

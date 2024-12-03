@@ -257,6 +257,26 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item nav-item-has-children">
+                <a href="#" class="{{ request()->is('admin/registrations/*') ? '' : 'collapsed' }}"
+                   data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
+                   aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
+                    <span class="icon">
+                        <i class="mdi mdi-image-search-outline"></i>
+                    </span>
+                    <span class="text">प्रशासन</span>
+                </a>
+                <ul id="registrations" class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
+                    <li>
+                        <a class="{{ request()->is('admin/registrations/registration*') ? 'active' : '' }}"
+                           href="{{ route('admin.registration.index') }}"> दर्ता </a>
+                        <a class="{{ request()->is('admin/registrations/invoice*') ? 'active' : '' }}"
+                           href="{{ route('admin.invoice.index') }}"> चलानी </a>
+
+                    </li>
+                </ul>
+            </li>
             @can('bill_access')
                 <li class="nav-item {{ request()->is('admin/lawsuit/*') ? 'active' : '' }}">
                     <a href="{{ route('admin.lawsuit.index') }}">
