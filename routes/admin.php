@@ -83,17 +83,7 @@ Route::resource('documentCategory/{documentCategory}/document', DocumentControll
 Route::get('documentCategory/{documentCategory}/category/{category}/showOnIndex', [CategoryController::class, 'showOnIndex'])->name('documentCategory.category.showOnIndex');
 Route::resource('documentCategory/{documentCategory}/category', CategoryController::class)->names('documentCategory.category');
 
-Route::prefix('subDivisions')->group(function () {
-    Route::resource('subDivision', SubDivisionController::class);
-    Route::resource('subDivision.forestDetail', SubDivisionForestController::class);
-    Route::resource('subDivisionEmployee', SubDivisionEmployeeController::class);
-    Route::prefix('documents')->group(function () {
-        Route::resource('subDivisionDocumentCategory', SubDivisionDocumentCategoryController::class);
-        Route::get('subDivisionDocument/{subDivisionDocument}/updateStatus', [SubDivisionDocumentController::class, 'updateStatus'])->name('subDivisionDocument.status');
-        Route::get('subDivisionDocument/{subDivisionDocument}/markAsNew', [SubDivisionDocumentController::class, 'markAsNew'])->name('subDivisionDocument.markAsNew');
-        Route::resource('subDivisionDocument', SubDivisionDocumentController::class);
-    });
-});
+
 
 Route::put('officeDetail/{officeDetail}/showOnIndex', [OfficeDetailController::class, 'showOnIndex'])->name('officeDetail.showOnIndex');
 Route::get('officeDetail/{officeDetail}/showOnIndex', [OfficeDetailController::class, 'showOnIndex'])->name('officeDetail.showOnIndex');
@@ -123,14 +113,10 @@ Route::resource('file', FileController::class)->only('destroy');
 
 Route::resource('contactMessage', ContactMessageController::class)->only('index', 'destroy');
 
-Route::resource('smuggling', SmugglingController::class);
 Route::resource('color', ColorController::class);
 Route::resource('officeSettingHeader', OfficeSettingHeaderController::class);
 
-Route::prefix('forest')->group(function (){
-    Route::resource('forestCategory', ForestCategoryController::class);
-    Route::resource('forestDetail', ForestDetailController::class);
-});
+
 Route::prefix('registrations')->group(function (){
     Route::resource('registration', RegistrationController::class);
     Route::resource('invoice', InvoiceController::class);
@@ -142,7 +128,6 @@ Route::prefix('administrations')->group(function (){
 });
 
 
-Route::resource('lawsuit', LawsuitController::class);
 Route::resource('contract-progress', ContractProgressController::class);
 Route::get('contract-progress/{contractProgress}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('contractProgress.status');
 Route::resource('current-contract',CurrentContractController::class);

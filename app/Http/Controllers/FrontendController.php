@@ -68,7 +68,6 @@ class FrontendController extends BaseController
 
             $galleries = PhotoGallery::with('photos')->latest()->get();
             $noticePopups = Document::with('files')->where('popUp', 1)->get();
-            $subDivisions = SubDivision::latest()->get();
             $employees = Employee::with('designation', 'department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
             return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries', 'subDivisions', 'noticePopups'));
@@ -166,18 +165,14 @@ class FrontendController extends BaseController
             case 'bill':
                 $bills = Bill::orderByDesc('bill_date')->get();
                 return view('frontend.bill', compact('bills'));
-            case 'subDivision':
-                $subDivisions = SubDivision::get();
-                return view('frontend.sub-division.index', compact('subDivisions'));
+
             case 'faq':
                 $faqs = Faq::latest()->get();
                 return view('frontend.faq', compact('faqs'));
             case 'links':
                 $importantLinks = Link::latest()->get();
                 return view('frontend.links', compact('importantLinks'));
-            case 'smuggling':
-                $smugglings = Smuggling::whereNull('sub_division_id')->latest()->get();
-                return view('frontend.smuggling.index', compact('smugglings'));
+
             case 'contractProgress':
                 $contractProgresses = ContractProgress::where('progress_status', 1)->latest()->paginate(10);
                 return view('frontend.contracts.contractProgress', compact('contractProgresses'));
@@ -210,10 +205,6 @@ class FrontendController extends BaseController
                 $audios = Audio::latest()->get();
                 return view('frontend.audio', compact('audios'));
 
-            case 'lawsuit':
-                $lawsuits = Lawsuit::latest()->get();
-                return view('frontend.lawsuit', compact('lawsuits'));
-
             case 'exChief':
                 $exEmployees = ExEmployee::where('is_chief', 1)->orderBy('leaving_date', 'asc')->get();
                 return view('frontend.allExEmployee', compact('exEmployees'));
@@ -223,80 +214,6 @@ class FrontendController extends BaseController
         }
     }
 
-    public function subDivisionDetail(SubDivision $subDivision)
-    {
-        $subDivision->load('forestCategories');
-        $subDivisionChief = SubDivisionEmployee::where('sub_division_id', $subDivision->id)->whereIsChief(1)->first();
-
-        return view('frontend.sub-division.detail', compact('subDivision', 'subDivisionChief'));
-    }
-
-    public function forestCategory(ForestCategory $forestCategory)
-    {
-        $forestCategory->load('forestDetails');
-        return view('frontend.sub-division.forestCategory', compact('forestCategory'));
-    }
-
-    public function subDivisionStaffs(SubDivision $subDivision)
-    {
-        $subDivisionChief = SubDivisionEmployee::where('sub_division_id', $subDivision->id)->whereIsChief(1)->first();
-        $subDivision->load(['subDivisionEmployee' => function ($query) {
-            $query->whereIsChief(0);
-        }]);
-
-        return view('frontend.sub-division.staff', compact('subDivision', 'subDivisionChief'));
-    }
-
-    public function smugglingDetail(Smuggling $smuggling)
-    {
-        $smuggling->load('files');
-        $relatedSmugglings = Smuggling::whereNull('sub_division_id')->where('id', '!=', $smuggling->id)->latest()->limit(5)->get();
-
-        return view('frontend.smuggling.detail', compact('smuggling', 'relatedSmugglings'));
-    }
-
-    public function subDivisionDocuments(SubDivision $subDivision)
-    {
-        $subDivision->load('subDivisionDocuments.files', 'subDivisionDocuments.subDivisionDocumentCategory');
-
-        return view('frontend.sub-division.docs', compact('subDivision'));
-    }
-
-    public function subDivisionDocumentDetail(SubDivision $subDivision, SubDivisionDocument $subDivisionDocument)
-    {
-        $subDivisionDocument->load('files');
-        $subDivisionDocuments = SubDivisionDocument::where('sub_division_id', $subDivision->id)->where('id', '!=', $subDivisionDocument->id)->orderByDesc('date')->limit(5)->get();
-
-        return view('frontend.sub-division.document_detail', compact('subDivision', 'subDivisionDocument', 'subDivisionDocuments'));
-    }
-
-    public function subDivisionSmuggling(SubDivision $subDivision)
-    {
-        $subDivision->load('smugglings.files');
-
-        return view('frontend.sub-division.smuggling.index', compact('subDivision'));
-    }
-
-    public function subDivisionSmugglingDetail(SubDivision $subDivision, Smuggling $smuggling)
-    {
-        $smuggling->load('files');
-        $relatedSmugglings = Smuggling::where('sub_division_id', $subDivision->id)->where('id', '!=', $smuggling->id)->latest()->limit(5)->get();
-
-        return view('frontend.sub-division.smuggling.detail', compact('subDivision', 'smuggling', 'relatedSmugglings'));
-    }
-
-    public function subDivisionForest(SubDivision $subDivision, ForestCategory $forestCategory)
-    {
-        $forestCategory->load('forestDetails');
-        return view('frontend.subDivisionForest', compact('forestCategory', 'subDivision'));
-    }
-
-    public function photoGalleryDetails(PhotoGallery $photoGallery)
-    {
-        $photoGallery->load('photos');
-
-        return view('frontend.gallery.photo', compact('photoGallery'));
-    }
 
     public function sendMessage(StoreContactMessageRequest $request)
     {

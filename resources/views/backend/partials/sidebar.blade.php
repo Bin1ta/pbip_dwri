@@ -22,16 +22,7 @@
                 </a>
             </li>
 
-            @if (!empty(auth()->user()->sub_division_id))
-                <li class="nav-item">
-                    <a href="{{ route('admin.subDivision.edit', auth()->user()->sub_division_id) }}">
-                        <span class="icon">
-                            <i class="mdi mdi-cog"></i>
-                        </span>
-                        <span class="text">सब डिभिजन सेटिंग</span>
-                    </a>
-                </li>
-            @endif
+
             @can('office_setting_access')
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/setting/*') ? '' : 'collapsed' }}"
@@ -131,7 +122,7 @@
                         <i class="mdi mdi-file-document"></i>
 
                     </span>
-                    <span class="text">समझौत विवरण</span>
+                    <span class="text">समझौता विवरण</span>
                 </a>
                 <ul id="contract-progress" class="collapse dropdown-nav {{ request()->is('admin/contract-progress/*') ? 'show' : '' }}">
                     <li>
@@ -189,18 +180,7 @@
                     </ul>
                 </li>
             @endforeach
-{{--            @if (config('default.subDivision'))--}}
-{{--                @can('sub_division_access')--}}
-{{--                    <li class="nav-item {{ request()->is('admin/subDivisions*') ? 'active' : '' }}">--}}
-{{--                        <a href="{{ route('admin.subDivision.index') }}">--}}
-{{--                            <span class="icon">--}}
-{{--                                <i class="mdi mdi-abacus"></i>--}}
-{{--                            </span>--}}
-{{--                            <span class="text">सब डिभिजन</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endcan--}}
-{{--            @endif--}}
+
             @can('photoGallery_access')
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/gallery/*') ? '' : 'collapsed' }}"
@@ -235,7 +215,7 @@
                         aria-label="Toggle navigation"
                     >
               <span class="icon">
-               <i class="mdi mdi-image-search-outline"></i>
+               <i class="mdi mdi-account"></i>
               </span>
                         <span class="text">जल उपभोक्ता समिति</span>
                     </a>
@@ -252,45 +232,28 @@
                     </ul>
                 </li>
             @endcan
-            <li class="nav-item nav-item-has-children">
-                <a href="#" class="{{ request()->is('admin/forest/*') ? '' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#forest" aria-controls="forest"
-                    aria-expanded="{{ request()->is('admin/forest/*') }}" aria-label="Toggle navigation">
-                    <span class="icon">
-                        <i class="mdi mdi-image-search-outline"></i>
-                    </span>
-                    <span class="text">वनको विवरण</span>
-                </a>
-                <ul id="forest" class="collapse dropdown-nav {{ request()->is('admin/forest/*') ? 'show' : '' }}">
-                    <li>
-                        <a class="{{ request()->is('admin/forest/forestCategory*') ? 'active' : '' }}"
-                            href="{{ route('admin.forestCategory.index') }}"> वर्ग थप्नुहोस </a>
-                        <a class="{{ request()->is('admin/gallery/forestDetail*') ? 'active' : '' }}"
-                            href="{{ route('admin.forestDetail.index') }}"> वनको विवरण </a>
 
-                    </li>
-                </ul>
-            </li>
+            @if(auth()->user() !== 'Super Admin')
+                <li class="nav-item nav-item-has-children">
+                    <a href="#" class="{{ request()->is('admin/registrations/*') ? '' : 'collapsed' }}"
+                       data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
+                       aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
+        <span class="icon">
+            <i class="mdi mdi-image-search-outline"></i>
+        </span>
+                        <span class="text">प्रशासन</span>
+                    </a>
+                    <ul id="registrations" class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
+                        <li>
+                            <a class="{{ request()->is('admin/registrations/registration*') ? 'active' : '' }}"
+                               href="{{ route('admin.registration.index') }}"> दर्ता </a>
+                            <a class="{{ request()->is('admin/registrations/invoice*') ? 'active' : '' }}"
+                               href="{{ route('admin.invoice.index') }}"> चलानी </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
 
-            <li class="nav-item nav-item-has-children">
-                <a href="#" class="{{ request()->is('admin/registrations/*') ? '' : 'collapsed' }}"
-                   data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
-                   aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
-                    <span class="icon">
-                        <i class="mdi mdi-image-search-outline"></i>
-                    </span>
-                    <span class="text">प्रशासन</span>
-                </a>
-                <ul id="registrations" class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
-                    <li>
-                        <a class="{{ request()->is('admin/registrations/registration*') ? 'active' : '' }}"
-                           href="{{ route('admin.registration.index') }}"> दर्ता </a>
-                        <a class="{{ request()->is('admin/registrations/invoice*') ? 'active' : '' }}"
-                           href="{{ route('admin.invoice.index') }}"> चलानी </a>
-
-                    </li>
-                </ul>
-            </li>
 
 
 
@@ -319,30 +282,8 @@
                 </ul>
             </li>
 
-        @can('bill_access')
-                <li class="nav-item {{ request()->is('admin/lawsuit/*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.lawsuit.index') }}">
-                        <span class="icon">
-                            <i class="mdi mdi-billboard"></i>
-                        </span>
-                        <span class="text">मुद्दाको विवरण</span>
-                    </a>
-                </li>
-            @endcan
-            {{-- Sub Division Employee --}}
-            @can('subDivision_employee_access')
-                <li class="nav-item {{ request()->is('admin/subDivisions/subDivisionEmployee*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.subDivisionEmployee.index') }}">
-                        <span class="icon">
-                            <i class="mdi mdi-image-album"></i>
-                        </span>
-                        <span class="text">कर्मचारी लिस्ट</span>
-                    </a>
-                </li>
-            @endcan
 
 
-            {{-- Sub Divion Document --}}
             @canany(['subDivision_document_category_access', 'subDivision_document_access'])
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/subDivisions/documents*') ? '' : 'collapsed' }}"
@@ -403,18 +344,7 @@
                     </a>
                 </li>
             @endcan
-            @if (config('default.smuggling'))
-                @can('smuggling_access')
-                    <li class="nav-item {{ request()->is('admin/smuggling*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.smuggling.index') }}">
-                            <span class="icon">
-                                <i class="mdi mdi-clipboard-list"></i>
-                            </span>
-                            <span class="text">तस्करी</span>
-                        </a>
-                    </li>
-                @endcan
-            @endif
+
             @can('contact_message_access')
                 <li class="nav-item {{ request()->is('admin/contactMessage*') ? 'active' : '' }}">
                     <a href="{{ route('admin.contactMessage.index') }}">

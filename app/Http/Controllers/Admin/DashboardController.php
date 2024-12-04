@@ -21,18 +21,14 @@ class DashboardController extends BaseController
 
     public function __invoke()
     {
-        $employeeCount = !empty(auth()->user()->sub_division_id) ? SubDivisionEmployee::where('sub_division_id', auth()->user()->sub_division_id)->count() : Employee::count();
-        $photoGalleryCount = !empty(auth()->user()->sub_division_id)
-            ? Smuggling::where('sub_division_id', auth()->user()->sub_division_id)->count()
-            : PhotoGallery::count();
+        $employeeCount =  Employee::count();
+        $photoGalleryCount =  PhotoGallery::count();
         $sliderCount = Slider::count();
         $billCount = Bill::count();
         $documentCategories = empty(auth()->user()->sub_division_id) ? DocumentCategory::withCount('mainDocuments')->whereNull('document_category_id')->get() : collect();
-        $subDivisionDocumentCount = config('default.subDivision')
-            ? SubDivisionDocument::where('sub_division_id', auth()->user()->sub_division_id)->count()
-            : 0;
 
-        return view('dashboard', compact('employeeCount', 'photoGalleryCount', 'sliderCount', 'billCount', 'documentCategories', 'subDivisionDocumentCount'));
+
+        return view('dashboard', compact('employeeCount', 'photoGalleryCount', 'sliderCount', 'billCount', 'documentCategories', ));
     }
 
 }
