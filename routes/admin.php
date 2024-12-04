@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\{AudioController,
+use App\Http\Controllers\Admin\{AdministrationController,
+    AudioController,
     BillController,
     CanalController,
     CategoryController,
@@ -134,6 +135,10 @@ Route::prefix('registrations')->group(function (){
     Route::resource('registration', RegistrationController::class);
     Route::resource('invoice', InvoiceController::class);
 
+});
+
+Route::prefix('administrations')->group(function (){
+    Route::resource('administration', AdministrationController::class);
 });
 
 
