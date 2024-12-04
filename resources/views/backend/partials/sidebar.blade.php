@@ -186,18 +186,18 @@
                     </ul>
                 </li>
             @endforeach
-            @if (config('default.subDivision'))
-                @can('sub_division_access')
-                    <li class="nav-item {{ request()->is('admin/subDivisions*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.subDivision.index') }}">
-                            <span class="icon">
-                                <i class="mdi mdi-abacus"></i>
-                            </span>
-                            <span class="text">सब डिभिजन</span>
-                        </a>
-                    </li>
-                @endcan
-            @endif
+{{--            @if (config('default.subDivision'))--}}
+{{--                @can('sub_division_access')--}}
+{{--                    <li class="nav-item {{ request()->is('admin/subDivisions*') ? 'active' : '' }}">--}}
+{{--                        <a href="{{ route('admin.subDivision.index') }}">--}}
+{{--                            <span class="icon">--}}
+{{--                                <i class="mdi mdi-abacus"></i>--}}
+{{--                            </span>--}}
+{{--                            <span class="text">सब डिभिजन</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endcan--}}
+{{--            @endif--}}
             @can('photoGallery_access')
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/gallery/*') ? '' : 'collapsed' }}"

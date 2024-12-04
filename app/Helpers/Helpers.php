@@ -17,9 +17,9 @@ class Helpers
 
                     return match ($menu->type) {
                         'category' => route('documentCategory', [$menu->model->slug, 'language' => $language]),
-                        'subDivision' => route('subDivision', [$menu->model->slug, 'language' => $language]),
-                        'PedigreeCaste' => route('pedigreeCaste', [$menu->model->id, 'language' => $language]),
-                        'committeeCategory' => route('committeeMember', [$menu->model->id, 'language' => $language]),
+                        'committeeCategory' => route('committeeCategory', [$menu->model->id, 'language' => $language]),
+                        'finishedContract' => route('finishedContract', [$menu->model->id, 'language' => $language]),
+                        'currentContract' => route('currentContract', [$menu->model->id, 'language' => $language]),
                         default => route('officeDetail', [$menu->model->slug, 'language' => $language]),
                     };
                 } else {
@@ -29,8 +29,6 @@ class Helpers
                 if (!empty($menu->model)) {
                     return match ($menu->type) {
                         'category' => route('documentCategory', [$menu->model->slug, 'language' => $language]),
-                        'PedigreeCaste' => route('pedigreeCaste', [$menu->model->id, 'language' => $language]),
-                        'PedigreeDistribution' => route('distribution/pedigreeCaste', [$menu->model->id, 'language' => $language]),
                         default => route('officeDetail', [$menu->model->slug, 'language' => $language]),
                     };
                 } else {

@@ -53,7 +53,7 @@ class listing
 
         Route::post('sendMessage', [FrontendController::class, 'sendMessage'])->name('sendMessage');
         Route::get('faq', [FrontendController::class, 'faq'])->name('faq');
-        Route::get('/committee-member/{committeeMembers}', [FrontendController::class, 'comitteeMember'])->name('committeeMember');
+        Route::get('/committee-category/{committeeCategory}', [FrontendController::class, 'committeeCategory'])->name('committeeCategory');
 
     }
 }

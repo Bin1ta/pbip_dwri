@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ProjectTypeEnum;
 use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\Audio;
 use App\Models\Bill;
 use App\Models\Canal;
 use App\Models\Committee;
+use App\Models\CommitteeCategory;
 use App\Models\CommitteeMember;
 use App\Models\ContactMessage;
 use App\Models\ContractProgress;
@@ -182,11 +184,17 @@ class FrontendController extends BaseController
             case 'totalProgress':
                 $totalProgresses = TotalProgress::latest()->paginate(10);
                 return view('frontend.contracts.totalProgress', compact('totalProgresses'));
-            case 'finishedContract':
-                $finishedContracts = FinishedContract::where('place_id', 'badkapath')->latest()->paginate(10);
+            case 'finishedContract_badkapath':
+                $finishedContracts = FinishedContract::where('place', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
                 return view('frontend.contracts.finishedContract', compact('finishedContracts'));
-            case 'currentContract':
-                $currentContracts = CurrentContract::latest()->paginate(10);
+            case 'finishedContract_praganna':
+                $finishedContracts = FinishedContract::where('place', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
+                return view('frontend.contracts.finishedContract', compact('finishedContracts'));
+            case 'currentContract_badkapath':
+                $currentContracts = CurrentContract::where('place', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
+                return view('frontend.contracts.currentContract', compact('currentContracts'));
+            case 'currentContract_praganna':
+                $currentContracts = CurrentContract::where('place', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
 
             case 'allExEmployee':
@@ -282,6 +290,7 @@ class FrontendController extends BaseController
         $forestCategory->load('forestDetails');
         return view('frontend.subDivisionForest', compact('forestCategory', 'subDivision'));
     }
+
     public function photoGalleryDetails(PhotoGallery $photoGallery)
     {
         $photoGallery->load('photos');
@@ -320,16 +329,10 @@ class FrontendController extends BaseController
             //        dd('ads');
         }
     }
-    public function comitteeMember(CommitteeMember $committeeMembers)
+
+    public function committeeCategory(CommitteeCategory $committeeCategory)
     {
-        //        dd( $_GET['language']);
-        $committeeMembers->load([
-
-            'committee' => function ($query) {
-                $query->with('committeeCategory')->get();
-            }
-        ]);
-
-        return view('frontend.committee.index', compact('committeeMembers'));
+        $committees = Committee::with('committeeMembers')->whereHas('committeeMembers')->where('committee_category_id', $committeeCategory->id)->paginate(2);
+        return view('frontend.committee.index', compact('committeeCategory', 'committees'));
     }
 }

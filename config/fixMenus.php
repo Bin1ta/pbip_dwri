@@ -15,7 +15,9 @@ return [
     'lawsuit',
     'contractProgress',
     'totalProgress',
-    'finishedContract',
-    'currentContract',
+    'currentContract_praganna',
+    'currentContract_badkapath',
+    'finishedContract_badkapath',
+    'finishedContract_praganna',
     'committee',
 ];
