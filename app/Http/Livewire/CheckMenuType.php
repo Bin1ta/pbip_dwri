@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\CommitteeCategory;
 use App\Models\DocumentCategory;
 use App\Models\ForestCategory;
 use App\Models\ForestDetail;
@@ -32,8 +33,8 @@ class CheckMenuType extends Component
                 $this->menuTypes = DocumentCategory::with('documentCategories')->whereNull('document_category_id')->get();
             } elseif ($this->menu_type == "subDivision") {
                 $this->menuTypes = SubDivision::latest()->get();
-            } elseif ($this->menu_type == "forestCategory") {
-                $this->menuTypes = ForestCategory::latest()->get();
+            } elseif ($this->menu_type == "committeeCategory") {
+                $this->menuTypes = CommitteeCategory::latest()->get();
             } else {
                 $this->menuTypes = OfficeDetail::all();
             }

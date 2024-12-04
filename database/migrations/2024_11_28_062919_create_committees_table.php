@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('committee_category_id')->nullable()->constrained()->nullOnDelete()->onUpdate('no action');
             $table->string('name')->nullable();
             $table->string('name_en')->nullable();
-            $table->string('place')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

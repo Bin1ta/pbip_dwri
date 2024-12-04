@@ -15,7 +15,8 @@
                             <li class="breadcrumb-item">
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.committeeCategory.index') }}">Committee Categories</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.committeeCategory.index') }}">Committee
+                                    Categories</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Create
                             </li>
@@ -35,19 +36,32 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Name (Nepali)</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                                <input type="text" class="form-control" id="name" name="title"
+                                    value="{{ old('name') }}" required>
                                 @error('name')
-                                <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name_en">Name (English)</label>
-                                <input type="text" class="form-control" id="name_en" name="name_en" value="{{ old('name_en') }}" required>
+                                <input type="text" class="form-control" id="name_en" name="title_en"
+                                    value="{{ old('name_en') }}" required>
                                 @error('name_en')
-                                <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="place" class="form-label">Place <span class="text-danger">*</span></label>
+                                <select name="place" id="place" class="form-control" required>
+                                    <option value="">Select Place</option>
+                                    @foreach (\App\Enums\ProjectTypeEnum::cases() as $place)
+                                        <option value="{{ $place->value }}"> {{ $place->label() }} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

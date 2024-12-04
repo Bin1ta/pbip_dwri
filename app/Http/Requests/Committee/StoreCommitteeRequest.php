@@ -21,7 +21,7 @@ class StoreCommitteeRequest extends FormRequest
             'committee_category_id' => ['nullable', Rule::exists('committee_Categories', 'id')->withoutTrashed()],
             'name' => ['required','string'],
             'name_en' => ['required','string'],
-            'place' => ['required',new Enum(ProjectTypeEnum::class)]
+           
         ];
     }
 }

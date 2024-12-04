@@ -38,6 +38,7 @@
                         <tr>
                             <th><h6>Name</h6></th>
                             <th><h6>Name (English)</h6></th>
+                            <th><h6>place</h6></th>
                             <th><h6>Action</h6></th>
                         </tr>
                         </thead>
@@ -45,10 +46,13 @@
                         @foreach($committeeCategories as $committeeCategory)
                             <tr>
                                 <td class="min-width">
-                                    <p>{{ $committeeCategory->name }}</p>
+                                    <p>{{ $committeeCategory->title }}</p>
                                 </td>
                                 <td class="min-width">
-                                    <p>{{ $committeeCategory->name_en }}</p>
+                                    <p>{{ $committeeCategory->title_en }}</p>
+                                </td>
+                                <td class="min-width">
+                                    <p>{{ $committeeCategory->place->label() ??'' }}</p>
                                 </td>
 
                                 <td>

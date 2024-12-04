@@ -16,5 +16,6 @@ return [
     'contractProgress',
     'totalProgress',
     'finishedContract',
-    'currentContract'
+    'currentContract',
+    'committee',
 ];

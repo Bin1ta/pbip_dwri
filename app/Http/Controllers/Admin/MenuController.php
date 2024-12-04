@@ -9,6 +9,7 @@ use App\Models\ForestCategory;
 use App\Models\ForestDetail;
 use App\Models\Menu;
 use App\Http\Controllers\Controller;
+use App\Models\CommitteeCategory;
 use App\Models\OfficeDetail;
 use App\Models\SubDivision\SubDivision;
 use Illuminate\Http\RedirectResponse;
@@ -144,8 +145,8 @@ class MenuController extends BaseController
             $menuType = DocumentCategory::class;
         } elseif ($request->input('menu_type') == "subDivision") {
             $menuType = SubDivision::class;
-        } elseif ($request->input('menu_type') == "forestCategory") {
-            $menuType = ForestCategory::class;
+        } elseif ($request->input('menu_type') == "committeeCategory") {
+            $menuType = CommitteeCategory::class;
         }
 
         return [

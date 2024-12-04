@@ -10,8 +10,9 @@ return new class extends Migration
     {
         Schema::create('committee_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('name_en')->nullable();
+            $table->string('title')->nullable();
+            $table->string('title_en')->nullable();
+            $table->string('place')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
