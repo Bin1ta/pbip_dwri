@@ -34,7 +34,7 @@ class InvoiceController extends BaseController
 
     public function edit(Invoice $invoice)
     {
-        return view('admin.invoice.edit',compact('invoice'));
+        return view('admin.invoice.create',compact('invoice'));
     }
 
     public function update(UpdateInvoiceRequest $request, Invoice $invoice)

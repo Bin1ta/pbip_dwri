@@ -1,3 +1,6 @@
+@php
+    use App\Enums\DocumentTypeEnum;
+@endphp
 <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
         <a href="{{ route('admin.dashboard') }}">
@@ -288,7 +291,35 @@
                     </li>
                 </ul>
             </li>
-            @can('bill_access')
+
+
+
+            <li class="nav-item nav-item-has-children">
+                <a href="#"
+                   class="{{ request()->is('admin/administrations/*') ? '' : 'collapsed' }}"
+                   data-bs-toggle="collapse"
+                   data-bs-target="#administrations"
+                   aria-controls="administrations"
+                   aria-expanded="{{ request()->is('admin/administrations/*') }}"
+                   aria-label="Toggle navigation">
+        <span class="icon">
+            <i class="mdi mdi-file-outline"></i>
+        </span>
+                    <span class="text">प्रविधिक</span>
+                </a>
+                <ul id="administrations" class="collapse dropdown-nav {{ request()->is('admin/administrations/*') ? 'show' : '' }}">
+                    @foreach (DocumentTypeEnum::cases() as $documentType)
+                        <li>
+                            <a class="{{ request()->is('admin/administrations/' . $documentType->value . '*') ? 'active' : '' }}"
+                               href="{{ route('admin.administration.index', ['type' => $documentType->value]) }}">
+                                {{ $documentType->label() }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+
+        @can('bill_access')
                 <li class="nav-item {{ request()->is('admin/lawsuit/*') ? 'active' : '' }}">
                     <a href="{{ route('admin.lawsuit.index') }}">
                         <span class="icon">

@@ -142,6 +142,10 @@ class PermissionSeeder extends Seeder
             ['title' => "invoice_create"],
             ['title' => "invoice_edit"],
             ['title' => "invoice_delete"],
+            ['title' => "administration_access"],
+            ['title' => "administration_create"],
+            ['title' => "administration_edit"],
+            ['title' => "administration_delete"],
 
         ];
 
