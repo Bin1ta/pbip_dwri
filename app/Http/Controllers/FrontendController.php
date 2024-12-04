@@ -18,17 +18,10 @@ use App\Models\DocumentCategory;
 use App\Models\Employee;
 use App\Models\ExEmployee;
 use App\Models\Faq;
-use App\Models\ForestCategory;
-use App\Models\ForestDetail;
-use App\Models\Lawsuit;
 use App\Models\Link;
 use App\Models\OfficeDetail;
 use App\Models\PhotoGallery;
 use App\Models\Slider;
-use App\Models\Smuggling;
-use App\Models\SubDivision\SubDivision;
-use App\Models\SubDivision\SubDivisionDocument;
-use App\Models\SubDivision\SubDivisionEmployee;
 use App\Models\TotalProgress;
 use App\Models\FinishedContract;
 use App\Models\VideoGallery;
@@ -70,7 +63,7 @@ class FrontendController extends BaseController
             $noticePopups = Document::with('files')->where('popUp', 1)->get();
             $employees = Employee::with('designation', 'department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries', 'subDivisions', 'noticePopups'));
+            return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries',  'noticePopups'));
         } else {
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
