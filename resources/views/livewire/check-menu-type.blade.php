@@ -31,6 +31,7 @@
                                 <option value="{{$documentCategory->id}}">&nbsp; - - {{$documentCategory->title}}</option>
                             @endforeach
                         @endif
+
                     @endforeach
                 </select>
                 @error('model_id')

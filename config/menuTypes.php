@@ -5,7 +5,7 @@ if(config('default.subDivision'))
         'category',
         'officeDetail',
         'subDivision',
-        'forestCategory'
+        'committeeCategory',
     ];
 }
 else

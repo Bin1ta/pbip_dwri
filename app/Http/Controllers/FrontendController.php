@@ -6,6 +6,8 @@ use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\Audio;
 use App\Models\Bill;
 use App\Models\Canal;
+use App\Models\Committee;
+use App\Models\CommitteeMember;
 use App\Models\ContactMessage;
 use App\Models\ContractProgress;
 use App\Models\CurrentContract;
@@ -41,8 +43,7 @@ class FrontendController extends BaseController
 
     public function index()
     {
-        if(config('default.subDivision'))
-        {
+        if (config('default.subDivision')) {
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
             $sliders = Slider::latest()->get();
@@ -66,12 +67,10 @@ class FrontendController extends BaseController
             $galleries = PhotoGallery::with('photos')->latest()->get();
             $noticePopups = Document::with('files')->where('popUp', 1)->get();
             $subDivisions = SubDivision::latest()->get();
-            $employees = Employee::with('designation','department')->orderBy('position')->get();
+            $employees = Employee::with('designation', 'department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            return view('frontend.index', compact('audios','employees','officeDetail', 'tickerFiles', 'sliders','canals', 'categories', 'galleries','subDivisions','noticePopups'));
-        }
-        else
-        {
+            return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries', 'subDivisions', 'noticePopups'));
+        } else {
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
             $sliders = Slider::latest()->get();
@@ -93,11 +92,10 @@ class FrontendController extends BaseController
 
             $galleries = PhotoGallery::with('photos')->latest()->get();
             $noticePopups = Document::with('files')->where('popUp', 1)->get();
-            $employees = Employee::with('designation','department')->orderBy('position')->get();
+            $employees = Employee::with('designation', 'department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            return view('frontend.index', compact('audios','employees','officeDetail', 'tickerFiles', 'sliders', 'categories', 'galleries','noticePopups'));
+            return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'tickerFiles', 'sliders', 'categories', 'galleries', 'noticePopups'));
         }
-
     }
 
     public function search()
@@ -111,14 +109,14 @@ class FrontendController extends BaseController
         return view('frontend.search.search_res', compact('keyword', 'documents'));
     }
 
-    public function officeDetails( OfficeDetail $officeDetail)
+    public function officeDetails(OfficeDetail $officeDetail)
     {
         return view('frontend.officeDetail', compact('officeDetail'));
     }
 
     public function documentCategory(DocumentCategory $documentCategory)
     {
-//        dd( $_GET['language']);
+        //        dd( $_GET['language']);
         $documentCategory->load([
             'mainDocuments' => function ($query) {
                 $query->with('mainDocumentCategory')->whereStatus(1)->orderByDesc('published_date');
@@ -179,16 +177,16 @@ class FrontendController extends BaseController
                 $smugglings = Smuggling::whereNull('sub_division_id')->latest()->get();
                 return view('frontend.smuggling.index', compact('smugglings'));
             case 'contractProgress':
-                $contractProgresses = ContractProgress::where('progress_status',1)->latest()->paginate(10);
+                $contractProgresses = ContractProgress::where('progress_status', 1)->latest()->paginate(10);
                 return view('frontend.contracts.contractProgress', compact('contractProgresses'));
             case 'totalProgress':
                 $totalProgresses = TotalProgress::latest()->paginate(10);
                 return view('frontend.contracts.totalProgress', compact('totalProgresses'));
             case 'finishedContract':
-                $finishedContracts =FinishedContract::where('place_id','badkapath')->latest()->paginate(10);
+                $finishedContracts = FinishedContract::where('place_id', 'badkapath')->latest()->paginate(10);
                 return view('frontend.contracts.finishedContract', compact('finishedContracts'));
             case 'currentContract':
-                $currentContracts =CurrentContract::latest()->paginate(10);
+                $currentContracts = CurrentContract::latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
 
             case 'allExEmployee':
@@ -201,16 +199,17 @@ class FrontendController extends BaseController
 
 
             case 'audioGallery':
-                $audios =Audio::latest()->get();
+                $audios = Audio::latest()->get();
                 return view('frontend.audio', compact('audios'));
 
             case 'lawsuit':
-                $lawsuits =Lawsuit::latest()->get();
+                $lawsuits = Lawsuit::latest()->get();
                 return view('frontend.lawsuit', compact('lawsuits'));
 
             case 'exChief':
                 $exEmployees = ExEmployee::where('is_chief', 1)->orderBy('leaving_date', 'asc')->get();
                 return view('frontend.allExEmployee', compact('exEmployees'));
+
             default:
                 return response(view('errors.404'), 404);
         }
@@ -226,7 +225,7 @@ class FrontendController extends BaseController
 
     public function forestCategory(ForestCategory $forestCategory)
     {
-       $forestCategory->load('forestDetails');
+        $forestCategory->load('forestDetails');
         return view('frontend.sub-division.forestCategory', compact('forestCategory'));
     }
 
@@ -278,10 +277,10 @@ class FrontendController extends BaseController
         return view('frontend.sub-division.smuggling.detail', compact('subDivision', 'smuggling', 'relatedSmugglings'));
     }
 
-    public function subDivisionForest(SubDivision $subDivision,ForestCategory $forestCategory)
+    public function subDivisionForest(SubDivision $subDivision, ForestCategory $forestCategory)
     {
         $forestCategory->load('forestDetails');
-       return view('frontend.subDivisionForest',compact('forestCategory','subDivision'));
+        return view('frontend.subDivisionForest', compact('forestCategory', 'subDivision'));
     }
     public function photoGalleryDetails(PhotoGallery $photoGallery)
     {
@@ -302,23 +301,35 @@ class FrontendController extends BaseController
 
         if (config('default.dual_language')) {
             if (!empty($lang) && in_array($lang, config('app.locales'))) {
-                Cache::put('language', $lang, 60*60*12);
+                Cache::put('language', $lang, 60 * 60 * 12);
                 app()->setLocale($lang);
             } else {
-                Cache::put('language', 'ne', 60*60*12);
+                Cache::put('language', 'ne', 60 * 60 * 12);
                 app()->setLocale('ne');
             }
         }
         $url = url()->previous();
         $route = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
-        if($route == 'welcome'){
-            return redirect(\route($route, ['language'=>$lang]));
-        }else{
+        if ($route == 'welcome') {
+            return redirect(\route($route, ['language' => $lang]));
+        } else {
             $count = Str::length($url);
 
-            $url = Str::substr($url, 0, $count-2);
-            return redirect($url.$lang ?? 'ne');
-//        dd('ads');
+            $url = Str::substr($url, 0, $count - 2);
+            return redirect($url . $lang ?? 'ne');
+            //        dd('ads');
         }
+    }
+    public function comitteeMember(CommitteeMember $committeeMembers)
+    {
+        //        dd( $_GET['language']);
+        $committeeMembers->load([
+
+            'committee' => function ($query) {
+                $query->with('committeeCategory')->get();
+            }
+        ]);
+
+        return view('frontend.committee.index', compact('committeeMembers'));
     }
 }

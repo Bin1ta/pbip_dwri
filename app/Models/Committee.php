@@ -22,10 +22,7 @@ class Committee extends Model
         'committee_category_id',
         'name',
         'name_en',
-        'place',
-    ];
-    protected $casts = [
-        'place' => ProjectTypeEnum::class,
+
     ];
     public function committeeCategory(): BelongsTo
     {

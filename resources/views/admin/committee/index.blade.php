@@ -26,7 +26,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Category</th>
-                    <th>Place</th>
+
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -35,8 +35,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $committee->name ?? ''}}</td>
-                        <td>{{ $committee->committeeCategory->name ?? '-' }}</td>
-                        <td>{{ $committee->place->label() ?? ''}}</td>
+                        <td>{{ $committee->committeeCategory->title ?? '-' }}</td>
+
                         <td>
                             <a href="{{ route('admin.committee.edit', $committee) }}" class="text-info">                                            <i class="lni lni-pencil"></i>
                             </a>

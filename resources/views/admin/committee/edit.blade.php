@@ -23,7 +23,7 @@
                             @foreach ($committeeCategory as $category)
                                 <option value="{{ $category->id }}"
                                     {{ $committee->committee_category_id == $category->id ? 'selected' : '' }}>
-                                    {{ $category->name }}
+                                    {{ $category->title }}
                                 </option>
                             @endforeach
                         </select>
@@ -45,20 +45,7 @@
                                value="{{ old('name_en', $committee->name_en) }}" placeholder="Enter English name">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="place" class="form-label">Place <span class="text-danger">*</span></label>
-                        <select name="place" id="place" class="form-control" required>
-                            <option value="">Select Place</option>
-                            @foreach (\App\Enums\ProjectTypeEnum::cases() as $place)
-                                <option value="{{ $place->value }}"
-                                    {{ (old('place', $committee->place ?? '') == $place->value) ? 'selected' : '' }}>
-                                    {{ $place->label() }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+
 
             </div>
 

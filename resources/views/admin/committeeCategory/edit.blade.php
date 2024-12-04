@@ -37,7 +37,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Name (Nepali)</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $committeeCategory->name) }}" required>
+                                <input type="text" class="form-control" id="name" name="title" value="{{ old('title', $committeeCategory->name) }}" required>
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -46,10 +46,24 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name_en">Name (English)</label>
-                                <input type="text" class="form-control" id="name_en" name="name_en" value="{{ old('name_en', $committeeCategory->name_en) }}" required>
+                                <input type="text" class="form-control" id="name_en" name="title" value="{{ old('title_en', $committeeCategory->name_en) }}" required>
                                 @error('name_en')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="place" class="form-label">Place <span class="text-danger">*</span></label>
+                                <select name="place" id="place" class="form-control" required>
+                                    <option value="">Select Place</option>
+                                    @foreach (\App\Enums\ProjectTypeEnum::cases() as $place)
+                                        <option value="{{ $place->value }}"
+                                            {{ old('place', $committeeCategory->place) == $place->value ? 'selected' : '' }}>
+                                            {{ $place->label() }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
