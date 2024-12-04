@@ -60,13 +60,13 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('welcome')}}"><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active" aria-current="page">@if(request()->language=='en') {{$committeeMembers->committee?->committeeCategory?->title_en}} @else {{$committeeMembers->committee?->committeeCategory?->title}} @endif</li>
+                <li class="breadcrumb-item active" aria-current="page">@if(request()->language=='en') {{$committeeMembers->committee->committeeCategory->title}} @else {{$committeeMembers->committee->committeeCategory->title_en}} @endif</li>
             </ol>
         </nav>
     </div>
     <div class="container-fluid">
         <div class="well-heading" style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
-            <i class="fa fa-newspaper-o"></i> @if(request()->language=='en') {{$committeeMembers->committee?->committeeCategory->title_en}} @else {{$committeeMembers->committee?->committeeCategory?->title}} @endif
+            <i class="fa fa-newspaper-o"></i> @if(request()->language=='en') {{$committeeMembers->committee?->committeeCategory->title}} @else {{$committeeMembers->committee?->committeeCategory?->title_en}} @endif
         </div>
         <div class="table-responsive">
         <table class="table table-striped table-hover">
