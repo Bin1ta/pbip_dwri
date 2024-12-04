@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,5 +33,8 @@ class CurrentContract extends Model
         'updated_progress',
         'authorised_person',
 
+    ];
+    protected $casts = [
+        'place_id' => ProjectTypeEnum::class,
     ];
 }

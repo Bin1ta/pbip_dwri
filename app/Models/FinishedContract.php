@@ -19,7 +19,7 @@ class FinishedContract extends Model
 
     protected $fillable = [
         'name',
-        'place',
+        'place_id',
         'work',
         'identification_no',
         'contractor_detail',
@@ -32,7 +32,7 @@ class FinishedContract extends Model
         'work_completed',
     ];
     protected $casts = [
-        'place' => ProjectTypeEnum::class,
+        'place_id' => ProjectTypeEnum::class,
     ];
 
 }
