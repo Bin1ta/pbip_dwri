@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\DTO\CommitteeCategoryDTO;
 use App\Models\CommitteeCategory;
 use App\Models\DocumentCategory;
 use App\Models\ForestCategory;
@@ -34,12 +35,11 @@ class CheckMenuType extends Component
             } elseif ($this->menu_type == "subDivision") {
                 $this->menuTypes = SubDivision::latest()->get();
             } elseif ($this->menu_type == "committeeCategory") {
-                $this->menuTypes = CommitteeCategory::latest()->get();
+                $this->menuTypes = CommitteeCategory::latest()->get()->map(fn($item) => CommitteeCategoryDTO::fromArray(['id' => $item->id, 'title' => "{$item->title}({$item->place?->label()})"]));
             } else {
                 $this->menuTypes = OfficeDetail::all();
             }
         }
-
         return view('livewire.check-menu-type');
     }
 }

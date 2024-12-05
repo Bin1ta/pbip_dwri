@@ -22,6 +22,7 @@
                 <select name="model_id" id="model_id" wire:model="model_id" class="form-control">
                     <option value="">- - छान्नुहोस् - -</option>
                     @foreach($menuTypes as $menuType)
+
                         <option value="{{$menuType->id}}" @if($menu_type=="category" && count($menuType->documentCategories)>0) disabled @endif>
                             {{$menuType->title}}
                         </option>

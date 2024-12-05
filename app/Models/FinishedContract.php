@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,4 +31,8 @@ class FinishedContract extends Model
         'current_status',
         'work_completed',
     ];
+    protected $casts = [
+        'place_id' => ProjectTypeEnum::class,
+    ];
+
 }

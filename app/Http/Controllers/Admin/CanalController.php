@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\canal\StoreCanalRequest;
-use App\Http\Requests\canal\UpdateCanalRequest;
+use App\Http\Requests\Canal\StoreCanalRequest;
+use App\Http\Requests\Canal\UpdateCanalRequest;
 use App\Models\Canal;
 use App\Models\Slider;
 use Illuminate\Http\Request;

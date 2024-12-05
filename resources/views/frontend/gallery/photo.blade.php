@@ -20,7 +20,7 @@
                 <a href="{{asset('storage/'.$photo->images)}}" data-toggle="lightbox" data-gallery="gallery"
                    class="col-md-4">
                     <img src="{{asset('storage/'.$photo->images)}}"
-                         style="width: 100%;margin: 10px; object-fit: contain"
+                         style="width: 100%;margin: 10px;height:250px; object-fit: contain"
                          alt="{{$photo->title}}">
                 </a>
             @endforeach

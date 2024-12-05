@@ -6,6 +6,7 @@ use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Committee extends Model
@@ -24,8 +25,14 @@ class Committee extends Model
         'name_en',
 
     ];
+
     public function committeeCategory(): BelongsTo
     {
         return $this->belongsTo(CommitteeCategory::class);
+    }
+
+    public function committeeMembers(): HasMany
+    {
+        return $this->hasMany(CommitteeMember::class);
     }
 }

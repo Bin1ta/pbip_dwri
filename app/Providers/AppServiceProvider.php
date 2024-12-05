@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Employee::observe(EmployeeObserver::class);
         Menu::observe(MenuObserver::class);
         OfficeDetail::observe(OfficeDetailObserver::class);
-        SubDivisionEmployee::observe(SubDivisionEmployeeObserver::class);
         DocumentCategory::observe(DocumentCategoryObserver::class);
         Paginator::useBootstrap();
 

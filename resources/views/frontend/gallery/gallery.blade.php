@@ -18,7 +18,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <img class="card-img-top" src="{{asset('storage/'.$photoAlbum->photos->first()->images)}}"
-                             alt="Card image cap" width="100%">
+                             alt="Card image cap" width="100%" height="250px">
                         <div class="card-body">
                             <p class="card-text">
                                 {{$photoAlbum->title}}

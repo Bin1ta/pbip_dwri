@@ -17,7 +17,7 @@ return new class extends Migration {
             }
             $table->integer('position');
             $table->boolean('status')->default(1);
-            $table->enum('type', config('menuTypes'))->nullable();
+            $table->string('type')->nullable();
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
