@@ -967,7 +967,7 @@ p {
 }
 
 .img-fluid{
-    height: 260px !important;
+    height: 346px !important;
 }
 #backToTop {
     display: none;
@@ -1162,7 +1162,7 @@ p{
 	transform: translateY(-50%);
 	width: 30px;
 	height: 30px;
-	background: red;
+	background: transparent;
 	color: #fff;
 	font-size: 20px;
 	line-height: 30px;
