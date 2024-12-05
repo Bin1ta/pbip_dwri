@@ -16,7 +16,7 @@
                 <i class="fa fa-clipboard"></i> {{ __('Completed Contract') }}
             </div>
         </div>
-       
+
         <div class="outer-box">
             <style>
                 .paginate {
@@ -59,31 +59,39 @@
 
 
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                        {{-- <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5" tabindex="0"
-                                aria-controls="DataTables_Table_0" type="button"><span>Copy</span></button> <button
-                                class="dt-button buttons-excel buttons-html5" tabindex="0"
-                                aria-controls="DataTables_Table_0" type="button"><span>Excel</span></button> <button
-                                class="dt-button buttons-csv buttons-html5" tabindex="0"
-                                aria-controls="DataTables_Table_0" type="button"><span>CSV</span></button> <button
-                                class="dt-button buttons-pdf buttons-html5" tabindex="0"
-                                aria-controls="DataTables_Table_0" type="button"><span>PDF</span></button> </div>
-                        <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                    class="" placeholder="" aria-controls="DataTables_Table_0"></label></div> --}}
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap " style="margin-left: 80px; margin-right: 150px;">
-                                        <!-- Button Group -->
-                                        <div class="btn-group" role="group" aria-label="Data Export Buttons">
-                                            <button class="btn btn-secondary">Copy</button>
-                                            <button class="btn btn-secondary">Excel</button>
-                                            <button class="btn btn-secondary">CSV</button>
-                                            <button class="btn btn-secondary">PDF</button>
-                                        </div>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap "
+                            style="margin-left: 80px; margin-right: 150px;">
+                            <!-- Button Group -->
+                            <div class="btn-group" role="group" aria-label="Data Export Buttons">
+                                <a href="#" class="btn btn-secondary">Copy</a>
 
-                                        <!-- Search Form -->
-                                        <form class="form-inline mt-2 mt-lg-0">
-                                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                        </form>
-                                    </div>
+                                {{-- Check if URL contains finishedContract_badkapath --}}
+                                @if(Request::is('detail/finishedContract_badkapath*'))
+                                    <a href="{{ route('finished.contracts.export', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
+                                       class="btn btn-secondary">
+                                       Excel Badkapatra
+                                    </a>
+                                {{-- Check if URL contains finishedContract_praganna --}}
+                                @elseif(Request::is('detail/finishedContract_praganna*'))
+                                    <a href="{{ route('finished.contracts.export_praganna', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
+                                       class="btn btn-secondary">
+                                       Excel Praganna
+                                    </a>
+                                @else
+                                    <p>No Export Button Available</p>
+                                @endif
+
+                                <a href="#" class="btn btn-secondary">CSV</a>
+                                <a href="#" class="btn btn-secondary">PDF</a>
+                            </div>
+
+
+                            <!-- Search Form -->
+                            <form class="form-inline mt-2 mt-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
                         <table class="contract myTable table table-stripped dataTable no-footer" id="DataTables_Table_0"
                             aria-describedby="DataTables_Table_0_info">
                             <thead>
@@ -133,9 +141,9 @@
                             <tbody>
                                 @foreach ($finishedContracts as $finishedContract)
                                     <tr class="odd">
-                                        <td class="">{{$finishedContract->name  }}</td>
+                                        <td class="">{{ $finishedContract->name }}</td>
                                         <td class="sorting_1">{{ $finishedContract->work }}</td>
-                                        <td>{{ $finishedContract->identification_no ??'' }}</td>
+                                        <td>{{ $finishedContract->identification_no ?? '' }}</td>
                                         <td>{{ $finishedContract->contractor_detail }}</td>
                                         <td>{{ $finishedContract->agreement_date }}</td>
                                         <td>{{ $finishedContract->agreement_amount }}</td>
