@@ -132,7 +132,7 @@
                                 href="{{ route('admin.contract-progress.index') }}"> contract Progress </a>
                         </li>
                     @endcan
-                    @can('current_progress_access')
+                    @can('current_contract_access')
                         <li>
                             <a class="{{ request()->is('admin/currentContract/current-contract*') ? 'active' : '' }}"
                                 href="{{ route('admin.current-contract.index') }}"> Current Contract </a>
