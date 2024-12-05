@@ -59,8 +59,8 @@
                     <tr style="background-color: #CCC0DA">
                         <th colspan="2" rowspan="2">माइलस्टोन</th>
                         <th colspan="12">लक्ष</th>
-                        <th rowspan="3">मंग्सीर महिनाको प्रगति</th>
-                        <th rowspan="3">मंग्सीर महिना सम्मको प्रगति</th>
+                        <th rowspan="3">मंसीर महिनाको प्रगति</th>
+                        <th rowspan="3">मंसीर महिना सम्मको प्रगति</th>
                         <th rowspan="3">सम्पन्न कार्यहरु</th>
                         <th rowspan="3">प्रगति कम हुनुका कारणहरु</th>
                     </tr>
@@ -88,39 +88,40 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($wrokPlanProgresses as $wrokPlanProgress )
+                    @foreach ($workPlanProgresses as $workPlanProgress )
 
-                    @endforeach
+
                     <tr style="background-color: #FFC7CE">
-                        <td>{{ $wrokPlanProgress->detail??'' }}</td>
-                        <td>{{ $wrokPlanProgress->quantity ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->first_quarterly_1 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->first_quarterly_2 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->first_quarterly_3 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->first_quarterly_4 ??'' }}</td>
+                        <td>{{ $workPlanProgress->detail??'' }}</td>
+                        <td>{{ $workPlanProgress->quantity ??'' }}</td>
+                        <td>{{ $workPlanProgress->first_quarterly_1 ??'' }}</td>
+                        <td>{{ $workPlanProgress->first_quarterly_2 ??'' }}</td>
+                        <td>{{ $workPlanProgress->first_quarterly_3 ??'' }}</td>
+                        <td>{{ $workPlanProgress->first_quarterly_4 ??'' }}</td>
 
-                        <td>{{ $wrokPlanProgress->second_quarterly_1 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->second_quarterly_2 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->second_quarterly_3 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->second_quarterly_4 ??'' }}</td>
+                        <td>{{ $workPlanProgress->second_quarterly_1 ??'' }}</td>
+                        <td>{{ $workPlanProgress->second_quarterly_2 ??'' }}</td>
+                        <td>{{ $workPlanProgress->second_quarterly_3 ??'' }}</td>
+                        <td>{{ $workPlanProgress->second_quarterly_4 ??'' }}</td>
 
-                        <td>{{ $wrokPlanProgress->third_quarterly_1 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->third_quarterly_2 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->third_quarterly_3 ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->third_quarterly_4 ??'' }}</td>
+                        <td>{{ $workPlanProgress->third_quarterly_1 ??'' }}</td>
+                        <td>{{ $workPlanProgress->third_quarterly_2 ??'' }}</td>
+                        <td>{{ $workPlanProgress->third_quarterly_3 ??'' }}</td>
+                        <td>{{ $workPlanProgress->third_quarterly_4 ??'' }}</td>
 
 
-                        <td>{{ $wrokPlanProgress->monthly_progress ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->upto_month_progress ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->completed_word ??'' }}</td>
-                        <td>{{ $wrokPlanProgress->less_progress_reason ??'' }}</td>
+                        <td>{{ $workPlanProgress->monthly_progress ??'' }}</td>
+                        <td>{{ $workPlanProgress->upto_month_progress ??'' }}</td>
+                        <td>{{ $workPlanProgress->completed_word ??'' }}</td>
+                        <td>{{ $workPlanProgress->less_progress_reason ??'' }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
 
 
             <div class="mt-2 mb-2">
-                {{ $wrokPlanProgresses->links() }}
+                {{ $workPlanProgresses->links() }}
             </div>
 
 
