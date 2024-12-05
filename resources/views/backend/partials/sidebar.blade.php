@@ -124,27 +124,39 @@
                     </span>
                     <span class="text">समझौता विवरण</span>
                 </a>
-                <ul id="contract-progress" class="collapse dropdown-nav {{ request()->is('admin/contract-progress/*') ? 'show' : '' }}">
-                    <li>
-                        <a class="{{ request()->is('admin/contractProgress/contract-progress*') ? 'active' : '' }}"
-                            href="{{ route('admin.contract-progress.index') }}"> contract Progress </a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/currentContract/current-contract*') ? 'active' : '' }}"
-                            href="{{ route('admin.current-contract.index') }}"> Current Contract </a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/finishedContract/finished-contract*') ? 'active' : '' }}"
-                            href="{{ route('admin.finished-contract.index') }}"> Finished Contract  </a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/totalProgress/total-progress*') ? 'active' : '' }}"
-                            href="{{ route('admin.total-progress.index') }}"> Total Progress</a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/workPlanProgress/work-plan-progress*') ? 'active' : '' }}"
-                           href="{{ route('admin.work-plan-progress.index') }}"> Work Plan Progress</a>
-                    </li>
+                <ul id="contract-progress"
+                    class="collapse dropdown-nav {{ request()->is('admin/contract-progress/*') ? 'show' : '' }}">
+                    @can('contract_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/contractProgress/contract-progress*') ? 'active' : '' }}"
+                                href="{{ route('admin.contract-progress.index') }}"> contract Progress </a>
+                        </li>
+                    @endcan
+                    @can('current_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/currentContract/current-contract*') ? 'active' : '' }}"
+                                href="{{ route('admin.current-contract.index') }}"> Current Contract </a>
+                        </li>
+                    @endcan
+
+                    @can('finished_contract_access')
+                        <li>
+                            <a class="{{ request()->is('admin/finishedContract/finished-contract*') ? 'active' : '' }}"
+                                href="{{ route('admin.finished-contract.index') }}"> Finished Contract </a>
+                        </li>
+                    @endcan
+                    @can('total_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/totalProgress/total-progress*') ? 'active' : '' }}"
+                                href="{{ route('admin.total-progress.index') }}"> Total Progress</a>
+                        </li>
+                    @endcan
+                    @can('contract_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/workPlanProgress/work-plan-progress*') ? 'active' : '' }}"
+                                href="{{ route('admin.work-plan-progress.index') }}"> Work Plan Progress</a>
+                        </li>
+                    @endcan
 
                 </ul>
             </li>
@@ -195,7 +207,8 @@
                         </span>
                         <span class="text">ग्यालरी</span>
                     </a>
-                    <ul id="gallery" class="collapse dropdown-nav {{ request()->is('admin/gallery/*') ? 'show' : '' }}">
+                    <ul id="gallery"
+                        class="collapse dropdown-nav {{ request()->is('admin/gallery/*') ? 'show' : '' }}">
                         <li>
                             <a class="{{ request()->is('admin/gallery/photoGallery*') ? 'active' : '' }}"
                                 href="{{ route('admin.photoGallery.index') }}"> फोटो ग्यालरी </a>
@@ -209,50 +222,45 @@
             @endcan
             @can('water_consumption_access')
                 <li class="nav-item nav-item-has-children">
-                    <a
-                        href="#"
-                        class="{{request()->is('admin/waterConsumption/*') ? '' : 'collapsed'}}"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#waterConsumption"
-                        aria-controls="WaterConsumptions"
-                        aria-expanded="{{request()->is('admin/waterConsumption/*')}}"
-                        aria-label="Toggle navigation"
-                    >
-              <span class="icon">
-               <i class="mdi mdi-account"></i>
-              </span>
+                    <a href="#" class="{{ request()->is('admin/waterConsumption/*') ? '' : 'collapsed' }}"
+                        data-bs-toggle="collapse" data-bs-target="#waterConsumption" aria-controls="WaterConsumptions"
+                        aria-expanded="{{ request()->is('admin/waterConsumption/*') }}" aria-label="Toggle navigation">
+                        <span class="icon">
+                            <i class="mdi mdi-account"></i>
+                        </span>
                         <span class="text">जल उपभोक्ता समिति</span>
                     </a>
                     <ul id="waterConsumption"
-                        class="collapse dropdown-nav {{request()->is('admin/waterConsumption/*') ? 'show' : ''}}">
+                        class="collapse dropdown-nav {{ request()->is('admin/waterConsumption/*') ? 'show' : '' }}">
                         <li>
-                            <a class="{{request()->is('admin/waterConsumption/committeeCategory*') ? 'active' : ''}}"
-                               href="{{route('admin.committeeCategory.index')}}"> समितिको वर्ग </a>
-                            <a class="{{request()->is('admin/waterConsumption/committee*') ? 'active' : ''}}"
-                               href="{{route('admin.committee.index')}}"> समिति</a>
-                            <a class="{{request()->is('admin/waterConsumption/committeeMember*') ? 'active' : ''}}"
-                               href="{{route('admin.committeeMember.index')}}"> सदस्यहरु</a>
+                            <a class="{{ request()->is('admin/waterConsumption/committeeCategory*') ? 'active' : '' }}"
+                                href="{{ route('admin.committeeCategory.index') }}"> समितिको वर्ग </a>
+                            <a class="{{ request()->is('admin/waterConsumption/committee*') ? 'active' : '' }}"
+                                href="{{ route('admin.committee.index') }}"> समिति</a>
+                            <a class="{{ request()->is('admin/waterConsumption/committeeMember*') ? 'active' : '' }}"
+                                href="{{ route('admin.committeeMember.index') }}"> सदस्यहरु</a>
                         </li>
                     </ul>
                 </li>
             @endcan
 
-            @if(auth()->user() !== 'Super Admin')
+            @if (auth()->user() !== 'Super Admin')
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/registrations/*') ? '' : 'collapsed' }}"
-                       data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
-                       aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
-        <span class="icon">
-            <i class="mdi mdi-image-search-outline"></i>
-        </span>
+                        data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
+                        aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
+                        <span class="icon">
+                            <i class="mdi mdi-image-search-outline"></i>
+                        </span>
                         <span class="text">प्रशासन</span>
                     </a>
-                    <ul id="registrations" class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
+                    <ul id="registrations"
+                        class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
                         <li>
                             <a class="{{ request()->is('admin/registrations/registration*') ? 'active' : '' }}"
-                               href="{{ route('admin.registration.index') }}"> दर्ता </a>
+                                href="{{ route('admin.registration.index') }}"> दर्ता </a>
                             <a class="{{ request()->is('admin/registrations/invoice*') ? 'active' : '' }}"
-                               href="{{ route('admin.invoice.index') }}"> चलानी </a>
+                                href="{{ route('admin.invoice.index') }}"> चलानी </a>
                         </li>
                     </ul>
                 </li>
@@ -262,23 +270,20 @@
 
 
             <li class="nav-item nav-item-has-children">
-                <a href="#"
-                   class="{{ request()->is('admin/administrations/*') ? '' : 'collapsed' }}"
-                   data-bs-toggle="collapse"
-                   data-bs-target="#administrations"
-                   aria-controls="administrations"
-                   aria-expanded="{{ request()->is('admin/administrations/*') }}"
-                   aria-label="Toggle navigation">
-        <span class="icon">
-            <i class="mdi mdi-file-outline"></i>
-        </span>
+                <a href="#" class="{{ request()->is('admin/administrations/*') ? '' : 'collapsed' }}"
+                    data-bs-toggle="collapse" data-bs-target="#administrations" aria-controls="administrations"
+                    aria-expanded="{{ request()->is('admin/administrations/*') }}" aria-label="Toggle navigation">
+                    <span class="icon">
+                        <i class="mdi mdi-file-outline"></i>
+                    </span>
                     <span class="text">प्रविधिक</span>
                 </a>
-                <ul id="administrations" class="collapse dropdown-nav {{ request()->is('admin/administrations/*') ? 'show' : '' }}">
+                <ul id="administrations"
+                    class="collapse dropdown-nav {{ request()->is('admin/administrations/*') ? 'show' : '' }}">
                     @foreach (DocumentTypeEnum::cases() as $documentType)
                         <li>
                             <a class="{{ request()->is('admin/administrations/' . $documentType->value . '*') ? 'active' : '' }}"
-                               href="{{ route('admin.administration.index', ['type' => $documentType->value]) }}">
+                                href="{{ route('admin.administration.index', ['type' => $documentType->value]) }}">
                                 {{ $documentType->label() }}
                             </a>
                         </li>
