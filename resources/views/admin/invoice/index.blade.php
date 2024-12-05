@@ -42,6 +42,11 @@
                                         <a href="{{route('admin.invoice.edit', $invoice)}}" class="text-info mx-2">
                                             <i class="lni lni-pencil"></i>
                                         </a>
+
+                                        <a href="{{ route('admin.invoice.show', $invoice) }}"
+                                           class="text-success mx-2">
+                                            <i class="lni lni-eye"></i>
+                                        </a>
                                         <form action="{{route('admin.invoice.destroy',$invoice)}}" method="POST">
                                             @csrf
                                             @method('DELETE')

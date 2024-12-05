@@ -12,6 +12,10 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class FinishedContractController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * Display a listing of the resource.
      *

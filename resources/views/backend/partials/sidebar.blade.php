@@ -124,27 +124,39 @@
                     </span>
                     <span class="text">समझौता विवरण</span>
                 </a>
-                <ul id="contract-progress" class="collapse dropdown-nav {{ request()->is('admin/contract-progress/*') ? 'show' : '' }}">
-                    <li>
-                        <a class="{{ request()->is('admin/contractProgress/contract-progress*') ? 'active' : '' }}"
-                            href="{{ route('admin.contract-progress.index') }}"> contract Progress </a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/currentContract/current-contract*') ? 'active' : '' }}"
-                            href="{{ route('admin.current-contract.index') }}"> Current Contract </a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/finishedContract/finished-contract*') ? 'active' : '' }}"
-                            href="{{ route('admin.finished-contract.index') }}"> Finished Contract  </a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/totalProgress/total-progress*') ? 'active' : '' }}"
-                            href="{{ route('admin.total-progress.index') }}"> Total Progress</a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->is('admin/workPlanProgress/work-plan-progress*') ? 'active' : '' }}"
-                           href="{{ route('admin.work-plan-progress.index') }}"> Work Plan Progress</a>
-                    </li>
+                <ul id="contract-progress"
+                    class="collapse dropdown-nav {{ request()->is('admin/contract-progress/*') ? 'show' : '' }}">
+                    @can('contract_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/contractProgress/contract-progress*') ? 'active' : '' }}"
+                                href="{{ route('admin.contract-progress.index') }}"> contract Progress </a>
+                        </li>
+                    @endcan
+                    @can('current_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/currentContract/current-contract*') ? 'active' : '' }}"
+                                href="{{ route('admin.current-contract.index') }}"> Current Contract </a>
+                        </li>
+                    @endcan
+
+                    @can('finished_contract_access')
+                        <li>
+                            <a class="{{ request()->is('admin/finishedContract/finished-contract*') ? 'active' : '' }}"
+                                href="{{ route('admin.finished-contract.index') }}"> Finished Contract </a>
+                        </li>
+                    @endcan
+                    @can('total_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/totalProgress/total-progress*') ? 'active' : '' }}"
+                                href="{{ route('admin.total-progress.index') }}"> Total Progress</a>
+                        </li>
+                    @endcan
+                    @can('contract_progress_access')
+                        <li>
+                            <a class="{{ request()->is('admin/workPlanProgress/work-plan-progress*') ? 'active' : '' }}"
+                                href="{{ route('admin.work-plan-progress.index') }}"> Work Plan Progress</a>
+                        </li>
+                    @endcan
 
                 </ul>
             </li>
@@ -195,7 +207,8 @@
                         </span>
                         <span class="text">ग्यालरी</span>
                     </a>
-                    <ul id="gallery" class="collapse dropdown-nav {{ request()->is('admin/gallery/*') ? 'show' : '' }}">
+                    <ul id="gallery"
+                        class="collapse dropdown-nav {{ request()->is('admin/gallery/*') ? 'show' : '' }}">
                         <li>
                             <a class="{{ request()->is('admin/gallery/photoGallery*') ? 'active' : '' }}"
                                 href="{{ route('admin.photoGallery.index') }}"> फोटो ग्यालरी </a>
@@ -255,6 +268,8 @@
                         </li>
                     </ul>
                 </li>
+            @endif
+
 
 @endcan
 
