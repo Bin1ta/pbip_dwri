@@ -19,5 +19,7 @@ return [
     'currentContract_badkapath',
     'finishedContract_badkapath',
     'finishedContract_praganna',
+    'workPlan_progress',
     'committee',
+
 ];

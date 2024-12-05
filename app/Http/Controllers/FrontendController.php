@@ -25,6 +25,7 @@ use App\Models\Slider;
 use App\Models\TotalProgress;
 use App\Models\FinishedContract;
 use App\Models\VideoGallery;
+use App\Models\WorkPlanProgress;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -170,7 +171,7 @@ class FrontendController extends BaseController
                 $contractProgresses = ContractProgress::where('progress_status', 1)->latest()->paginate(10);
                 return view('frontend.contracts.contractProgress', compact('contractProgresses'));
             case 'totalProgress':
-                $totalProgresses = TotalProgress::latest()->paginate(10);
+                $totalProgresses = TotalProgress::latest()->get();
                 return view('frontend.contracts.totalProgress', compact('totalProgresses'));
             case 'finishedContract_badkapath':
                 $finishedContracts = FinishedContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
@@ -184,6 +185,9 @@ class FrontendController extends BaseController
             case 'currentContract_praganna':
                 $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
+            case 'workPlan_progress':
+                $wrokPlanProgresses = WorkPlanProgress::latest()->paginate(10);
+                return view('frontend.contracts.workPlanProgress', compact('wrokPlanProgresses'));
 
             case 'allExEmployee':
                 $exEmployees = ExEmployee::orderBy('leaving_date', 'asc')->get();
