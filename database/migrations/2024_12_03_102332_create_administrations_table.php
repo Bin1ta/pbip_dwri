@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('photo');
             $table->longText('remarks')->nullable();
+            $table->string('type')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

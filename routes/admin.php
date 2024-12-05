@@ -44,7 +44,8 @@ use App\Http\Controllers\Admin\{AdministrationController,
     UserManagement\ProfileController,
     UserManagement\RoleController,
     UserManagement\UserController,
-    VideoGalleryController};
+    VideoGalleryController,
+    WorkPlanProgressController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -151,3 +152,4 @@ Route::resource('finished-contract',FinishedContractController::class);
 Route::get('current-contract/{finishedContract}/currentStatus', [FinishedContractController::class, 'currentStatus'])->name('finished-contract.currentStatus');
 Route::get('current-contract/{finishedContract}/contractorLiabilityStatus', [FinishedContractController::class, 'contractorLiabilityStatus'])->name('finished-contract.contractorLiabilityStatus');
 Route::resource('total-progress',TotalProgressController::class);
+Route::resource('work-plan-progress', WorkPlanProgressController::class);

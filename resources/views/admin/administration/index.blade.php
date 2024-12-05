@@ -36,6 +36,10 @@
                                         <a href="{{ route('admin.administration.edit', $administration) }}" class="text-info mx-2">
                                             <i class="lni lni-pencil"></i>
                                         </a>
+
+                                        <a href="{{ route('admin.administration.show', $administration) }}" class="text-success mx-2">
+                                            <i class="lni lni-eye"></i>
+                                        </a>
                                         <form action="{{ route('admin.administration.destroy', $administration) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,8 +15,14 @@ class Administration extends Model
         'title',
         'date',
         'photo',
-        'remarks'
+        'remarks',
+        'type'
     ];
+
+
+    protected $casts = [
+        'type' => DocumentTypeEnum::class
+        ];
 
 
     public function getPhotoAttribute($value): string

@@ -13,13 +13,15 @@ class AdministrationController extends BaseController
 {
     public function index(Request $request)
     {
-        $type = $request->query('type');
-        $documentType = DocumentTypeEnum::tryFrom($type);
-        $title = $documentType ? $documentType->label() : '';
-        $administrations = Administration::latest()
-            ->get();
+        $title = 'Administration';
+        $type = $request->get('type');
+        $administrations = Administration::when($type, function ($query, $type) {
+            $query->where('type', $type);
+        })->latest()->get();
+
         return view('admin.administration.index', compact('administrations', 'title'));
     }
+
 
 
     public function create(Request $request)
@@ -39,7 +41,7 @@ class AdministrationController extends BaseController
 
     public function show(Administration $administration)
     {
-        //
+        return view('admin.administration.show', compact('administration'));
     }
 
     public function edit(Administration $administration, Request $request)

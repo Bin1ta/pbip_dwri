@@ -32,7 +32,7 @@
 
     <div class="card-style mb-30">
         <form
-            action="{{ isset($administration) ? route('admin.administration.update', ['type' => $type, 'id' => $administration->id]) : route('admin.administration.store', ['type' => $type]) }}"
+            action="{{ isset($administration) ? route('admin.administration.update', ['type' => $type, 'administration' => $administration->id]) : route('admin.administration.store', ['type' => $type]) }}"
             method="POST"
             enctype="multipart/form-data">
             @csrf

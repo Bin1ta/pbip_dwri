@@ -150,6 +150,10 @@
                         <a class="{{ request()->is('admin/totalProgress/total-progress*') ? 'active' : '' }}"
                             href="{{ route('admin.total-progress.index') }}"> Total Progress</a>
                     </li>
+                    <li>
+                        <a class="{{ request()->is('admin/workPlanProgress/work-plan-progress*') ? 'active' : '' }}"
+                           href="{{ route('admin.work-plan-progress.index') }}"> Work Plan Progress</a>
+                    </li>
 
                 </ul>
             </li>
