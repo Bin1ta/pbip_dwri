@@ -66,16 +66,16 @@
                                 <a href="#" class="btn btn-secondary">Copy</a>
 
                                 {{-- Check if URL contains finishedContract_badkapath --}}
-                                @if(Request::is('detail/finishedContract_badkapath*'))
+                                @if (Request::is('detail/finishedContract_badkapath*'))
                                     <a href="{{ route('finished.contracts.export', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
-                                       class="btn btn-secondary">
-                                       Excel Badkapatra
+                                        class="btn btn-secondary">
+                                        Excel Badkapatra
                                     </a>
-                                {{-- Check if URL contains finishedContract_praganna --}}
+                                    {{-- Check if URL contains finishedContract_praganna --}}
                                 @elseif(Request::is('detail/finishedContract_praganna*'))
                                     <a href="{{ route('finished.contracts.export_praganna', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
-                                       class="btn btn-secondary">
-                                       Excel Praganna
+                                        class="btn btn-secondary">
+                                        Excel Praganna
                                     </a>
                                 @else
                                     <p>No Export Button Available</p>

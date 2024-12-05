@@ -62,10 +62,25 @@
                         <div class="d-flex justify-content-between align-items-center flex-wrap " style="margin-left: 80px; margin-right: 150px;">
                             <!-- Button Group -->
                             <div class="btn-group" role="group" aria-label="Data Export Buttons">
-                                <button class="btn btn-secondary">Copy</button>
-                                <button class="btn btn-secondary">Excel</button>
-                                <button class="btn btn-secondary">CSV</button>
-                                <button class="btn btn-secondary">PDF</button>
+                                <a href="#" class="btn btn-secondary">Copy</a>
+
+                                {{-- Check if URL contains finishedContract_badkapath --}}
+                                @if (Request::is('detail/currentContract_badkapath*'))
+                                    <a href="{{ route('current.contracts.export_badkapatra', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
+                                        class="btn btn-secondary">
+                                        Excel Badkapatra
+                                    </a>
+                                    {{-- Check if URL contains finishedContract_praganna --}}
+                                @elseif(Request::is('detail/currentContract_praganna*'))
+                                    <a href="{{ route('current.contracts.export_praganna', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
+                                        class="btn btn-secondary">
+                                        Excel Praganna
+                                    </a>
+
+                                @endif
+
+                                <a href="#" class="btn btn-secondary">CSV</a>
+                                <a href="#" class="btn btn-secondary">PDF</a>
                             </div>
 
                             <!-- Search Form -->
