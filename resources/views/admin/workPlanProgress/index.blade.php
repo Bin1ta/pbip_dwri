@@ -55,7 +55,7 @@
                         @foreach ($workPlanProgress as $workPlanProgress)
                             <tr class="text-center">
                                 <td>{{ $workPlanProgress->year }}</td>
-                                <td>{{ $workPlanProgress->month }}</td>
+                                <td>{{ $workPlanProgress->month->label() }}</td>
                                 <td>{{ $workPlanProgress->detail }}</td>
                                 <td>{{ $workPlanProgress->quantity }}</td>
                                 <td>{{ $workPlanProgress->first_quarterly_1 }}</td>
@@ -74,20 +74,24 @@
                                 <td>{{ $workPlanProgress->upto_month_progress }}</td>
                                 <td>{{ $workPlanProgress->completed_word }}</td>
                                 <td>{{ $workPlanProgress->less_progress_reason }}</td>
-                                <td>
+                                <td class="d-flex gap-1">
                                     <div class="action d-flex justify-content-center">
+                                        <!-- Edit Button -->
                                         <a href="{{ route('admin.work-plan-progress.edit', $workPlanProgress) }}" class="btn btn-sm btn-primary mx-1">
                                             <i class="lni lni-pencil"></i> Edit
                                         </a>
+
+                                        <!-- Delete Form -->
                                         <form action="{{ route('admin.work-plan-progress.destroy', $workPlanProgress) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger show_confirm mx-1" type="submit">
+                                            <button class="btn btn-sm btn-danger show_confirm mx-1" style="background-color: red; padding:4px;" type="submit">
                                                 <i class="lni lni-trash-can"></i> Delete
                                             </button>
                                         </form>
                                     </div>
                                 </td>
+
                             </tr>
                         @endforeach
                         </tbody>

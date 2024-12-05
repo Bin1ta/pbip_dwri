@@ -35,9 +35,17 @@
                     <!-- Month -->
                     <div class="form-group mb-3">
                         <label for="month" class="form-label">Month</label>
-                        <input type="text" name="month" id="month" class="form-control"
-                               value="{{ old('month', $workPlanProgress->month ?? '') }}" placeholder="Enter Month" required>
+                        <select name="month" id="month" class="form-control" required>
+                            <option value="" disabled selected>Select Month</option>
+                            @foreach (\App\Enums\MonthEnum::cases() as $month)
+                                <option value="{{ $month->value }}"
+                                    {{ old('month', $workPlanProgress->month ?? '') == $month->value ? 'selected' : '' }}>
+                                    {{ $month->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+
 
                     <!-- Detail -->
                     <div class="form-group mb-3">
@@ -48,7 +56,7 @@
                     <!-- Quantity -->
                     <div class="form-group mb-3">
                         <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" name="quantity" id="quantity" class="form-control"
+                        <input type="text" name="quantity" id="quantity" class="form-control"
                                value="{{ old('quantity', $workPlanProgress->quantity ?? '') }}" placeholder="Enter Quantity" required>
                     </div>
 
@@ -58,7 +66,7 @@
                         @for ($i = 1; $i <= 4; $i++)
                             <div class="col-md-3">
                                 <label for="first_quarterly_{{ $i }}" class="form-label">Quarterly {{ $i }}</label>
-                                <input type="number" name="first_quarterly_{{ $i }}" id="first_quarterly_{{ $i }}" class="form-control"
+                                <input type="text" name="first_quarterly_{{ $i }}" id="first_quarterly_{{ $i }}" class="form-control"
                                        value="{{ old('first_quarterly_' . $i, $workPlanProgress->{'first_quarterly_' . $i} ?? '') }}" placeholder="Enter Value">
                             </div>
                         @endfor
@@ -69,7 +77,7 @@
                         @for ($i = 1; $i <= 4; $i++)
                             <div class="col-md-3">
                                 <label for="second_quarterly_{{ $i }}" class="form-label">Quarterly {{ $i }}</label>
-                                <input type="number" name="second_quarterly_{{ $i }}" id="second_quarterly_{{ $i }}" class="form-control"
+                                <input type="text" name="second_quarterly_{{ $i }}" id="second_quarterly_{{ $i }}" class="form-control"
                                        value="{{ old('second_quarterly_' . $i, $workPlanProgress->{'second_quarterly_' . $i} ?? '') }}" placeholder="Enter Value">
                             </div>
                         @endfor
@@ -80,7 +88,7 @@
                         @for ($i = 1; $i <= 4; $i++)
                             <div class="col-md-3">
                                 <label for="third_quarterly_{{ $i }}" class="form-label">Quarterly {{ $i }}</label>
-                                <input type="number" name="third_quarterly_{{ $i }}" id="third_quarterly_{{ $i }}" class="form-control"
+                                <input type="text" name="third_quarterly_{{ $i }}" id="third_quarterly_{{ $i }}" class="form-control"
                                        value="{{ old('third_quarterly_' . $i, $workPlanProgress->{'third_quarterly_' . $i} ?? '') }}" placeholder="Enter Value">
                             </div>
                         @endfor
@@ -89,14 +97,14 @@
                     <!-- Monthly Progress -->
                     <div class="form-group mb-3">
                         <label for="monthly_progress" class="form-label">Monthly Progress</label>
-                        <input type="number" name="monthly_progress" id="monthly_progress" class="form-control"
+                        <input type="text" name="monthly_progress" id="monthly_progress" class="form-control"
                                value="{{ old('monthly_progress', $workPlanProgress->monthly_progress ?? '') }}" placeholder="Enter Monthly Progress">
                     </div>
 
                     <!-- Upto Month Progress -->
                     <div class="form-group mb-3">
                         <label for="upto_month_progress" class="form-label">Upto Month Progress</label>
-                        <input type="number" name="upto_month_progress" id="upto_month_progress" class="form-control"
+                        <input type="text" name="upto_month_progress" id="upto_month_progress" class="form-control"
                                value="{{ old('upto_month_progress', $workPlanProgress->upto_month_progress ?? '') }}" placeholder="Enter Upto Month Progress">
                     </div>
 
