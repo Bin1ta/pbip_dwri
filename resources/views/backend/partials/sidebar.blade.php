@@ -222,107 +222,84 @@
             @endcan
             @can('water_consumption_access')
                 <li class="nav-item nav-item-has-children">
-                    <a href="#" class="{{ request()->is('admin/waterConsumption/*') ? '' : 'collapsed' }}"
-                        data-bs-toggle="collapse" data-bs-target="#waterConsumption" aria-controls="WaterConsumptions"
-                        aria-expanded="{{ request()->is('admin/waterConsumption/*') }}" aria-label="Toggle navigation">
-                        <span class="icon">
-                            <i class="mdi mdi-account"></i>
-                        </span>
+                    <a
+                        href="#"
+                        class="{{request()->is('admin/waterConsumption/*') ? '' : 'collapsed'}}"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#waterConsumption"
+                        aria-controls="WaterConsumptions"
+                        aria-expanded="{{request()->is('admin/waterConsumption/*')}}"
+                        aria-label="Toggle navigation"
+                    >
+              <span class="icon">
+               <i class="mdi mdi-account"></i>
+              </span>
                         <span class="text">जल उपभोक्ता समिति</span>
                     </a>
                     <ul id="waterConsumption"
-                        class="collapse dropdown-nav {{ request()->is('admin/waterConsumption/*') ? 'show' : '' }}">
+                        class="collapse dropdown-nav {{request()->is('admin/waterConsumption/*') ? 'show' : ''}}">
                         <li>
-                            <a class="{{ request()->is('admin/waterConsumption/committeeCategory*') ? 'active' : '' }}"
-                                href="{{ route('admin.committeeCategory.index') }}"> समितिको वर्ग </a>
-                            <a class="{{ request()->is('admin/waterConsumption/committee*') ? 'active' : '' }}"
-                                href="{{ route('admin.committee.index') }}"> समिति</a>
-                            <a class="{{ request()->is('admin/waterConsumption/committeeMember*') ? 'active' : '' }}"
-                                href="{{ route('admin.committeeMember.index') }}"> सदस्यहरु</a>
+                            <a class="{{request()->is('admin/waterConsumption/committeeCategory*') ? 'active' : ''}}"
+                               href="{{route('admin.committeeCategory.index')}}"> समितिको वर्ग </a>
+                            <a class="{{request()->is('admin/waterConsumption/committee*') ? 'active' : ''}}"
+                               href="{{route('admin.committee.index')}}"> समिति</a>
+                            <a class="{{request()->is('admin/waterConsumption/committeeMember*') ? 'active' : ''}}"
+                               href="{{route('admin.committeeMember.index')}}"> सदस्यहरु</a>
                         </li>
                     </ul>
                 </li>
             @endcan
-
-            @if (auth()->user() !== 'Super Admin')
+            @can('registration_access')
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/registrations/*') ? '' : 'collapsed' }}"
-                        data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
-                        aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
-                        <span class="icon">
-                            <i class="mdi mdi-image-search-outline"></i>
-                        </span>
+                       data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
+                       aria-expanded="{{ request()->is('admin/registrations/*') }}" aria-label="Toggle navigation">
+        <span class="icon">
+            <i class="mdi mdi-image-search-outline"></i>
+        </span>
                         <span class="text">प्रशासन</span>
                     </a>
-                    <ul id="registrations"
-                        class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
+                    <ul id="registrations" class="collapse dropdown-nav {{ request()->is('admin/registrations/*') ? 'show' : '' }}">
                         <li>
                             <a class="{{ request()->is('admin/registrations/registration*') ? 'active' : '' }}"
-                                href="{{ route('admin.registration.index') }}"> दर्ता </a>
+                               href="{{ route('admin.registration.index') }}"> दर्ता </a>
                             <a class="{{ request()->is('admin/registrations/invoice*') ? 'active' : '' }}"
-                                href="{{ route('admin.invoice.index') }}"> चलानी </a>
+                               href="{{ route('admin.invoice.index') }}"> चलानी </a>
                         </li>
                     </ul>
                 </li>
             @endif
 
 
+@endcan
 
-
+            @can('administration_access')
             <li class="nav-item nav-item-has-children">
-                <a href="#" class="{{ request()->is('admin/administrations/*') ? '' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#administrations" aria-controls="administrations"
-                    aria-expanded="{{ request()->is('admin/administrations/*') }}" aria-label="Toggle navigation">
-                    <span class="icon">
-                        <i class="mdi mdi-file-outline"></i>
-                    </span>
+                <a href="#"
+                   class="{{ request()->is('admin/administrations/*') ? '' : 'collapsed' }}"
+                   data-bs-toggle="collapse"
+                   data-bs-target="#administrations"
+                   aria-controls="administrations"
+                   aria-expanded="{{ request()->is('admin/administrations/*') }}"
+                   aria-label="Toggle navigation">
+        <span class="icon">
+            <i class="mdi mdi-file-outline"></i>
+        </span>
                     <span class="text">प्रविधिक</span>
                 </a>
-                <ul id="administrations"
-                    class="collapse dropdown-nav {{ request()->is('admin/administrations/*') ? 'show' : '' }}">
+                <ul id="administrations" class="collapse dropdown-nav {{ request()->is('admin/administrations/*') ? 'show' : '' }}">
                     @foreach (DocumentTypeEnum::cases() as $documentType)
                         <li>
                             <a class="{{ request()->is('admin/administrations/' . $documentType->value . '*') ? 'active' : '' }}"
-                                href="{{ route('admin.administration.index', ['type' => $documentType->value]) }}">
+                               href="{{ route('admin.administration.index', ['type' => $documentType->value]) }}">
                                 {{ $documentType->label() }}
                             </a>
                         </li>
                     @endforeach
                 </ul>
             </li>
+            @endcan
 
-
-
-            @canany(['subDivision_document_category_access', 'subDivision_document_access'])
-                <li class="nav-item nav-item-has-children">
-                    <a href="#" class="{{ request()->is('admin/subDivisions/documents*') ? '' : 'collapsed' }}"
-                        data-bs-toggle="collapse" data-bs-target="#subDivisionDocument"
-                        aria-controls="subDivisionDocument"
-                        aria-expanded="{{ request()->is('admin/subDivisions/documents*') }}"
-                        aria-label="Toggle navigation">
-                        <span class="icon">
-                            <i class="mdi mdi-file-document"></i>
-                        </span>
-                        <span class="text">सूचना / प्रकाशन</span>
-                    </a>
-                    <ul id="subDivisionDocument"
-                        class="collapse dropdown-nav {{ request()->is('admin/subDivisions/documents*') ? 'show' : '' }}">
-                        @can('subDivision_document_category_access')
-                            <li>
-                                <a class="{{ request()->is('admin/subDivisions/documents/subDivisionDocumentCategory*') ? 'active' : '' }}"
-                                    href="{{ route('admin.subDivisionDocumentCategory.index') }}"> सूचना / प्रकाशन
-                                    वर्ग </a>
-                            </li>
-                        @endcan
-                        @can('subDivision_document_access')
-                            <li>
-                                <a class="{{ request()->is('admin/subDivisions/documents/subDivisionDocument/*') ? 'active' : '' }}"
-                                    href="{{ route('admin.subDivisionDocument.index') }}"> सूचना / प्रकाशन लिस्ट </a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
-            @endcanany
             @can('bill_access')
                 <li class="nav-item {{ request()->is('admin/bill/*') ? 'active' : '' }}">
                     <a href="{{ route('admin.bill.index') }}">
