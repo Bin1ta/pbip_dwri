@@ -3,6 +3,13 @@
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
+use App\Exports\FinishedContractsExport;
+use App\Exports\FinishedContractsPragannaExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
+
 
 Route::get('/', function () {
     if (config('default.dual_language')) {
@@ -46,5 +53,12 @@ class listing
         Route::get('/committee-category/{committeeCategory}', [FrontendController::class, 'committeeCategory'])->name('committeeCategory');
 
     }
+
 }
+Route::get('export-finished-contracts', function () {
+    return Excel::download(new FinishedContractsExport, 'finished_contracts_badkapatra.xlsx');
+})->name('finished.contracts.export');
+Route::get('export-finished-contracts-praganna', function () {
+    return Excel::download(new FinishedContractsPragannaExport, 'finished_contracts_praganna.xlsx');
+})->name('finished.contracts.export_praganna');
 
