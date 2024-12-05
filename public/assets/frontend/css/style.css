@@ -595,6 +595,7 @@ img.flag {
     padding: 10px;
     text-align: justify;
 }
+
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
     .dropdown-menu li{ position: relative; 	}
@@ -649,13 +650,11 @@ img.flag {
     background-color: transparent;
 }
 
-.navbar-dark .navbar-nav  {
-    color: #FFFFFF !important;
+.navbar-dark .navbar-nav .nav-link {
     font-weight: 600;
 }
-.nav-link{
-color: black !important;
-}
+/*marquee css*/
+
 /*marquee css*/
 .newsbar-container {
     display:flex;
@@ -1176,4 +1175,12 @@ p{
 }
 .cannel-carousel-control.next {
 	right: 10px;
+}
+
+
+
+.dropend:hover > .dropdown-menu{
+    left: 100%;
+    position:absolute;
+    top: 0;
 }
