@@ -200,7 +200,7 @@
                 <div class="col-md-12">
                     <div class="input-style-1">
                         <label for="remarks">Remarks</label>
-                        <textarea name="remarks" id="remarks" cols="30" rows="4" placeholder="विवरण">{{ old('remarks',$contractProgress->remarks) }}</textarea>
+                        <textarea name="remarks" id="remarks" cols="30" rows="4" placeholder="remarks">{{ old('remarks',$contractProgress->remarks) }}</textarea>
                         @error('remarks')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
