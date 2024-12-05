@@ -54,7 +54,7 @@
                 @if (config('default.subDivision'))
                     <div class="col-md-4 order-3 order-lg-1">
                         {{-- <h5 class="title-dark">{{ __('Sub Division Offices') }}</h5> --}}
-                        <h5 class="text-white text-center" style="background-color: rgb(31, 31, 143); padding:10px;">
+                        <h5 class="text-white text-center" style="background-color: {{ $colors->nav ?? '' }}; padding:10px;">
                             @if (request()->language == 'en')
                                 {{ $officeDetail->title_en ?? '' }}
                             @else
@@ -83,7 +83,7 @@
                 @endif
                 @if (config('default.subDivision'))
                         <div class="col-md-4 order-3 order-lg-1">
-                            <h5 class="text-white text-center" style="background-color: rgb(31, 31, 143); padding:10px;">
+                            <h5 class="text-white text-center" style="background-color: {{ $colors->nav ?? '' }}; padding:10px;">
                                 Main Canals
                             </h5>
                             <div class="cannel-carousel" id="customCarousel">
@@ -168,7 +168,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-9">
                     <div class="well-heading mb-1"
-                        style="border-left: 10px solid #b31b1b; position: relative;background-color: #037555;">
+                        style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
                         {{ __('Photo Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
                         </h6>
                     </div>
@@ -209,7 +209,7 @@
                 </div>
                 <div class="col-md-3 col-sm-12 col-xs-12 wow fadeInRight m-b-15 ">
                     <div class="well-heading"
-                        style="border-left: 10px solid #b31b1b; position: relative;background-color: #037555;">
+                        style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
                         {{ __('Audio Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
                         </h6>
                     </div>

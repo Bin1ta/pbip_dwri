@@ -42,7 +42,7 @@
                     <ul>
                         <li>
                             <a href="{{route('login')}}" target="_blank">
-                                <p class="active">LOGIN</p>
+                                <p class="active" style="background-color: {{ $colors->nav ?? '' }}">LOGIN</p>
                             </a>
                         </li>
                         @if(config('default.dual_language'))
@@ -53,7 +53,7 @@
                             </li>
                             <li>
                                 <a href="{{route('language','ne')}}">
-                                    <p class="{{request()->language=="ne" ? 'active' : ''}}">नेपाली</p>
+                                    <p class="{{request()->language=="ne" ? 'active' : ''}}" style="background-color: {{ $colors->nav ?? '' }}">नेपाली</p>
                                 </a>
                             </li>
                         @endif
