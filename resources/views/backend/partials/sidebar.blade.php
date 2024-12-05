@@ -236,8 +236,7 @@
                     </ul>
                 </li>
             @endcan
-
-            @if(auth()->user() !== 'Super Admin')
+            @can('registration_access')
                 <li class="nav-item nav-item-has-children">
                     <a href="#" class="{{ request()->is('admin/registrations/*') ? '' : 'collapsed' }}"
                        data-bs-toggle="collapse" data-bs-target="#registrations" aria-controls="registrations"
@@ -256,11 +255,10 @@
                         </li>
                     </ul>
                 </li>
-            @endif
 
+@endcan
 
-
-
+            @can('administration_access')
             <li class="nav-item nav-item-has-children">
                 <a href="#"
                    class="{{ request()->is('admin/administrations/*') ? '' : 'collapsed' }}"
@@ -285,39 +283,8 @@
                     @endforeach
                 </ul>
             </li>
+            @endcan
 
-
-
-            @canany(['subDivision_document_category_access', 'subDivision_document_access'])
-                <li class="nav-item nav-item-has-children">
-                    <a href="#" class="{{ request()->is('admin/subDivisions/documents*') ? '' : 'collapsed' }}"
-                        data-bs-toggle="collapse" data-bs-target="#subDivisionDocument"
-                        aria-controls="subDivisionDocument"
-                        aria-expanded="{{ request()->is('admin/subDivisions/documents*') }}"
-                        aria-label="Toggle navigation">
-                        <span class="icon">
-                            <i class="mdi mdi-file-document"></i>
-                        </span>
-                        <span class="text">सूचना / प्रकाशन</span>
-                    </a>
-                    <ul id="subDivisionDocument"
-                        class="collapse dropdown-nav {{ request()->is('admin/subDivisions/documents*') ? 'show' : '' }}">
-                        @can('subDivision_document_category_access')
-                            <li>
-                                <a class="{{ request()->is('admin/subDivisions/documents/subDivisionDocumentCategory*') ? 'active' : '' }}"
-                                    href="{{ route('admin.subDivisionDocumentCategory.index') }}"> सूचना / प्रकाशन
-                                    वर्ग </a>
-                            </li>
-                        @endcan
-                        @can('subDivision_document_access')
-                            <li>
-                                <a class="{{ request()->is('admin/subDivisions/documents/subDivisionDocument/*') ? 'active' : '' }}"
-                                    href="{{ route('admin.subDivisionDocument.index') }}"> सूचना / प्रकाशन लिस्ट </a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
-            @endcanany
             @can('bill_access')
                 <li class="nav-item {{ request()->is('admin/bill/*') ? 'active' : '' }}">
                     <a href="{{ route('admin.bill.index') }}">
