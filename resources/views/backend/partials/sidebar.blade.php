@@ -268,10 +268,7 @@
                         </li>
                     </ul>
                 </li>
-            @endif
-
-
-@endcan
+            @endcan
 
             @can('administration_access')
             <li class="nav-item nav-item-has-children">
