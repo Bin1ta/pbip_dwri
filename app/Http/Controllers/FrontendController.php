@@ -186,8 +186,8 @@ class FrontendController extends BaseController
                 $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
             case 'workPlan_progress':
-                $wrokPlanProgresses = WorkPlanProgress::latest()->paginate(10);
-                return view('frontend.contracts.workPlanProgress', compact('wrokPlanProgresses'));
+                $workPlanProgresses = WorkPlanProgress::latest()->paginate(10);
+                return view('frontend.contracts.workPlanProgress', compact('workPlanProgresses'));
 
             case 'allExEmployee':
                 $exEmployees = ExEmployee::orderBy('leaving_date', 'asc')->get();
