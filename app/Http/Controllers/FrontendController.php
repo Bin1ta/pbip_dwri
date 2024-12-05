@@ -206,6 +206,13 @@ class FrontendController extends BaseController
                 return response(view('errors.404'), 404);
         }
     }
+    public function photoGalleryDetails(PhotoGallery $photoGallery)
+    {
+        $photoGallery->load('photos');
+
+        return view('frontend.gallery.photo', compact('photoGallery'));
+    }
+
 
 
     public function sendMessage(StoreContactMessageRequest $request)
