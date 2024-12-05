@@ -16,7 +16,7 @@
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('admin.administration.index') }}">Administration List</a>
+                                <a href="{{ route('admin.administration.index', ['type' => $documentType]) }}">Administration List</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Details

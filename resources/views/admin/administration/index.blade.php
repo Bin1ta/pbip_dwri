@@ -5,11 +5,12 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h2>{{ $title }}</h2>
+                    <h2>{{ $title?->label() }}</h2>
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('admin.administration.create') }}" class="btn btn-primary float-end"> {{ $title }} थप्नुहोस</a>
+                <a href="{{ route('admin.administration.create', $title?->value) }}"
+                   class="btn btn-primary float-end"> {{ $title?->label() }} थप्नुहोस</a>
             </div>
         </div>
     </div>
@@ -33,14 +34,18 @@
                                 <td>{{ $administration->date }}</td>
                                 <td>
                                     <div class="action">
-                                        <a href="{{ route('admin.administration.edit', $administration) }}" class="text-info mx-2">
+                                        <a href="{{ route('admin.administration.edit', [$title?->value,$administration]) }}"
+                                           class="text-info mx-2">
                                             <i class="lni lni-pencil"></i>
                                         </a>
 
-                                        <a href="{{ route('admin.administration.show', $administration) }}" class="text-success mx-2">
+                                        <a href="{{ route('admin.administration.show', [$title?->value,$administration]) }}"
+                                           class="text-success mx-2">
                                             <i class="lni lni-eye"></i>
                                         </a>
-                                        <form action="{{ route('admin.administration.destroy', $administration) }}" method="POST" class="d-inline">
+                                        <form
+                                            action="{{ route('admin.administration.destroy', [$title?->value,$administration]) }}"
+                                            method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="text-danger show_confirm" type="submit">

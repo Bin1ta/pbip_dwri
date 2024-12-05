@@ -5,7 +5,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="title mb-30">
-                    <h2>{{ $title }}</h2>
+                    <h2>{{ $title?->label() }}</h2>
                 </div>
             </div>
             <div class="col-md-6">
@@ -16,8 +16,8 @@
                                 <a href="{{ route('admin.dashboard') }}">ड्यासबोर्ड</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('admin.administration.index', ['type' => $type]) }}">
-                                    {{ $title }} लिस्ट
+                                <a href="{{ route('admin.administration.index', [$title?->value]) }}">
+                                    {{ $title?->label() }} लिस्ट
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
@@ -32,7 +32,7 @@
 
     <div class="card-style mb-30">
         <form
-            action="{{ isset($administration) ? route('admin.administration.update', ['type' => $type, 'administration' => $administration->id]) : route('admin.administration.store', ['type' => $type]) }}"
+            action="{{ isset($administration) ? route('admin.administration.update', [$title?->value,  $administration->id]) : route('admin.administration.store', [$title?->value]) }}"
             method="POST"
             enctype="multipart/form-data">
             @csrf
