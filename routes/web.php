@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\ContractProgressExport;
 use App\Exports\CurrentContractsBadkapatraExport;
 use App\Exports\CurrentContractsPragannaExport;
 use App\Http\Controllers\FrontendController;
@@ -71,4 +72,7 @@ Route::get('export-current-contracts', function () {
 Route::get('export-Current-contracts-praganna', function () {
     return Excel::download(new CurrentContractsPragannaExport, 'current_contracts_praganna.xlsx');
 })->name('current.contracts.export_praganna');
+Route::get('export-contract-progress', function () {
+    return Excel::download(new ContractProgressExport, 'contract_progress.xlsx');
+})->name('contract.progress.export');
 
