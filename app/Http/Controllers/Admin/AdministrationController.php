@@ -11,59 +11,51 @@ use Illuminate\Http\Request;
 
 class AdministrationController extends BaseController
 {
-    public function index(Request $request)
+    public function index($documentType)
     {
-        $title = 'Administration';
-        $type = $request->get('type');
-        $administrations = Administration::when($type, function ($query, $type) {
-            $query->where('type', $type);
-        })->latest()->get();
-
+        $administrations = Administration::where('type', $documentType)->latest()->get();
+        $title = DocumentTypeEnum::tryFrom($documentType);
         return view('admin.administration.index', compact('administrations', 'title'));
     }
 
-
-
-    public function create(Request $request)
+    public function create($documentType)
     {
-        $type = $request->query('type');
-        $documentType = DocumentTypeEnum::tryFrom($type);
-        $title = $documentType ? $documentType->label() : '';
-        return view('admin.administration.create', compact('title', 'type'));
+        $title = DocumentTypeEnum::tryFrom($documentType);
+        return view('admin.administration.create', compact('title', 'title'));
     }
 
-    public function store(StoreAdministrationRequest $request)
+    public function store(StoreAdministrationRequest $request, $documentType)
     {
-        Administration::create($request->validated());
+        Administration::create($request->validated()+[
+            'type'=>$documentType
+            ]);
         toast('Administration Created Successfully', 'success');
-        return redirect(route('admin.administration.index'));
+        return redirect(route('admin.administration.index',$documentType));
     }
 
-    public function show(Administration $administration)
+    public function show($documentType, Administration $administration)
     {
-        return view('admin.administration.show', compact('administration'));
+        return view('admin.administration.show', compact('administration', 'documentType'));
     }
 
-    public function edit(Administration $administration, Request $request)
+    public function edit($documentType, Administration $administration)
     {
-        $type = $request->query('type');
-        $documentType = DocumentTypeEnum::tryFrom($type);
-        $title = $documentType ? $documentType->label() : '';
-        return view('admin.administration.create',compact('administration', 'title', 'type'));
+        $title = DocumentTypeEnum::tryFrom($documentType);
+        return view('admin.administration.create', compact('administration', 'title'));
     }
 
-    public function update(UpdateAdministrationRequest $request, Administration $administration)
+    public function update(UpdateAdministrationRequest $request, $documentType, Administration $administration)
     {
         $administration->update($request->validated());
         toast('Administration Updated Successfully', 'success');
-        return redirect(route('admin.administration.index'));
+        return redirect(route('admin.administration.index',$documentType));
 
     }
 
-    public function destroy(Administration $administration)
+    public function destroy($documentType, Administration $administration)
     {
         $administration->delete();
         toast('Administration Deleted Successfully', 'success');
-        return back();
+        return redirect(route('admin.administration.index',$documentType));
     }
 }

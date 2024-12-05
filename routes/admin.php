@@ -125,7 +125,7 @@ Route::prefix('registrations')->group(function (){
 });
 
 Route::prefix('administrations')->group(function (){
-    Route::resource('administration', AdministrationController::class);
+    Route::resource('{type}/administration', AdministrationController::class)->names('administration');
 });
 
 
