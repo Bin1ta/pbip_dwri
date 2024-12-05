@@ -8,7 +8,7 @@ use App\Models\WorkPlanProgress;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WorkPlanProgressController extends Controller
+class WorkPlanProgressController extends BaseController
 {
     public function index()
     {

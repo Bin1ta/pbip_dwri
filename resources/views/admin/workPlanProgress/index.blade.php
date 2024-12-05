@@ -52,7 +52,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($workPlanProgresss as $workPlanProgress)
+                        @foreach ($workPlanProgress as $workPlanProgress)
                             <tr class="text-center">
                                 <td>{{ $workPlanProgress->year }}</td>
                                 <td>{{ $workPlanProgress->month }}</td>

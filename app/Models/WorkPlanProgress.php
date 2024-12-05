@@ -13,7 +13,7 @@ class WorkPlanProgress extends Model
 
     protected $fillable = [
         'year',
-        'month_',
+        'month',
         'detail',
         'quantity',
         'first_quarterly_1',
