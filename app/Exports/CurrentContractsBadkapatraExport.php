@@ -15,7 +15,7 @@ class CurrentContractsBadkapatraExport implements FromView
     */
     public function view(): View
     {
-        $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
+        $currentContracts = CurrentContract::where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
 
         return view('frontend.exports.currentContractBadkapatra', compact('currentContracts'));
     }

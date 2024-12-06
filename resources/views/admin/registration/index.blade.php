@@ -51,6 +51,9 @@
                                         <a href="{{route('admin.registration.edit', $registration)}}" class="text-info mx-2">
                                             <i class="lni lni-pencil"></i>
                                         </a>
+                                        <a href="{{route('admin.registration.show', $registration)}}" class="text-info mx-2">
+                                            <i class="lni lni-eye"></i>
+                                        </a>
                                         <form action="{{route('admin.registration.destroy',$registration)}}" method="POST">
                                             @csrf
                                             @method('DELETE')

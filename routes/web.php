@@ -2,12 +2,16 @@
 
 use App\Exports\ContractProgressExport;
 use App\Exports\CurrentContractsBadkapatraExport;
+use App\Exports\CurrentContractsBadkapatraPdf;
 use App\Exports\CurrentContractsPragannaExport;
+use App\Exports\CurrentContractsPragannaPdf;
+use App\Exports\FinishedContractsBadkapatraPdf;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 use App\Exports\FinishedContractsExport;
 use App\Exports\FinishedContractsPragannaExport;
+use App\Exports\FinishedContractsPragannaPdf;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -75,4 +79,11 @@ Route::get('export-Current-contracts-praganna', function () {
 Route::get('export-contract-progress', function () {
     return Excel::download(new ContractProgressExport, 'contract_progress.xlsx');
 })->name('contract.progress.export');
+
+
+
+Route::get('/current-contracts-badkaptra/pdf', [CurrentContractsBadkapatraPdf::class,'currentContractsBadkapatraPdf'])->name('current.contractsBadkapatra.pdf');
+Route::get('/current-contracts-praganna/pdf', [CurrentContractsPragannaPdf::class,'CurrentContractsPragannaPdf'])->name('current.contractsPraganna.pdf');
+Route::get('/finished-contracts-badkaptra/pdf', [FinishedContractsBadkapatraPdf::class,'FinishedContractsBadkapatraPdf'])->name('finished.contractsBadkapatra.pdf');
+Route::get('/finished-contracts-praganna/pdf', [FinishedContractsPragannaPdf::class,'FinishedContractsPragannaPdf'])->name('finished.contractsPraganna.pdf');
 

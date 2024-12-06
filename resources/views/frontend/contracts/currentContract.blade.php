@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @section('content')
     <div class="container-fluid mt-2">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -43,44 +44,39 @@
                     height: 20px;
                     text-align: center;
                     padding: 5px;
-
                 }
 
                 .contract>tbody>tr>td {
-
                     text-align: center;
                     padding: 5px;
-
                 }
             </style>
 
-
             <div class="container-fluid">
                 <div class="outer-box">
-
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                        <div class="d-flex justify-content-between align-items-center flex-wrap " style="margin-left: 80px; margin-right: 150px;">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap"
+                            style="margin-left: 80px; margin-right: 150px;">
                             <!-- Button Group -->
                             <div class="btn-group" role="group" aria-label="Data Export Buttons">
-                                <a href="#" class="btn btn-secondary">Copy</a>
+                                <a href="#" class="btn btn-secondary copy-button" data-target=".contract">Copy</a>
 
-                                {{-- Check if URL contains finishedContract_badkapath --}}
+                                {{-- Check if URL contains currentContract_badkapath --}}
                                 @if (Request::is('detail/currentContract_badkapath*'))
                                     <a href="{{ route('current.contracts.export_badkapatra', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
-                                        class="btn btn-secondary">
-                                        Excel Badkapatra
-                                    </a>
-                                    {{-- Check if URL contains finishedContract_praganna --}}
+                                        class="btn btn-secondary">Excel</a>
                                 @elseif(Request::is('detail/currentContract_praganna*'))
                                     <a href="{{ route('current.contracts.export_praganna', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
-                                        class="btn btn-secondary">
-                                        Excel Praganna
-                                    </a>
-
+                                        class="btn btn-secondary">Excel</a>
                                 @endif
 
-                                <a href="#" class="btn btn-secondary">CSV</a>
-                                <a href="#" class="btn btn-secondary">PDF</a>
+                                @if (Request::is('detail/currentContract_badkapath*'))
+                                    <a href="{{ route('current.contractsBadkapatra.pdf', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
+                                        class="btn btn-secondary">PDF</a>
+                                @elseif(Request::is('detail/currentContract_praganna*'))
+                                    <a href="{{ route('current.contractsPraganna.pdf', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
+                                        class="btn btn-secondary">PDF</a>
+                                @endif
                             </div>
 
                             <!-- Search Form -->
@@ -89,7 +85,6 @@
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
-
 
                         <table class="contract myTable table table-stripped compact dataTable no-footer"
                             id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
@@ -108,8 +103,8 @@
                                         style="width: 104.287px;">Contract identification number</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1"
-                                        aria-label="Contractor's Name &amp;amp; address: activate to sort column ascending"
-                                        style="width: 112.375px;">Contractor's Name &amp; address</th>
+                                        aria-label="Contractor's Name & address: activate to sort column ascending"
+                                        style="width: 112.375px;">Contractor's Name & address</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1" aria-label="Agreement Date: activate to sort column ascending"
                                         style="width: 85.05px;">Agreement Date</th>
@@ -126,15 +121,15 @@
                                         style="width: 75.3375px;">Number of extension</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1"
-                                        aria-label="Total duration of time exension (months): activate to sort column ascending"
-                                        style="width: 75.2375px;">Total duration of time exension (months)</th>
+                                        aria-label="Total duration of time extension (months): activate to sort column ascending"
+                                        style="width: 75.2375px;">Total duration of time extension (months)</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1"
                                         aria-label="Date of completion (revised): activate to sort column ascending"
                                         style="width: 88.9375px;">Date of completion (revised)</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                        colspan="1" aria-label="Curent status: activate to sort column ascending"
-                                        style="width: 51.85px;">Curent status</th>
+                                        colspan="1" aria-label="Current status: activate to sort column ascending"
+                                        style="width: 51.85px;">Current status</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                         colspan="1" aria-label="Updated Progress: activate to sort column ascending"
                                         style="width: 66.7px;">Updated Progress</th>
@@ -144,7 +139,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($currentContracts as $currentContract)
                                     <tr class="odd">
                                         <td class="sorting_1">{{ $currentContract->name ?? '' }}</td>
@@ -157,21 +151,49 @@
                                         <td></td>
                                         <td>{{ $currentContract->extension_duration }}</td>
                                         <td>{{ $currentContract->completion_date_revised }}</td>
-                                        <td>{{ $currentContract->current_status }}</td>
+                                        <td>
+                                            @if ($currentContract->current_status == 1)
+                                                Ongoing
+                                            @endif
+                                        </td>
                                         <td>{{ $currentContract->updated_progress ?? '' }}</td>
                                         <td>{{ $currentContract->authorised_person ?? '' }}</td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
-
-
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-    @endsection
+    </div>
+
+    @push('script')
+        <script>
+            $(document).ready(function() {
+                $('.copy-button').click(function(e) {
+                    e.preventDefault();
+
+                    let tableContent = '';
+                    let target = $(this).data('target');
+
+                    $(target).find('tr').each(function() {
+                        let rowData = [];
+                        $(this).find('th, td').each(function() {
+                            rowData.push($(this).text().trim());
+                        });
+                        tableContent += rowData.join('\t') + '\n';
+                    });
+
+                    let $temp = $('<textarea>');
+                    $('body').append($temp);
+                    $temp.val(tableContent).select();
+                    document.execCommand('copy');
+                    $temp.remove();
+
+                    alert('Table copied to clipboard!');
+                });
+            });
+        </script>
+    @endpush
+@endsection

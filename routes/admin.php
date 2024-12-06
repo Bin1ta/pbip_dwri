@@ -132,7 +132,7 @@ Route::prefix('administrations')->group(function (){
 Route::resource('contract-progress', ContractProgressController::class);
 Route::get('contract-progress/{contractProgress}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('contractProgress.status');
 Route::resource('current-contract',CurrentContractController::class);
-Route::get('current-contract/{currentContract}/updateStatus', [ContractProgressController::class, 'updateStatus'])->name('currentContact.currentstatus');
+Route::get('current-contract/{currentContract}/updateStatus', [CurrentContractController::class, 'updateStatus'])->name('currentContact.currentstatus');
 Route::resource('finished-contract',FinishedContractController::class);
 Route::get('current-contract/{finishedContract}/currentStatus', [FinishedContractController::class, 'currentStatus'])->name('finished-contract.currentStatus');
 Route::get('current-contract/{finishedContract}/contractorLiabilityStatus', [FinishedContractController::class, 'contractorLiabilityStatus'])->name('finished-contract.contractorLiabilityStatus');

@@ -140,7 +140,6 @@ class CurrentContractController extends BaseController
         $currentContract->update([
             'current_status' =>!$currentContract->current_status
         ]);
-        dd($currentContract->current_status);
         toast('Updated Successfully', 'success');
         return back();
     }

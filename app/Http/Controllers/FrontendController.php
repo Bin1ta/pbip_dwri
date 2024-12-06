@@ -177,10 +177,10 @@ class FrontendController extends BaseController
                 $finishedContracts = FinishedContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
                 return view('frontend.contracts.finishedContract', compact('finishedContracts'));
             case 'finishedContract_praganna':
-                $finishedContracts = FinishedContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
+                $finishedContracts = FinishedContract::where('current_status',1)->where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
                 return view('frontend.contracts.finishedContract', compact('finishedContracts'));
             case 'currentContract_badkapath':
-                $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
+                $currentContracts = CurrentContract::where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
             case 'currentContract_praganna':
                 $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);

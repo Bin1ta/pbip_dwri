@@ -63,26 +63,35 @@
                             style="margin-left: 80px; margin-right: 150px;">
                             <!-- Button Group -->
                             <div class="btn-group" role="group" aria-label="Data Export Buttons">
-                                <a href="#" class="btn btn-secondary">Copy</a>
+                                <a href="#" class="btn btn-secondary copy-button" data-target=".contract">Copy</a>
+
 
                                 {{-- Check if URL contains finishedContract_badkapath --}}
                                 @if (Request::is('detail/finishedContract_badkapath*'))
                                     <a href="{{ route('finished.contracts.export', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
                                         class="btn btn-secondary">
-                                        Excel Badkapatra
+                                        Excel
                                     </a>
                                     {{-- Check if URL contains finishedContract_praganna --}}
                                 @elseif(Request::is('detail/finishedContract_praganna*'))
                                     <a href="{{ route('finished.contracts.export_praganna', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
                                         class="btn btn-secondary">
-                                        Excel Praganna
+                                        Excel
                                     </a>
-                                @else
-                                    <p>No Export Button Available</p>
+                                @endif
+                                @if (Request::is('detail/finishedContract_badkapath*'))
+                                    <a href="{{ route('finished.contractsBadkapatra.pdf', ['placeId' => \App\Enums\ProjectTypeEnum::BADKAPATH->value]) }}"
+                                        class="btn btn-secondary">
+                                        PDF
+                                    </a>
+                                    {{-- Check if URL contains finishedContract_praganna --}}
+                                @elseif(Request::is('detail/finishedContract_praganna*'))
+                                    <a href="{{ route('finished.contractsPraganna.pdf', ['placeId' => \App\Enums\ProjectTypeEnum::PRAGANNA->value]) }}"
+                                        class="btn btn-secondary">
+                                        PDF
+                                    </a>
                                 @endif
 
-                                <a href="#" class="btn btn-secondary">CSV</a>
-                                <a href="#" class="btn btn-secondary">PDF</a>
                             </div>
 
 
@@ -169,4 +178,31 @@
     </div>
 
     </div>
+
+    @push('script')
+        <script>
+            $(document).ready(function() {
+                $('.copy-button').click(function(e) {
+                    e.preventDefault();
+
+                    let tableContent = '';
+                    let target = $(this).data('target');
+
+                    $(target).find('tr').each(function() {
+                        let rowData = [];
+                        $(this).find('th, td').each(function() {
+                            rowData.push($(this).text().trim());
+                        });
+                        tableContent += rowData.join('\t') + '\n';
+                    });
+                    let $temp = $('<textarea>');
+                    $('body').append($temp);
+                    $temp.val(tableContent).select();
+                    document.execCommand('copy');
+                    $temp.remove();
+                    alert('Table copied to clipboard!');
+                });
+            });
+        </script>
+    @endpush
 @endsection
