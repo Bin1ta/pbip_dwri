@@ -782,8 +782,8 @@ img.flag {
     flex-shrink: 0;
 }
 .avatar-lg-1 {
-    width: 7rem;
-    height: 7rem;
+    width: 9rem;
+    height: 8rem;
     flex-shrink: 0;
 }
 .textbox-01 h6, .textbox-01 p {
@@ -803,6 +803,7 @@ img.flag {
 .avatar-lg-1 img {
     width: 100%;
     height: 100%;
+    margin-left: 31px;
     -o-object-fit: cover;
     object-fit: cover;
 }
