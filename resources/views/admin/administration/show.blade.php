@@ -50,9 +50,14 @@
                 @if($administration->photo)
                     <div class="col-md-12">
                         <p><strong>Photo:</strong></p>
-                        <img src="{{ $administration->photo }}" alt="Photo" style="Smax-width: 100%; height: auto;">
+                        <iframe
+                            src="{{ $administration->photo }}"
+                            style="width: 100%; height: 500px; border: none;"
+                            title="Photo Preview">
+                        </iframe>
                     </div>
                 @endif
+
             </div>
         </div>
     </div>
