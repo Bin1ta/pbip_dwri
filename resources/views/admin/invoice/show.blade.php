@@ -60,10 +60,15 @@
                     <tr>
                         <th style="border: 1px solid #343a40;">फोटो</th>
                         <td style="border: 1px solid #343a40;">
-                            <img src="{{ $invoice->photo }}" alt="Photo" style="max-width: 100%; height: auto;">
+                            <iframe
+                                src="{{ $invoice->photo }}"
+                                style="width: 100%; height: 500px; border: none;"
+                                title="Photo Preview">
+                            </iframe>
                         </td>
                     </tr>
                 @endif
+
                 <tr>
                     <th style="border: 1px solid #343a40;">विवरण</th>
                     <td style="border: 1px solid #343a40;">{{ $invoice->remarks }}</td>

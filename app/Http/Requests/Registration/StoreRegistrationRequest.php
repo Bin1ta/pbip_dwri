@@ -15,17 +15,17 @@ class StoreRegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'reg_no' => ['required', 'string'],
-            'date' => ['required', 'string'],
-            'letter_count' => ['required', 'numeric'],
-            'invoice_no' => ['required', 'string'],
-            'rec_date' => ['required', 'string'],
-            'sender_name' => ['required', 'string'],
-            'address' => ['required', 'string'],
-            'subject' => ['required', 'string'],
-            'department' => ['required', 'string'],
-            'photo' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-            'remarks' => ['required', 'string'],
+            'reg_no' => ['nullable', 'string'],
+            'date' => ['nullable', 'string'],
+            'letter_count' => ['nullable', 'numeric'],
+            'invoice_no' => ['nullable', 'string'],
+            'rec_date' => ['nullable', 'string'],
+            'sender_name' => ['nullable', 'string'],
+            'address' => ['nullable', 'string'],
+            'subject' => ['nullable', 'string'],
+            'department' => ['nullable', 'string'],
+            'photo' => ['nullable',  'mimes:png,jpg,jpeg,pdf'],
+            'remarks' => ['nullable', 'string'],
         ];
     }
 }

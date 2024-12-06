@@ -17,7 +17,7 @@ class StoreAdministrationRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'date' => ['required', 'string'],
-            'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'photo' => ['required', 'mimes:jpeg,png,jpg,gif,svg,pdf'],
             'remarks' => ['nullable', 'string'],
         ];
     }
