@@ -106,40 +106,37 @@
                     <div id="employeeCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             @foreach($employees as $employee)
-                                <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                     <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-img">
-                                                <a href="">
-                                                    <img
-                                                        src="{{$employee->photo}}"
-                                                        style="width: 100%" class="img-fluid" alt="Image">
-                                                </a>
+                                        <div class="card-01">
+                                            <div class="avatar avatar-lg-1 mt-2 mb-2">
+                                                <img src="{{ $employee->photo ?? '' }}" alt="{{ $employee->name ?? '' }} " class="rounded-0">
                                             </div>
-                                                <div class="employee-carousel-caption d-none d-md-block">
-                                              @if(request()->language=='en')
-                                                    {{$employee ->name_en}}<br>
+                                            <div class="textbox-01">
+                                                @if(request()->language == 'en')
+                                                    <strong>{{ $employee->name_en }}</strong><br>
                                                 @else
-                                                    {{$employee ->name}}<br>
+                                                    <strong>{{ $employee->name }}</strong><br>
                                                 @endif
+                                                <p><i class="fa fa-phone"></i> {{ $employee->phone ?? '' }}</p>
+                                                <p><i class="fa fa-envelope"></i> {{ $employee->email ?? '' }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        <a class="carousel-control-prev bg-transparent w-aut" href="#employeeCarousel" role="button"
-                           data-bs-slide="prev">
+
+                        <a class="carousel-control-prev bg-transparent w-auto" href="#employeeCarousel" role="button" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
-                        <a class="carousel-control-next bg-transparent w-aut" href="#employeeCarousel" role="button"
-                           data-bs-slide="next">
+                        <a class="carousel-control-next bg-transparent w-auto" href="#employeeCarousel" role="button" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
+
+                <div class="col-md-3">
                 @if($header->facebook_iframe)
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInRight m-b-15">

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('admin.invoice.create') }}" class="btn btn-primary float-end">Add Committee</a>
+                <a href="{{ route('admin.invoice.create') }}" class="btn btn-primary float-end">Add Invoice</a>
             </div>
         </div>
     </div>
