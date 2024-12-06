@@ -167,7 +167,7 @@
     <section class="gallery-section mt-2">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="well-heading mb-1"
                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
                         {{ __('Photo Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
@@ -177,7 +177,7 @@
                         <div class="carousel-inner" role="listbox">
                             @foreach ($galleries as $gallery)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card">
                                             <div class="card-img" style="height:260px;">
                                                 <a
@@ -208,7 +208,30 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12 wow fadeInRight m-b-15 ">
+                <div class="col-md-4 col-sm-12 col-xs-12 wow fadeInRight m-b-15 ">
+                    <div class="well-heading"
+                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
+                        {{ __('Video Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
+                        </h6>
+                    </div>
+                    <br>
+                    <div class="card-01 overflow-scroll" style="height: 240px;">
+                        @foreach($videoGalleries as $videoGallery)
+                            <div class="col-md-2 mt-4">
+                                <iframe width="100%" height="250" src="{!!$videoGallery->url!!}"
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div style="color:red;">
+                                    @if(request()->language=='en')
+                                        {{$videoGallery->title_en}}
+                                    @else
+                                        {{$videoGallery->title}}
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 wow fadeInRight m-b-15 ">
                     <div class="well-heading"
                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
                         {{ __('Audio Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
