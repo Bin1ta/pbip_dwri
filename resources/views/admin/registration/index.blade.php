@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('admin.registration.create') }}" class="btn btn-primary float-end">Add Committee</a>
+                <a href="{{ route('admin.registration.create') }}" class="btn btn-primary float-end">Add Registration</a>
             </div>
         </div>
     </div>
