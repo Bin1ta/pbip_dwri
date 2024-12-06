@@ -178,7 +178,7 @@
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                     <div class="col-md-3">
                                         <div class="card">
-                                            <div class="card-img">
+                                            <div class="card-img" style="height:260px;">
                                                 <a
                                                     href="{{ route('photoGalleryDetails', [$gallery->slug, 'language' => $language]) }}">
                                                     <img src="{{ asset('storage/' . $gallery->photos->first()->images) }}"
