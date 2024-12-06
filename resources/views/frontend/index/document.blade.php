@@ -100,19 +100,18 @@
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                         <div class="col-md-3">
                                             <div class="card1 mt-2">
-                                                <div class="avatar avatar-lg-1 mt-2 mb-2 text-center">
+                                                <div class="avatar1 avatar-lg-1 mt-2 mb-2 text-center">
                                                     <img src="{{ $employee->photo ?? '' }}"
                                                         alt="{{ $employee->name ?? '' }} " class="rounded-0">
                                                 </div>
-                                                <hr>
-                                                <div class="textbox-01 mt-2 text-center">
+                                                <div class="textbox-01  text-center">
                                                     @if (request()->language == 'en')
                                                         <strong>{{ $employee->name_en }}</strong><br>
                                                     @else
                                                         <strong>{{ $employee->name }}</strong><br>
                                                     @endif
-                                                    <p><i class="fa fa-phone"></i> {{ $employee->phone ?? '' }}</p>
-                                                    <p><i class="fa fa-envelope"></i> {{ $employee->email ?? '' }}</p>
+                                                    <p style="font-size: 14px"><i class="fa fa-phone"></i> {{ $employee->phone ?? '' }}</p>
+                                                    <p style="font-size: 14px"><i class="fa fa-envelope"></i> {{ $employee->email ?? '' }}</p>
                                                 </div>
                                             </div>
                                         </div>

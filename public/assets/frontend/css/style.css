@@ -757,6 +757,7 @@ img.flag {
     padding: 0.5rem;
     display: block;
     height: 250px;
+
 }
 .list {
     padding-left: 0;
@@ -792,18 +793,21 @@ img.flag {
 .textbox-01 h6 {
     color: #1a1a1a;
     font-weight: 600;
+
+}
+.textbox-01{
+    background-color: #b31b1b;
+    color:white;
 }
 .avatar {
     flex-shrink: 0; /* Prevents the image container from shrinking */
     max-width: 80px; /* Adjust size as needed */
     max-height: 80px;
 }
-.avatar1 {
+.avatar {
     flex-shrink: 0; /* Prevents the image container from shrinking */
-    width: 90px; /* Adjust size as needed */
-    height: 100px;
-    justify-content: center;
-    align-items: center;
+    max-width: 80px; /* Adjust size as needed */
+    max-height: 80px;
 }
 
 .avatar img {
