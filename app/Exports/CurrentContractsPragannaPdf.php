@@ -16,7 +16,7 @@ class CurrentContractsPragannaPdf
 
     public function CurrentContractsPragannaPdf()
     {
-        $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->get();
+        $currentContracts = CurrentContract::where('current_status',1)->where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->get();
 
         $pdf = Pdf::loadView('frontend.exports.currentContractPragannaPdf', compact('currentContracts'));
         $randomFileName = 'contracts_Praganna' . uniqid() . '.pdf';

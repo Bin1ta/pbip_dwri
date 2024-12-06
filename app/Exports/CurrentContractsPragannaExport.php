@@ -15,7 +15,7 @@ class CurrentContractsPragannaExport implements FromView
     */
     public function view(): View
     {
-        $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->get();
+        $currentContracts = CurrentContract::where('current_status',1)->where('current_status',1)->where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->get();
 
         return view('frontend.exports.currentContractPraganna', compact('currentContracts'));
     }

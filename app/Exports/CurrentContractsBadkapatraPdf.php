@@ -16,7 +16,7 @@ class CurrentContractsBadkapatraPdf
     */
     public function currentContractsBadkapatraPdf()
     {
-        $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
+        $currentContracts = CurrentContract::where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
         $randomFileName = 'contracts_badkapatra' . uniqid() . '.pdf';
         $pdf = Pdf::loadView('frontend.exports.currentContractBadkaptraPdf', compact('currentContracts'));
         $pdf->setPaper('A4', 'landscape');
