@@ -749,6 +749,15 @@ img.flag {
     display: block;
     height: auto;
 }
+/*card design*/
+.card1 {
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(119,119,119,.08);
+    background-color: #fff;
+    padding: 0.5rem;
+    display: block;
+    height: 250px;
+}
 .list {
     padding-left: 0;
     list-style: none;
@@ -773,8 +782,8 @@ img.flag {
     flex-shrink: 0;
 }
 .avatar-lg-1 {
-    width: 5.8rem;
-    height: 5.5rem;
+    width: 7rem;
+    height: 7rem;
     flex-shrink: 0;
 }
 .textbox-01 h6, .textbox-01 p {

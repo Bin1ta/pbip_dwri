@@ -64,16 +64,7 @@
                             </a>
                         </div>
                         <!--button start-->
-                        @if(config('default.smuggling'))
-                            <div class="blockmenu" style="background-color: {{$colors->nav}}">
-                                <a href="{{route('static', ["smuggling",'language'=>$language])}}">
-                                    <span class="block-icon"><i class="fa fa-clipboard"></i></span>
-                                    <div class="block-content">
-                                        <div class="block-content-title" style="color: #fff;">{{__('Smuggling')}}</div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endif
+
                         <!--button end-->
                         <!--button start-->
                         <div class="blockmenu" style="background-color: {{$colors->nav}}">
@@ -93,7 +84,7 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInRight m-b-15">
+                    <div class=" col-sm-12 col-xs-12 wow fadeInRight m-b-15">
                         <div class="well-heading"
                              style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
                             {{__('Employee Detail')}}<h6 class="content_title"><span class="pull-right"></span>
@@ -101,18 +92,19 @@
                         </div>
                         <br>
                     </div>
-                </div>
+
                 <div class="row justify-content-center" style="overflow-x: hidden">
                     <div id="employeeCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             @foreach($employees as $employee)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                     <div class="col-md-3">
-                                        <div class="card-01">
+                                        <div class="card1 mt-2">
                                             <div class="avatar avatar-lg-1 mt-2 mb-2">
-                                                <img src="{{ $employee->photo ?? '' }}" alt="{{ $employee->name ?? '' }} " class="rounded-0">
+                                                <img src="{{ $employee->photo ?? '' }}"
+                                                     alt="{{ $employee->name ?? '' }} " class="rounded-0">
                                             </div>
-                                            <div class="textbox-01">
+                                            <div class="textbox-01 mt-4">
                                                 @if(request()->language == 'en')
                                                     <strong>{{ $employee->name_en }}</strong><br>
                                                 @else
@@ -127,37 +119,41 @@
                             @endforeach
                         </div>
 
-                        <a class="carousel-control-prev bg-transparent w-auto" href="#employeeCarousel" role="button" data-bs-slide="prev">
+                        <a class="carousel-control-prev bg-transparent w-auto" href="#employeeCarousel" role="button"
+                           data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
-                        <a class="carousel-control-next bg-transparent w-auto" href="#employeeCarousel" role="button" data-bs-slide="next">
+                        <a class="carousel-control-next bg-transparent w-auto" href="#employeeCarousel" role="button"
+                           data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
                     </div>
                 </div>
-
+                </div>
+                </div>
                 <div class="col-md-3">
-                @if($header->facebook_iframe)
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInRight m-b-15">
-                            <div class="well-heading"
-                                 style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
-                                {{__('Facebook')}}<h6 class="content_title"><span class="pull-right"></span>
-                                </h6>
+                    @if($header->facebook_iframe)
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInRight m-b-15">
+                                <div class="well-heading"
+                                     style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
+                                    {{__('Facebook')}}<h6 class="content_title"><span class="pull-right"></span>
+                                    </h6>
+                                </div>
+                                <br>
                             </div>
-                            <br>
                         </div>
-                    </div>
-                    <div class="clearall"></div>
-                    <div class="row">
-                        <iframe src="{{$header->facebook_iframe}}" width="340" height="300"
-                                style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                                allowfullscreen="true"
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                @endif
+                        <div class="clearall"></div>
+                        <div class="row">
+                            <iframe src="{{$header->facebook_iframe}}" width="340" height="280"
+                                    style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                                    allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        </div>
+                    @endif
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </section>
