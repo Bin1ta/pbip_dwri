@@ -104,7 +104,7 @@
                                                     <img src="{{ $employee->photo ?? '' }}"
                                                         alt="{{ $employee->name ?? '' }} " class="rounded-0">
                                                 </div>
-                                                <div class="textbox-01  text-center">
+                                                <div class="textbox-01 mt-4  text-center">
                                                     @if (request()->language == 'en')
                                                         <strong>{{ $employee->name_en }}</strong><br>
                                                     @else
