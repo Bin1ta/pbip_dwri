@@ -60,7 +60,7 @@
                                         {{ $loop->iteration }}
                                     </td>
                                     <td>{{ $currentContract->name ?? '' }}</td>
-                                    <td>{{ $currentContract->place_id ?? '' }}</td>
+                                    <td>{{ $currentContract->place_id->label() ?? '' }}</td>
                                     <td>{{ $currentContract->work ?? '' }}</td>
                                     <td>{{ $currentContract->identification_no ?? '' }}</td>
                                     <td>{{ $currentContract->contractor_detail ?? '' }}</td>
