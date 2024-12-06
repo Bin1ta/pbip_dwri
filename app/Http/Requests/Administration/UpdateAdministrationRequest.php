@@ -17,7 +17,7 @@ class UpdateAdministrationRequest extends FormRequest
         return [
             'title' => ['nullable', 'string', 'max:255'],
             'date' => ['nullable', 'string'],
-            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,pdf'],
             'remarks' => ['nullable', 'string'],
         ];
     }

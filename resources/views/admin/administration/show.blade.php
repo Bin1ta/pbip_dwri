@@ -50,7 +50,7 @@
                 @if($administration->photo)
                     <div class="col-md-12">
                         <p><strong>Photo:</strong></p>
-                        <img src="{{ $administration->photo }}" alt="Photo" style="max-width: 100%; height: auto;">
+                        <img src="{{ $administration->photo }}" alt="Photo" style="Smax-width: 100%; height: auto;">
                     </div>
                 @endif
             </div>
