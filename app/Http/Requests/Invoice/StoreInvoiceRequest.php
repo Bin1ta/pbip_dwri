@@ -15,14 +15,14 @@ class StoreInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'invoice_no' => ['required', 'string'],
-            'date' => ['required', 'string'],
-            'letter_count' => ['required', 'numeric'],
-            'rec_name' => ['required', 'string'],
-            'subject' => ['required', 'string'],
-            'deliver_type' => ['required', 'string'],
-            'photo' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-            'remarks' => ['required', 'string'],
+            'invoice_no' => ['nullable', 'string'],
+            'date' => ['nullable', 'string'],
+            'letter_count' => ['nullable', 'numeric'],
+            'rec_name' => ['nullable', 'string'],
+            'subject' => ['nullable', 'string'],
+            'deliver_type' => ['nullable', 'string'],
+            'photo' => ['nullable','mimes:png,jpg,jpeg,pdf'],
+            'remarks' => ['nullable', 'string'],
         ];
     }
 }
