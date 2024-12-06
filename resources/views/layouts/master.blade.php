@@ -71,7 +71,7 @@
             <div class="col-md-8 col-sm-8 col-xs-8 mt-3 text-center">
                 @foreach($officeSettingHeaders as $officeSettingHeader)
                     <span
-                        style="font-size:{{$officeSettingHeader->font_size}}px; font-family: {{$officeSettingHeader->font_family}}; color: {{$officeSettingHeader->font_color}}; line-height: 0.8 !important; font-weight: {{$officeSettingHeader->font}};">
+                        style="font-size:{{$officeSettingHeader->font_size}}px; color: {{$officeSettingHeader->font_color}}; line-height: 1.2 !important; font-weight: {{$officeSettingHeader->font}};">
                         @if(request()->language=='en')
                             {{$officeSettingHeader->english}}
                         @else
