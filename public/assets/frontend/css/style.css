@@ -772,6 +772,11 @@ img.flag {
     height: 5.5rem;
     flex-shrink: 0;
 }
+.avatar-lg-1 {
+    width: 5.8rem;
+    height: 5.5rem;
+    flex-shrink: 0;
+}
 .textbox-01 h6, .textbox-01 p {
     margin-bottom: .25rem;
 }
@@ -783,6 +788,12 @@ img.flag {
     width: 100%;
     height: 100%;
     margin-left: 10rem;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.avatar-lg-1 img {
+    width: 100%;
+    height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
 }
