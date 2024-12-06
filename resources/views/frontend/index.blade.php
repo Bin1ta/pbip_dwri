@@ -106,56 +106,57 @@
 
                 <div class=" @if (config('default.subDivision')) col-md-4 @else col-lg-4 @endif  order-2 order-lg-3">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-12 mt-3 mt-md-0">
-                            <div class="card-01">
-                                @if ($header->chief_id ?? ('' || $header->information_officer_id ?? ''))
-                                    <ul class="list-unstyled">
-                                        <li class="align-items-center text-center">
-                                            @if ($header->chief_id)
-                                                <div class="avatar avatar-lg mt-2 mb-2">
-                                                    <img src="{{ $header->chief->photo ?? '' }}"
-                                                        alt="{{ $header->chief->name ?? '' }}">
-                                                </div>
-                                                <div class="textbox-01">
-                                                    @if (request()->language == 'en')
-                                                        <h6>{{ $header->chief->name_en ?? '' }}</h6>
-                                                    @else
-                                                        <h6>{{ $header->chief->name ?? '' }}</h6>
-                                                    @endif
-                                                    <p>{{ __('Office head') }}</p>
-                                                    <p><i class="fa fa-phone"></i> {{ $header->chief->phone ?? '' }}</p>
-                                                    <p><i class="fa fa-envelope"></i> {{ $header->chief->email ?? '' }}
-                                                    </p>
-                                                </div>
-                                        </li>
-                                @endif
-                                @if ($header->information_officer_id)
-                                    <li class="text-center">
-                                        <div class="avatar avatar-lg text-center mt-2 mb-2">
-                                            <img src="{{ $header->informationOfficer->photo ?? '' }}"
-                                                alt="{{ $header->informationOfficer->name ?? '' }}">
+                        <div class="col-12 mt-3">
+                            <div class="gov-np-profile-card">
+                                @if ($header->chief_id || $header->information_officer_id)
+                                    @if ($header->chief_id)
+                                        <div class="gov-np-profile-row">
+                                            <div class="gov-np-avatar">
+                                                <img src="{{ $header->chief->photo ?? '' }}"
+                                                     alt="{{ $header->chief->name ?? '' }}"
+                                                     class="gov-np-avatar-img">
+                                            </div>
+                                            <div class="gov-np-info">
+                                                <h6 class="gov-np-name">
+                                                    {{ request()->language == 'en' ? ($header->chief->name_en ?? '') : ($header->chief->name ?? '') }}
+                                                </h6>
+                                                <p class="gov-np-role">{{ __('Office Head') }}</p>
+                                                <p class="gov-np-contact">
+                                                    <i class="fa fa-phone"></i> {{ $header->chief->phone ?? __('N/A') }}
+                                                </p>
+                                                <p class="gov-np-contact">
+                                                    <i class="fa fa-envelope"></i> {{ $header->chief->email ?? __('N/A') }}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="textbox-01">
-                                            @if (request()->language == 'en')
-                                                <h6>{{ $header->informationOfficer->name_en ?? '' }}</h6>
-                                            @else
-                                                <h6>{{ $header->informationOfficer->name ?? '' }}</h6>
-                                            @endif
-                                            <p>{{ __('Information Officer') }}</p>
-                                            <p>
-                                                <i class="fa fa-phone"></i> {{ $header->informationOfficer->phone ?? '' }}
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-envelope"></i>
-                                                {{ $header->informationOfficer->email ?? '' }}
-                                            </p>
+                                    @endif
+                                    @if ($header->information_officer_id)
+                                        <div class="gov-np-profile-row">
+                                            <div class="gov-np-avatar">
+                                                <img src="{{ $header->informationOfficer->photo ?? '' }}"
+                                                     alt="{{ $header->informationOfficer->name ?? '' }}"
+                                                     class="gov-np-avatar-img">
+                                            </div>
+                                            <div class="gov-np-info">
+                                                <h6 class="gov-np-name">
+                                                    {{ request()->language == 'en' ? ($header->informationOfficer->name_en ?? '') : ($header->informationOfficer->name ?? '') }}
+                                                </h6>
+                                                <p class="gov-np-role">{{ __('Information Officer') }}</p>
+                                                <p class="gov-np-contact">
+                                                    <i class="fa fa-phone"></i> {{ $header->informationOfficer->phone ?? __('N/A') }}
+                                                </p>
+                                                <p class="gov-np-contact">
+                                                    <i class="fa fa-envelope"></i> {{ $header->informationOfficer->email ?? __('N/A') }}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </li>
-                                @endif
-                                </ul>
+                                    @endif
                                 @endif
                             </div>
                         </div>
+
+
+
 
                     </div>
                 </div>

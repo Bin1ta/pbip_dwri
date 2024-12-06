@@ -100,7 +100,7 @@
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                     <div class="col-md-3">
                                         <div class="card1 mt-2">
-                                            <div class="avatar avatar-lg-1 mt-2 mb-2 text-center">
+                                            <div class="avatar1 avatar-lg-1 mt-2 mb-2 text-center">
                                                 <img src="{{ $employee->photo ?? '' }}"
                                                      alt="{{ $employee->name ?? '' }} " class="rounded-0">
                                             </div>
