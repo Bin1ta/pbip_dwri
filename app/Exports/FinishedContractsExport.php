@@ -15,7 +15,7 @@ class FinishedContractsExport implements FromView
     */
     public function view(): View
     {
-        $finishedContracts = FinishedContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
+        $finishedContracts = FinishedContract::where('contractors_liability_status',1)->where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
 
         return view('frontend.exports.finishedContracts', compact('finishedContracts'));
     }
