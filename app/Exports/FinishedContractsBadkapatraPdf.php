@@ -14,7 +14,7 @@ class FinishedContractsBadkapatraPdf
     */
     public function FinishedContractsBadkapatraPdf()
     {
-        $finishedContracts = FinishedContract::where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
+        $finishedContracts = FinishedContract::where('contractors_liability_status',1)->where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->get();
         $randomFileName = 'finished_badkapatra' . uniqid() . '.pdf';
         $pdf = Pdf::loadView('frontend.exports.finishedContractBadkaptraPdf', compact('finishedContracts'));
         $pdf->setPaper('A4', 'landscape');

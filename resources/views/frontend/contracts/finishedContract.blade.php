@@ -158,8 +158,16 @@
                                         <td>{{ $finishedContract->agreement_amount }}</td>
                                         <td>{{ $finishedContract->completion_date }}</td>
                                         <td>{{ $finishedContract->actual_expenditure }}</td>
-                                        <td>{{ $finishedContract->contractors_liability_status }}</td>
-                                        <td>{{ $finishedContract->current_status }}</td>
+                                        <td>
+                                            @if ($finishedContract->contractors_liability_status = 1)
+                                                Completed
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($finishedContract->current_status = 1)
+                                                Completed
+                                            @endif
+                                        </td>
                                         <td>{{ $finishedContract->work_completed }}</td>
                                     </tr>
                                 @endforeach

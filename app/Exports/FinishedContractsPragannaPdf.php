@@ -14,7 +14,7 @@ class FinishedContractsPragannaPdf
     */
     public function FinishedContractsPragannaPdf()
     {
-        $finishedContracts = FinishedContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->get();
+        $finishedContracts = FinishedContract::where('contractors_liability_status',1)->where('current_status',1)->where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->get();
         $randomFileName = 'finished_Praganna' . uniqid() . '.pdf';
         $pdf = Pdf::loadView('frontend.exports.finishedContractPragannaPdf', compact('finishedContracts'));
         $pdf->setPaper('A4', 'landscape');
