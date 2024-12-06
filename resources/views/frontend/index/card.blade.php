@@ -1,6 +1,6 @@
 <div class="row">
 @foreach($categories as $category)
-        <div class="col-lg-6 mt-2">
+        <div class="col-lg-4 mt-2">
             <div class="card-01">
                 <h6 class="heading-line mb-3 text-center pt-1" style="background-color: {{ $colors->nav ?? '' }}; color: white">
                     @if(request()->language=='en')

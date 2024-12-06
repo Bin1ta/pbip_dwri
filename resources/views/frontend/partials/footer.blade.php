@@ -42,32 +42,59 @@
                             </span>
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-3 col-lg-3 text-center">
-                 @if($header->grievance_officer_id)
-                    <div class="card-container1  card-03 ">
-                        <h6 class="footer-title mb-3">
-                        {{__('Grievance Hearing Officer')}}
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <div class="footer-title mb-3 ">
+                        <h6><b>{{ __('Related Information') }}</b></h6>
+                        <h6 class="text-white text-bold mt-2">
+                            <ul style="color: white; padding-left: 20px; margin-top: 20px;">
+                                <li style="margin-bottom: 10px;">
+                                    <a href="{{ route('static', ['faq', 'language' => $language]) }}"
+                                       style="color: white; text-decoration: none;"
+                                       onmouseover="this.style.color='blue'"
+                                       onmouseout="this.style.color='white'">
+                                        {{ __('Frequently Asked Questions') }}
+                                    </a>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <a href="#"
+                                       style="color: white; text-decoration: none;"
+                                       onmouseover="this.style.color='blue'"
+                                       onmouseout="this.style.color='white'">
+                                        {{ __('Check Mail') }}
+                                    </a>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <a href="{{ route('static', ['bill', 'language' => $language]) }}"
+                                       style="color: white; text-decoration: none;"
+                                       onmouseover="this.style.color='blue'"
+                                       onmouseout="this.style.color='white'">
+                                        {{ __('Bill Publicity') }}
+                                    </a>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <a href="https://twitter.com/"
+                                       style="color: white; text-decoration: none;"
+                                       onmouseover="this.style.color='blue'"
+                                       onmouseout="this.style.color='white'">
+                                        {{ __('Twitter Link') }}
+                                    </a>
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <a href="{{ route('static', ['links', 'language' => $language]) }}"
+                                       style="color: white; text-decoration: none;"
+                                       onmouseover="this.style.color='blue'"
+                                       onmouseout="this.style.color='white'">
+                                        {{ __('Links') }}
+                                    </a>
+                                </li>
+                            </ul>
                         </h6>
-                        <div class="d-flex flex-column justify-content-center">
-                            <div class="io-image">
-                                <img class="rounded" src="{{$header->grievanceOfficer->photo ?? ''}}" height="120" style="object-fit:contain;"
-                                     alt="{{$header->grievanceOfficer->name ?? ''}}">
-                            </div>
-                            <div>
-                                @if(request()->language=='en')
-                                <h6 class="text-white mt-2">{{$header->grievanceOfficer->name_en ?? ''}}</h6>
-                                @else
-                                    <h6 class="text-white mt-2">{{$header->grievanceOfficer->name ?? ''}}</h6>
-                                @endif
-
-                                <p class="text-white"><i class="fa fa-phone"></i> {{$header->grievanceOfficer->phone ?? ''}}</p>
-                                <p class="text-white"><i class="fa fa-envelope"></i>  {{$header->grievanceOfficer->email ?? ''}}</p>
-                            </div>
-                        </div>
                     </div>
-                    @endif
+
+
                 </div>
-                <div class="col-sm-4 col-md-4 col-lg-4">
+
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                     <h6 class="footer-title mb-3">{{__('Important Links')}}</h6>
                     <div class="home-contact-card">
                         <ul>

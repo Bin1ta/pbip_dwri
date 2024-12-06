@@ -1,87 +1,14 @@
 <section class="document-section mt-3">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 @if($header->document_list_type=="list")
                     @include("frontend.index.list")
                 @else
                     @include("frontend.index.card")
                 @endif
             </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInRight m-b-15">
-                        <div class="well-heading"
-                             style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
-                            {{__('Related Information')}}<h6 class="content_title"><span class="pull-right"></span>
-                            </h6>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-                <div class="clearall"></div>
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <div class="blockmenu" style="background-color: {{$colors->nav}}">
-                            <a href="{{route('static',["faq",'language'=>$language])}}">
-                                <span class="block-icon"><i class="fa fa-question-circle"></i></span>
-                                <div class="block-content">
-                                    <div class="block-content-title"
-                                         style="color: #fff;">{{__('Frequently Asked Questions')}}</div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--button end-->
-                        <!--button start-->
-                        <div class="blockmenu" style="background-color: {{$colors->nav}}">
-                            <a href="#">
-                                <span class="block-icon"><i class="fa fa-envelope"></i></span>
-                                <div class="block-content">
-                                    <div class="block-content-title" style="color: #fff;">{{ __('Check Mail') }}</div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--button end-->
-                        <!--button start-->
-                        <div class="blockmenu" style="background-color: {{$colors->nav}}">
-                            <a href="{{route('static',["bill",'language'=>$language])}}">
-                                <span class="block-icon"><i class="fa fa-calculator"></i></span>
-                                <div class="block-content">
-                                    <div class="block-content-title"
-                                         style="color: #fff;">
-                                        {{__('Bill Publicity')}}
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--button end-->
-                        <div class="blockmenu" style="background-color: {{$colors->nav}}">
-                            <a href="https://twitter.com/">
-                                <span class="block-icon"><i class="fa fa-twitter"></i></span>
-                                <div class="block-content">
-                                    <div class="block-content-title" style="color: #fff;">{{ __('Twitter Link') }}</div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--button start-->
 
-                        <!--button end-->
-                        <!--button start-->
-                        <div class="blockmenu" style="background-color: {{$colors->nav}}">
-                            <a href="{{route('static',["links",'language'=>$language])}}">
-                                <span class="block-icon"><i class="fa fa-link"></i></span>
-                                <div class="block-content">
-                                    <div class="block-content-title" style="color: #fff;">
-                                        {{__('Links')}}
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--button end-->
-                    </div>
-                </div>
-                <div class="clearall"></div>
-            </div>
             <div class="col-md-9">
                 <div class="row">
                     <div class=" col-sm-12 col-xs-12 wow fadeInRight m-b-15">
