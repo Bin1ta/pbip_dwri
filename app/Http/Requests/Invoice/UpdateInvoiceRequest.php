@@ -21,7 +21,7 @@ class UpdateInvoiceRequest extends FormRequest
             'rec_name' => ['nullable', 'string'],
             'subject' => ['nullable', 'string'],
             'deliver_type' => ['nullable', 'string'],
-            'photo' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
+            'photo' => ['nullable','mimes:png,jpg,jpeg,pdf'],
             'remarks' => ['nullable', 'string'],
         ];
     }
