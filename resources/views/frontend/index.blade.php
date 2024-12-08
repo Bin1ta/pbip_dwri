@@ -34,7 +34,7 @@
                         <div class="slides {{ $loop->first ? 'active' : '' }}"
                              style="background-image: url('{{ $slider->photo }}');">
                             <div class="overlay">
-                                <h1>{{ $slider->title_en }}</h1>
+                                <h2 style="font-family: kalimati;">{{ $slider->title_en }}</h2>
                                 <p>{{ request()->language == 'en' ? $slider->title_en : $slider->title }}</p>
                             </div>
                         </div>
