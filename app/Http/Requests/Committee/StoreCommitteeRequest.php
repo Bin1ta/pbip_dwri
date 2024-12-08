@@ -18,10 +18,10 @@ class StoreCommitteeRequest extends FormRequest
     public function rules()
     {
         return [
-            'committee_category_id' => ['nullable', Rule::exists('committee_Categories', 'id')->withoutTrashed()],
+            'committee_category_id' => ['nullable', Rule::exists('committee_categories', 'id')->withoutTrashed()],
             'name' => ['required','string'],
             'name_en' => ['required','string'],
-           
+
         ];
     }
 }
