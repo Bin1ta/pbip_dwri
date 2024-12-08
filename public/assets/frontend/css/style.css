@@ -7,10 +7,8 @@
 body{
     background-color: #f2f2f2 !important;
     margin: auto;
-
     font-family: "Kalimati", sans-serif !important;
     line-height: 1.5;
-
 }
 .modal {
     position: fixed;
@@ -754,7 +752,7 @@ img.flag {
     border-radius: 4px;
     box-shadow: 0 8px 16px rgba(119,119,119,.08);
     background-color: #fff;
-    padding: 0.5rem;
+    padding: 0.2rem;
     display: block;
     height: 280px;
 
@@ -1282,8 +1280,9 @@ p{
 .gov-np-name {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #d32f2f; /* Nepal flag red */
+    color: #d32f2f;
     margin-bottom: 5px;
+    font-family: "Kalimati", sans-serif !important;
 }
 
 .gov-np-role {
@@ -1293,6 +1292,7 @@ p{
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 0.5px;
+    font-family: "Kalimati", sans-serif !important;
 }
 
 .gov-np-contact {
