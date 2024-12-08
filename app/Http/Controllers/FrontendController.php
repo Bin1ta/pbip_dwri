@@ -64,7 +64,8 @@ class FrontendController extends BaseController
             $noticePopups = Document::with('files')->where('popUp', 1)->get();
             $employees = Employee::with('designation', 'department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries',  'noticePopups'));
+            $videoGalleries = VideoGallery ::latest()->get();
+            return view('frontend.index', compact('audios', 'employees', 'officeDetail','videoGalleries', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries',  'noticePopups'));
         } else {
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
