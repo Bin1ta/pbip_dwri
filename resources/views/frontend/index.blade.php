@@ -32,7 +32,7 @@
                 <div class="slider">
                     @foreach ($sliders as $index => $slider)
                         <div class="slides {{ $loop->first ? 'active' : '' }}"
-                            style="background-image: url('{{ $slider->photo }}');">
+                             style="background-image: url('{{ $slider->photo }}');">
                             <div class="overlay">
                                 <h1>{{ $slider->title_en }}</h1>
                                 <p>{{ request()->language == 'en' ? $slider->title_en : $slider->title }}</p>
@@ -54,7 +54,8 @@
                 @if (config('default.subDivision'))
                     <div class="col-md-4 order-3 order-lg-1">
                         {{-- <h5 class="title-dark">{{ __('Sub Division Offices') }}</h5> --}}
-                        <h5 class="text-white text-center" style="background-color: {{ $colors->nav ?? '' }}; padding:10px;">
+                        <h5 class="text-white text-center"
+                            style="background-color: {{ $colors->nav ?? '' }}; padding:10px;">
                             @if (request()->language == 'en')
                                 {{ $officeDetail->title_en ?? '' }}
                             @else
@@ -73,7 +74,7 @@
                                         {!! Str::words(strip_tags($officeDetail->description ?? ''), 100, '...') !!}
                                     @endif
                                     <a class="intro-title"
-                                        href="{{ route('officeDetail', [$officeDetail->slug ?? '', 'language' => $language]) }}">
+                                       href="{{ route('officeDetail', [$officeDetail->slug ?? '', 'language' => $language]) }}">
                                         {{ __('View More') }}
                                     </a>
                             </div>
@@ -82,27 +83,29 @@
                     </div>
                 @endif
                 @if (config('default.subDivision'))
-                        <div class="col-md-4 order-3 order-lg-1">
-                            <h5 class="text-white text-center" style="background-color: {{ $colors->nav ?? '' }}; padding:10px;">
-                                Main Canals
-                            </h5>
-                            <div class="cannel-carousel" id="customCarousel">
-                                <div class="cannel-carousel-inner">
-                                    @foreach ($canals as $index => $canal)
-                                        <div class="cannel-carousel-item {{ $loop->first ? 'active' : '' }}" data-index="{{ $index }}">
-                                            <div class="img-box">
-                                                <img src="{{ $canal->photo }}" alt="{{ $canal->title }}" class="img-fluid" />
-                                            </div>
+                    <div class="col-md-4 order-3 order-lg-1">
+                        <h5 class="text-white text-center"
+                            style="background-color: {{ $colors->nav ?? '' }}; padding:10px;">
+                            Main Canals
+                        </h5>
+                        <div class="cannel-carousel" id="customCarousel">
+                            <div class="cannel-carousel-inner">
+                                @foreach ($canals as $index => $canal)
+                                    <div class="cannel-carousel-item {{ $loop->first ? 'active' : '' }}"
+                                         data-index="{{ $index }}">
+                                        <div class="img-box">
+                                            <img src="{{ $canal->photo }}" alt="{{ $canal->title }}" class="img-fluid"/>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <!-- Navigation Arrows -->
-                                <button class="cannel-carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-                                <button class="cannel-carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+                                    </div>
+                                @endforeach
                             </div>
+                            <!-- Navigation Arrows -->
+                            <button class="cannel-carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
+                            <button class="cannel-carousel-control next" onclick="moveSlide(1)">&#10095;</button>
                         </div>
+                    </div>
 
-                    @endif
+                @endif
 
                 <div class=" @if (config('default.subDivision')) col-md-4 @else col-lg-4 @endif  order-2 order-lg-3">
                     <div class="row">
@@ -156,8 +159,6 @@
                         </div>
 
 
-
-
                     </div>
                 </div>
             </div>
@@ -167,9 +168,9 @@
     <section class="gallery-section mt-2">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="well-heading mb-1"
-                        style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
+                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
                         {{ __('Photo Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
                         </h6>
                     </div>
@@ -177,12 +178,13 @@
                         <div class="carousel-inner" role="listbox">
                             @foreach ($galleries as $gallery)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <div class="card">
-                                            <div class="card-img" style="height:260px;">
+                                            <div class="card-img" style="height:255px;">
                                                 <a
                                                     href="{{ route('photoGalleryDetails', [$gallery->slug, 'language' => $language]) }}">
-                                                    <img src="{{ asset('storage/' . $gallery->photos->first()->images) }}"
+                                                    <img
+                                                        src="{{ asset('storage/' . $gallery->photos->first()->images) }}"
                                                         style="width: 100%" class="img-fluid" alt="Image">
                                                 </a>
                                             </div>
@@ -199,56 +201,61 @@
                             @endforeach
                         </div>
                         <a class="carousel-control-prev bg-transparent w-aut" href="#galleryCarousel" role="button"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </a>
-                        <a class="carousel-control-next bg-transparent w-aut" href="#galleryCarousel" role="button"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-5 col-sm-12 col-xs-12 wow fadeInRight m-b-15 ">
-                    <div class="well-heading"
-                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
-                        {{ __('Video Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
-                        </h6>
-                    </div>
-                    <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                            @foreach($videoGalleries as $videoGallery)
-                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <div class="card">
-
-                                        <div class="card-img" style="height:260px;">
-                                            <a href="{!! $videoGallery->url !!}"></a>
-                                        </div>
-                                        <div class="carousel-caption d-none d-md-block">
-                                            @if(request()->language=='en')
-                                                {{ $videoGallery->title_en }}
-                                            @else
-                                                {{ $videoGallery->title }}
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                            @endforeach
-                        </div>
-                        <a class="carousel-control-prev bg-transparent w-aut" href="#videoCarousel" role="button"
                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
-                        <a class="carousel-control-next bg-transparent w-aut" href="#videoCarousel" role="button"
+                        <a class="carousel-control-next bg-transparent w-aut" href="#galleryCarousel" role="button"
                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
                     </div>
                 </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12 wow fadeInRight mb-3">
+                    <div class="well-heading"
+                         style="border-left: 10px solid #b31b1b; position: relative; background-color: {{ $colors->nav ?? '' }};">
+                        <h5>{{ __('Video Gallery') }}</h5>
+                        <h6 class="content_title">
+                            <span class="pull-right"></span>
+                        </h6>
+                    </div>
+
+                    <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            @foreach($videoGalleries as $videoGallery)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                        <a href="{{ $videoGallery->url }}" target="_blank" rel="noopener noreferrer">
+                                            <iframe width="100%" height="255" src="{!!$videoGallery->url!!}"
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                        </a>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            {{ request()->language == 'en' ? $videoGallery->title_en : $videoGallery->title }}
+                                        </div>
+                                </div>
+
+                            @endforeach
+                        </div>
+
+
+                        <!-- Controls -->
+                        <a class="carousel-control-prev bg-transparent w-auto" href="#videoCarousel" role="button"
+                           data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next bg-transparent w-auto" href="#videoCarousel" role="button"
+                           data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="col-md-2 col-sm-12 col-xs-12 wow fadeInRight m-b-15 ">
                     <div class="well-heading"
-                        style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
+                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
                         {{ __('Audio Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
                         </h6>
                     </div>
@@ -279,7 +286,7 @@
                             @foreach ($noticePopup->files as $file)
                                 @if ($file->extension == 'pdf')
                                     <iframe src="{{ asset('storage/' . $file->url) }}" frameborder="0"
-                                        style="width:100%;height:600px;"></iframe>
+                                            style="width:100%;height:600px;"></iframe>
                                 @else
                                     <img src="{{ asset('storage/' . $file->url) }}" alt="" style="width:100%;">
                                 @endif
@@ -350,9 +357,9 @@
             })
         </script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $("#noticeModal").modal("show");
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#noticeModal').modal('hide');
                 }, 10000);
             });
@@ -399,7 +406,7 @@
 
 
         <script>
-            window.moveSlide = function(direction) {
+            window.moveSlide = function (direction) {
                 const carouselInner = document.querySelector('.cannel-carousel-inner');
                 const items = document.querySelectorAll('.cannel-carousel-item');
 
