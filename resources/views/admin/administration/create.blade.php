@@ -77,13 +77,12 @@
                 <!-- Photo -->
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="photo">फोटो</label>
-                        <input
-                            type="file"
-                            id="photo"
-                            name="photo">
-                        @error('photo')
-                        <p class="text-danger">{{ $message }}</p>
+                        <label for="files">पत्रको फोटो  </label>
+                        <input type="file" id="files" name="files[]" class="form-control" placeholder="पत्रको फोटो"   multiple>
+                        @error('files')
+                        <div class="error text-danger">
+                            {{$message}}
+                        </div>
                         @enderror
                     </div>
                 </div>

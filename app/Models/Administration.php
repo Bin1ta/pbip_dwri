@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Administration extends Model
@@ -24,14 +26,13 @@ class Administration extends Model
         'type' => DocumentTypeEnum::class
         ];
 
-
-    public function getPhotoAttribute($value): string
+    public function docs(): HasMany
     {
-        return asset('storage/' . $value);
+        return $this->hasMany(AdministrationDoc::class);
+    }
+    public function User(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 
-    public function setPhotoAttribute($value)
-    {
-        $this->attributes['photo'] = $value->store('administration', 'public');
-    }
 }

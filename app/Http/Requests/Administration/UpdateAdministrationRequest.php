@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Administration;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateAdministrationRequest extends FormRequest
 {
@@ -15,10 +16,13 @@ class UpdateAdministrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['nullable', 'string', 'max:255'],
-            'date' => ['nullable', 'string'],
-            'photo' => ['nullable','mimes:jpeg,png,jpg,gif,svg,pdf'],
+            'title' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'string'],
+            'user_id' => ['nullable',Rule::exists('users', 'id')->withoutTrashed()],
             'remarks' => ['nullable', 'string'],
+            'files' => ['nullable', 'array'],
+            'files.*' => ['file']
+
         ];
     }
 

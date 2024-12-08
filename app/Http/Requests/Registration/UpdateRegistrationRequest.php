@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Registration;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRegistrationRequest extends FormRequest
 {
@@ -24,8 +25,10 @@ class UpdateRegistrationRequest extends FormRequest
             'address' => ['nullable', 'string'],
             'subject' => ['nullable', 'string'],
             'department' => ['nullable', 'string'],
-            'photo' => ['nullable',  'mimes:png,jpg,jpeg,pdf'],
+            'user_id' => ['nullable',Rule::exists('users', 'id')->withoutTrashed()],
             'remarks' => ['nullable', 'string'],
+            'docs' => ['nullable', 'array'],
+            'docs.*' => ['file']
         ];
     }
 }

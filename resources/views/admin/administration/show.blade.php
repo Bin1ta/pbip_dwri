@@ -46,18 +46,39 @@
                     <p><strong>Remarks:</strong> {{ $administration->remarks }}</p>
                 </div>
 
-                <!-- Photo -->
-                @if($administration->photo)
-                    <div class="col-md-12">
-                        <p><strong>Photo:</strong></p>
-                        <iframe
-                            src="{{ $administration->photo }}"
-                            style="width: 100%; height: 500px; border: none;"
-                            title="Photo Preview">
-                        </iframe>
-                    </div>
-                @endif
+                <div class="row">
+                    @foreach($administration->docs as $doc)
+                        <div class="col-md-6 mb-4 d-flex flex-column align-items-center">
 
+                            <div class="card p-3 shadow-sm" style="width: 100%; position: relative;">
+                                <div class="card-header">
+                                    <form action="#" method="POST"
+                                          style="position: absolute; top: 5px; right: 10px;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete"
+                                                onclick="return confirm('Are you sure you want to delete this document?')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!-- Content -->
+                                <div class="card-body">
+                                    @if(Str::endsWith($doc->doc, ['jpg', 'jpeg', 'png', 'gif']))
+                                        <img src="{{ asset('storage/' . $doc->doc) }}" alt="Document"
+                                             style=" width:100%; height: 100%; object-fit: contain;">
+                                    @elseif(Str::endsWith($doc->doc, ['pdf']))
+                                        <iframe src="{{ asset('storage/' . $doc->doc) }}" style=" height: 540px; width: 100%"
+                                                frameborder="0"></iframe>
+                                    @else
+                                        <a href="{{ asset('storage/' . $doc->doc) }}"
+                                           target="_blank">{{ basename($doc->doc) }}</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

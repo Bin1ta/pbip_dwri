@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Invoice;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateInvoiceRequest extends FormRequest
 {
@@ -21,8 +22,10 @@ class UpdateInvoiceRequest extends FormRequest
             'rec_name' => ['nullable', 'string'],
             'subject' => ['nullable', 'string'],
             'deliver_type' => ['nullable', 'string'],
-            'photo' => ['nullable','mimes:png,jpg,jpeg,pdf'],
+            'user_id' => ['nullable',Rule::exists('users', 'id')->withoutTrashed()],
             'remarks' => ['nullable', 'string'],
+            'files' => ['nullable', 'array'],
+            'files.*' => ['file']
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\Administration\StoreAdministrationRequest;
 use App\Http\Requests\Administration\UpdateAdministrationRequest;
 use App\Models\Administration;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Illuminate\Http\Request;
 
@@ -42,9 +43,28 @@ class AdministrationController extends BaseController
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
-        Administration::create($request->validated()+[
-            'type'=>$documentType
+
+        $administration =Administration::create($request->validated()+[
+                'type'=>$documentType
             ]);
+
+        if ($request->has('docs')) {
+            foreach ($request->file('docs') as $file) {
+                // Store file
+                $filePath = $file->store('docs', 'public');
+
+                // Log and handle errors
+                if (!$filePath) {
+                    Log::error('Failed to store file: ' . $file->getClientOriginalName());
+                    continue; // Skip this file if storage fails
+                }
+
+                // Save file information to the database
+                $administration->docs()->create([
+                    'doc' => $filePath,
+                ]);
+            }
+        }
         toast('Administration Created Successfully', 'success');
         return redirect(route('admin.administration.index',$documentType));
     }
@@ -93,5 +113,16 @@ class AdministrationController extends BaseController
         $administration->delete();
         toast('Administration Deleted Successfully', 'success');
         return redirect(route('admin.administration.index',$documentType));
+    }
+    public function deletePhoto($documentType, Administration $administration)
+    {
+
+        $this->deleteFile($administration->docs());
+
+        toast('Registration Deleted Successfully', 'success');
+
+        $administration->delete();
+
+
     }
 }

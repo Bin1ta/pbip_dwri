@@ -6,6 +6,7 @@ use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\Http\Requests\Invoice\UpdateInvoiceRequest;
 use App\Models\Invoice;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Illuminate\Http\Request;
 
@@ -34,13 +35,33 @@ class InvoiceController extends BaseController
 
     public function store(StoreInvoiceRequest $request)
     {
-        abort_if(
-            Gate::denies('registration_create'),
-            ResponseAlias::HTTP_FORBIDDEN,
-            '403 Forbidden | you are not allowed to access this resource'
-        );
-        Invoice::create($request->validated());
-        toast('Invoice Created Successfully', 'success');
+
+            abort_if(
+                Gate::denies('registration_create'),
+                ResponseAlias::HTTP_FORBIDDEN,
+                '403 Forbidden | you are not allowed to access this resource'
+            );
+
+            $invoice = Invoice::create($request->validated());
+
+            if ($request->has('docs')) {
+                foreach ($request->file('docs') as $file) {
+                    // Store file
+                    $filePath = $file->store('docs', 'public');
+
+                    // Log and handle errors
+                    if (!$filePath) {
+                        Log::error('Failed to store file: ' . $file->getClientOriginalName());
+                        continue; // Skip this file if storage fails
+                    }
+
+                    // Save file information to the database
+                    $invoice->docs()->create([
+                        'doc' => $filePath,
+                    ]);
+                }
+            }
+            toast('Invoice Created Successfully', 'success');
         return redirect(route('admin.invoice.index'));
     }
 
@@ -86,5 +107,16 @@ class InvoiceController extends BaseController
         $invoice->delete();
         toast('Invoice Deleted Successfully', 'success');
         return redirect(route('admin.invoice.index'));
+    }
+    public function deletePhoto(Invoice $invoice)
+    {
+
+        $this->deleteFile($invoice->docs());
+
+        toast('Invoice Deleted Successfully', 'success');
+
+        $invoice->delete();
+
+
     }
 }
