@@ -52,7 +52,7 @@
 
                                     <a href="{{ route('static', ['faq', 'language' => $language]) }}"
                                         style="color: white; text-decoration: none;"
-                                        onmouseover="this.style.color='#000102'" onmouseout="this.style.color='white'">
+                                        onmouseover="this.style.color='#b31b1b'" onmouseout="this.style.color='white'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="currentColor"
                                             class="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-right">
@@ -65,7 +65,7 @@
                                 </li>
                                 <li style="margin-bottom: 10px;">
                                     <a href="#" style="color: white; text-decoration: none;"
-                                        onmouseover="this.style.color='#000102'" onmouseout="this.style.color='white'">
+                                        onmouseover="this.style.color='#b31b1b'" onmouseout="this.style.color='white'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="currentColor"
                                             class="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-right">
@@ -79,7 +79,7 @@
                                 <li style="margin-bottom: 10px;">
                                     <a href="{{ route('static', ['bill', 'language' => $language]) }}"
                                         style="color: white; text-decoration: none;"
-                                        onmouseover="this.style.color='#000102'" onmouseout="this.style.color='white'">
+                                        onmouseover="this.style.color='#b31b1b'" onmouseout="this.style.color='white'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="currentColor"
                                             class="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-right">
@@ -92,7 +92,7 @@
                                 </li>
                                 <li style="margin-bottom: 10px;">
                                     <a href="https://twitter.com/" style="color: white; text-decoration: none;"
-                                        onmouseover="this.style.color='#000102'" onmouseout="this.style.color='white'">
+                                        onmouseover="this.style.color='#b31b1b'" onmouseout="this.style.color='white'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="currentColor"
                                             class="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-right">
@@ -106,7 +106,7 @@
                                 <li style="margin-bottom: 10px;">
                                     <a href="{{ route('static', ['links', 'language' => $language]) }}"
                                         style="color: white; text-decoration: none;"
-                                        onmouseover="this.style.color='#000102'" onmouseout="this.style.color='white'">
+                                        onmouseover="this.style.color='#b31b1b'" onmouseout="this.style.color='white'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="currentColor"
                                             class="icon icon-tabler icons-tabler-filled icon-tabler-arrow-badge-right">
