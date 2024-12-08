@@ -35,7 +35,7 @@
                              style="background-image: url('{{ $slider->photo }}');">
                             <div class="overlay">
                                 <h2 style="font-family: kalimati;">{{ $slider->title_en }}</h2>
-                                <p>{{ request()->language == 'en' ? $slider->title_en : $slider->title }}</p>
+                                <p style="font-family: kalimati;">{{ request()->language == 'en' ? $slider->title_en : $slider->title }}</p>
                             </div>
                         </div>
                     @endforeach
