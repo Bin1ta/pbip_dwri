@@ -19,10 +19,13 @@
                         <select name="committee_category_id" id="committee_category_id" class="form-control" required>
                             <option value="">Select Category</option>
                             @foreach ($committeeCategory as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                <option value="{{ $category->id }}">
+                                    {{ $category->title }} ({{ $category->place }})
+                                </option>
                             @endforeach
                         </select>
                     </div>
+
                 </div>
 
                 <div class="col-md-6">
