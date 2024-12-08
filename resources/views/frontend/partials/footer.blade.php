@@ -44,8 +44,8 @@
                     </div>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3">
-                    <div class="footer-title mb-3 ">
-                        <h6><b>{{ __('Related Information') }}</b></h6>
+                    <div class="mb-3 ">
+                        <h6 class="footer-title"><b>{{ __('Related Information') }}</b></h6>
                         <h6 class="text-white text-bold mt-2">
                             <ul style="color: white; padding-left: 20px; margin-top: 20px; list-style:none">
                                 <li style="margin-bottom: 10px;">
