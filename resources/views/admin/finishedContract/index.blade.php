@@ -65,11 +65,7 @@
                                     <td>{{ $finishedContract->place_id->label() ?? '' }}</td>
                                     <td>{{ $finishedContract->work ?? '' }}</td>
                                     <td>{{ $finishedContract->identification_no ?? '' }}</td>
-
-
                                     <td>{{ $finishedContract->agreement_date ?? '' }}</td>
-
-
                                     <td>Rs.{{ $finishedContract->agreement_amount ?? '' }}</td>
                                     <td class="d-flex gap-1 text-center">
 
@@ -124,7 +120,10 @@
 
                         </tbody>
                     </table>
-                    {{ $finishedContracts->links() }}
+                    <div class="mt-2 mb-2">
+                        {{ $finishedContracts->links() }}
+                    </div>
+
                     <!-- end table -->
                 </div>
             </div>
