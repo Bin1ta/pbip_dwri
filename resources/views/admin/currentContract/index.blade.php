@@ -35,18 +35,18 @@
                     <a href="{{ route('admin.current-contract.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
                 <div class=" table-responsive table-hover">
-                    <table class="table">
+                    <table class="table" style="width: 100rem;">
                         <thead>
                             <tr>
                                 <th>SN</th>
                                 <th> Name</th>
                                 <th>Place</th>
                                 <th>Work Name</th>
-                                <th>Identification No.</th>
+
                                 <th>Contractor Detail</th>
                                 <th>Agreement Date</th>
-                                <th>completion Date</th>
-                                <th>Agreement Date</th>
+
+                                <th>Agreement Amount</th>
                                 <th>Status</th>
 
                                 <th>Action</th>
@@ -62,12 +62,8 @@
                                     <td>{{ $currentContract->name ?? '' }}</td>
                                     <td>{{ $currentContract->place_id->label() ?? '' }}</td>
                                     <td>{{ $currentContract->work ?? '' }}</td>
-                                    <td>{{ $currentContract->identification_no ?? '' }}</td>
                                     <td>{{ $currentContract->contractor_detail ?? '' }}</td>
-
                                     <td>{{ $currentContract->agreement_date ?? '' }}</td>
-
-                                    <td>{{ $currentContract->completion_date ?? '' }}</td>
                                     <td>Rs.{{ $currentContract->agreement_amount ?? '' }}</td>
                                     <td>
 

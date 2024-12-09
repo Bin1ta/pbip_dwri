@@ -42,10 +42,10 @@
                                 <th>SN</th>
                                 <th>Work Name</th>
                                 <th>Contract Id</th>
-                                <th>Contractor Name</th>
+
                                 <th>Contractor Amount</th>
                                 <th>Agreement Date</th>
-                                <th>Completion Date</th>
+
                                 <th>Fin. Prog. Amount</th>
                                 <th>Status</th>
 
@@ -61,11 +61,10 @@
                                     </td>
                                     <td>{{ $contractProgress->work_name ?? '' }}</td>
                                     <td>{{ $contractProgress->contract_id ?? '' }}</td>
-                                    <td>{{ $contractProgress->contractor_name ?? '' }}</td>
+
                                     <td>Rs.{{ $contractProgress->contractor_amount ?? '' }}</td>
                                     <td>{{ $contractProgress->agreement_date ?? '' }}</td>
 
-                                    <td>{{ $contractProgress->completion_date ?? '' }}</td>
 
                                     <td>Rs.{{ $contractProgress->financial_progress_amount ?? '' }}</td>
                                     <td>
