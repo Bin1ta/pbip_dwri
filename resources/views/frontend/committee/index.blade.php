@@ -1,3 +1,4 @@
+@php use App\Helpers\Helpers; @endphp
 @extends('layouts.master')
 
 @section('content')
@@ -32,20 +33,20 @@
                 @endif
             </div>
         </div>
+        @forelse ($committees as $committee)
+            <!-- Table Heading -->
+            <h4 style="padding: 10px; font-weight: bold;">
+                @if(request()->language == 'en')
+                    {{ $committee->name_en ?? '' }}
+                @else
+                    {{ $committee->name ?? '' }}
+                @endif
+            </h4>
 
-        <!-- Table Heading -->
-        <h4 style="padding: 10px; font-weight: bold;">
-            @if(request()->language == 'en')
-                {{ $committeeCategory->title_en ?? '' }}
-            @else
-                {{ $committeeCategory->title ?? '' }}
-            @endif
-        </h4>
-
-        <!-- Committee Members Table -->
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered" style="width: 100%;">
-                <thead>
+            <!-- Committee Members Table -->
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" style="width: 100%;">
+                    <thead>
                     <tr>
                         <th>क्र.स</th>
                         <th>नाम, थर</th>
@@ -54,37 +55,41 @@
                         <th>सम्पर्क नं.</th>
                         <th>फोटो</th>
                     </tr>
-                </thead>
-                <tbody>
-                    @forelse ($committees as $committee)
-                        @foreach ($committee->committeeMembers as $key => $committeeMember)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $committeeMember->name }}</td>
-                                <td>{{ $committeeMember->address ?? 'N/A' }}</td>
-                                <td>{{ $committeeMember->position ?? 'N/A' }}</td>
-                                <td>{{ $committeeMember->contact ?? 'N/A' }}</td>
-                                <td>
-                                    <img src="{{ $committeeMember->photo_url ?? asset('default-avatar.png') }}"
-                                         alt="{{ $committeeMember->name }}"
-                                         width="100"
-                                         style="object-fit: contain;">
-                                </td>
-                            </tr>
-                        @endforeach
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center">No Committee Members Found.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
 
-        <!-- Pagination -->
-        <div class="d-flex justify-content-center">
-            {{ $committees->links() }}
-        </div>
+                    @foreach ($committee->committeeMembers as $key => $committeeMember)
+                        <tr>
+                            <td>
+                                {{request()->language == 'en'
+                                    ? Helpers::getEnglishNumber($loop->iteration)
+                                    : Helpers::getNepaliNumber($loop->iteration) }}
+                            </td>
+                            <td>{{ $committeeMember->name }}</td>
+                            <td>{{ $committeeMember->address ?? 'N/A' }}</td>
+                            <td>{{ $committeeMember->position ?? 'N/A' }}</td>
+                            <td>{{ $committeeMember->contact ?? 'N/A' }}</td>
+                            <td>
+                                <img src="{{ $committeeMember->photo_url ?? asset('default-avatar.png') }}"
+                                     alt="{{ $committeeMember->name }}"
+                                     width="100"
+                                     style="object-fit: contain;">
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">No Committee Members Found.</td>
+                    </tr>
+                @endforelse
+            </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center">
+                {{ $committees->links() }}
+            </div>
     </div>
 @endsection
-    

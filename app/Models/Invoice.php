@@ -24,15 +24,6 @@ class Invoice extends Model
         'remarks'
     ];
 
-    public function getPhotoAttribute($value): string
-    {
-        return asset('storage/' . $value);
-    }
-
-    public function setPhotoAttribute($value)
-    {
-        $this->attributes['photo'] = $value->store('invoice', 'public');
-    }
     public function docs(): HasMany
     {
         return $this->hasMany(InvoiceDoc::class);

@@ -43,7 +43,10 @@ class RegistrationController extends BaseController
             '403 Forbidden | you are not allowed to access this resource'
         );
 
-        $registration = Registration::create($request->validated());
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+
+        $registration = Registration::create($data);
 
         if ($request->has('docs')) {
             foreach ($request->file('docs') as $file) {
@@ -123,7 +126,7 @@ class RegistrationController extends BaseController
         }
 
         $registration->delete();
-        toast('Document and Registration Deleted Successfully', 'success');
+        toast('Registration Document Deleted Successfully', 'success');
         return redirect()->back();
     }
 

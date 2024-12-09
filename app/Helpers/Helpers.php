@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Menu;
+use Illuminate\Support\Str;
 
 class Helpers
 {
@@ -38,14 +39,29 @@ class Helpers
         }
     }
 
-    function repeatCharacter($times, $character = "-")
+    public static function getNepaliNumber(string|int $data): string
     {
-        $result = '';
-
-        for ($i = 0; $i < $times; $i++) {
-            $result .= $character;
-        }
-
-        return $result;
+        $data = self::getStringData($data);
+        return Str::replace(['0','1','2','3','4','5','6','7','8','9'],['०','१','२','३','४','५','६','७','८','९'], $data);
     }
+
+    public static function getEnglishNumber(string|int $data): string
+    {
+        $data = self::getStringData($data);
+        return Str::replace(['०','१','२','३','४','५','६','७','८','९'],['0','1','2','3','4','5','6','7','8','9'], $data);
+    }
+
+    /**
+     * @param int|string $data
+     * @return string
+     */
+    public static function getStringData(int|string $data): string
+    {
+        if (!is_string($data)) {
+            $data = (string)$data;
+        }
+        return $data;
+    }
+
+
 }

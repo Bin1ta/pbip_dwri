@@ -1,3 +1,5 @@
+@php use App\Helpers\Helpers; @endphp
+
 <section class="document-section mt-3">
     <div class="container-fluid">
         <div class="row">
@@ -31,13 +33,17 @@
                                                     <img src="{{ $employee->photo ?? '' }}"
                                                         alt="{{ $employee->name ?? '' }} " class="rounded-0">
                                                 </div>
-                                                <div class="textbox-01  text-center">
+                                                <div class="textbox-01  text-center pt-1 pb-1">
                                                     @if (request()->language == 'en')
                                                         <strong>{{ $employee->name_en }}</strong><br>
+                                                        <p style="font-size: 14px"><i class="fa fa-phone"></i>{{Helpers::getEnglishNumber($employee->phone ?? '')}}</p>
+
                                                     @else
+
                                                         <strong>{{ $employee->name }}</strong><br>
+                                                        <p style="font-size: 14px"><i class="fa fa-phone"></i>{{Helpers::getNepaliNumber($employee->phone ?? '')}}</p>
+
                                                     @endif
-                                                    <p style="font-size: 14px"><i class="fa fa-phone"></i> {{ $employee->phone ?? '' }}</p>
                                                     <p style="font-size: 14px"><i class="fa fa-envelope"></i> {{ $employee->email ?? '' }}</p>
                                                 </div>
                                             </div>

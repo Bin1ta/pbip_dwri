@@ -17,6 +17,7 @@ class Administration extends Model
         'title',
         'date',
         'photo',
+        'user_id',
         'remarks',
         'type'
     ];
