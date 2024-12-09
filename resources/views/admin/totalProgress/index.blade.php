@@ -42,13 +42,11 @@
                                 <th> Year</th>
                                 <th>periodicity</th>
                                 <th>financial progress periodic</th>
-                                <th>financial progress cumulative</th>
+
                                 <th>financial progress Amount</th>
                                 <th>periodic percentage</th>
                                 <th>yearly percentage </th>
                                 <th>periodic physical progress</th>
-
-
                                 <th>Action</th>
                             </tr>
                             <!-- end table row-->
@@ -62,7 +60,7 @@
                                     <td>{{ $totalProgress->year ?? '' }}</td>
                                     <td>{{ $totalProgress->periodicity ?? '' }}</td>
                                     <td>{{ $totalProgress->financial_progress_periodic ?? '' }}</td>
-                                    <td>{{ $totalProgress->financial_progress_cumulative ?? '' }}</td>
+
                                     <td>Rs.{{ $totalProgress->financial_progress_rs ?? '' }}</td>
 
                                     <td>{{ $totalProgress->periodic_percentage ?? '' }}%</td>

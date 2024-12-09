@@ -36,7 +36,7 @@
                 </div>
                 <div class=" table-responsive table-hover">
 
-                    <table class="table" style="width:100rem;">
+                    <table class="table" style="width:110rem;">
                         <thead>
                             <tr>
                                 <th>SN</th>
@@ -44,10 +44,10 @@
                                 <th>Place</th>
                                 <th>Work Name</th>
                                 <th>Identification No.</th>
-                                <th>Contractor Detail</th>
+
                                 <th>Agreement Date</th>
-                                <th>completion Date</th>
-                                <th>Agreement Date</th>
+
+                                <th>Agreement Amount</th>
                                 <th>Contractor's ability status</th>
                                 <th>Status</th>
 
@@ -65,11 +65,11 @@
                                     <td>{{ $finishedContract->place_id->label() ?? '' }}</td>
                                     <td>{{ $finishedContract->work ?? '' }}</td>
                                     <td>{{ $finishedContract->identification_no ?? '' }}</td>
-                                    <td>{{ $finishedContract->contractor_detail ?? '' }}</td>
+
 
                                     <td>{{ $finishedContract->agreement_date ?? '' }}</td>
 
-                                    <td>{{ $finishedContract->completion_date ?? '' }}</td>
+
                                     <td>Rs.{{ $finishedContract->agreement_amount ?? '' }}</td>
                                     <td class="d-flex gap-1 text-center">
 
