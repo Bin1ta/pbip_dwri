@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Registration extends Model
@@ -20,18 +22,17 @@ class Registration extends Model
         'address',
         'subject',
         'department',
-        'photo',
+        'user_id',
         'remarks'
     ];
 
-    public function getPhotoAttribute($value): string
+    public function docs(): HasMany
     {
-        return asset('storage/' . $value);
+        return $this->hasMany(RegistrationDoc::class);
     }
-
-    public function setPhotoAttribute($value)
+    public function User(): BelongsTo
     {
-        $this->attributes['photo'] = $value->store('registration', 'public');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 
 }

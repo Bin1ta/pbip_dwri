@@ -10,16 +10,16 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->string('reg_no');
-            $table->string('date');
-            $table->integer('letter_count');
+            $table->string('reg_no')->nullable();
+            $table->string('date')->nullable();
+            $table->integer('letter_count')->nullable();
             $table->string('invoice_no')->nullable();
-            $table->string('rec_date');
-            $table->string('sender_name');
-            $table->string('address');
-            $table->text('subject');
-            $table->string('department');
-            $table->string('photo')->nullable();
+            $table->string('rec_date')->nullable();
+            $table->string('sender_name')->nullable();
+            $table->string('address')->nullable();
+            $table->text('subject')->nullable();
+            $table->string('department')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete()->onUpdate('no action');
             $table->longText('remarks')->nullable();
             $table->softDeletes();
             $table->timestamps();

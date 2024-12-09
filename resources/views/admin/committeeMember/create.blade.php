@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label for="committee_id" class="form-label">Committee <span
                                 class="text-danger">*</span></label>
-                        <select name="committee_id" id="committee_id" class="form-control" required>
+                        <select name="committee_id" id="committee_id" class="form-control" >
                             <option value="">Select Committee</option>
                             @foreach ($committees as $committee)
                                 <option value="{{ $committee->id }}">{{ $committee->name }}</option>
@@ -30,9 +30,9 @@
                 <!-- Name -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                        <label for="name" class="form-label">Name </label>
                         <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}"
-                               required>
+                               >
                     </div>
                 </div>
 
@@ -48,9 +48,9 @@
                 <!-- Address -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+                        <label for="address" class="form-label">Address </label>
                         <input type="text" name="address" id="address" class="form-control" value="{{ old('address') }}"
-                               required>
+                               >
                     </div>
                 </div>
 
@@ -66,9 +66,9 @@
                 <!-- Phone -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+                        <label for="phone" class="form-label">Phone</label>
                         <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}"
-                               required>
+                               >
                     </div>
                 </div>
 
@@ -82,9 +82,9 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="post" class="form-label">Post <span class="text-danger">*</span></label>
+                        <label for="post" class="form-label">Post </label>
                         <input type="text" name="post" id="post" class="form-control" value="{{ old('post') }}"
-                               required>
+                               >
                     </div>
                 </div>
 

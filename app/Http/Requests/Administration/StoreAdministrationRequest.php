@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Administration;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreAdministrationRequest extends FormRequest
 {
@@ -17,8 +18,10 @@ class StoreAdministrationRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'date' => ['required', 'string'],
-            'photo' => ['required', 'mimes:jpeg,png,jpg,gif,svg,pdf'],
+            'user_id' => ['nullable',Rule::exists('users', 'id')->withoutTrashed()],
             'remarks' => ['nullable', 'string'],
+            'files' => ['nullable', 'array'],
+            'files.*' => ['file']
         ];
     }
 
