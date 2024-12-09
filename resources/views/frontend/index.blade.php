@@ -1,3 +1,4 @@
+@php use App\Helpers\Helpers; @endphp
 @extends('layouts.master')
 @section('content')
     <section class="newsbar-section mt-2">
@@ -12,9 +13,13 @@
                                     <a href="{{ route('documentDetail', [$tickerFile->slug, 'language' => $language]) }}">
                                         @if (request()->language == 'en')
                                             {{ $tickerFile->title_en }}
+                                            {{Helpers::getEnglishNumber($tickerFile->published_date)}}
+
                                         @else
                                             {{ $tickerFile->title }}
-                                        @endif {{ $tickerFile->published_date }}
+                                            {{Helpers::getNepaliNumber($tickerFile->published_date)}}
+
+                                        @endif
                                         <span class="type">{{ __('New') }}</span>
                                     </a>
                                 </li>
@@ -125,7 +130,11 @@
                                                 </h6>
                                                 <p class="gov-np-role">{{ __('Office Head') }}</p>
                                                 <p class="gov-np-contact">
-                                                    <i class="fa fa-phone"></i> {{ $header->chief->phone ?? __('N/A') }}
+                                                    <i class="fa fa-phone"></i>
+                                                    {{ request()->language == 'en'
+                                                        ?  Helpers::getEnglishNumber($header->chief->phone ?? __('N/A'))
+                                                        : Helpers::getNepaliNumber($header->chief->phone ?? __('N/A')) }}
+
                                                 </p>
                                                 <p class="gov-np-contact">
                                                     <i class="fa fa-envelope"></i> {{ $header->chief->email ?? __('N/A') }}
@@ -146,7 +155,11 @@
                                                 </h6>
                                                 <p class="gov-np-role">{{ __('Information Officer') }}</p>
                                                 <p class="gov-np-contact">
-                                                    <i class="fa fa-phone"></i> {{ $header->informationOfficer->phone ?? __('N/A') }}
+                                                    <i class="fa fa-phone"></i>  {{ request()->language == 'en'
+                                                        ?  Helpers::getEnglishNumber($header->informationOfficer->phone ?? __('N/A'))
+                                                        : Helpers::getNepaliNumber($header->informationOfficer->phone ?? __('N/A')) }}
+
+
                                                 </p>
                                                 <p class="gov-np-contact">
                                                     <i class="fa fa-envelope"></i> {{ $header->informationOfficer->email ?? __('N/A') }}
@@ -213,10 +226,8 @@
 
                 <div class="col-md-4 col-sm-12 col-xs-12 wow fadeInRight mb-3">
                     <div class="well-heading"
-                         style="border-left: 10px solid #b31b1b; position: relative; background-color: {{ $colors->nav ?? '' }};">
-                        <h5>{{ __('Video Gallery') }}</h5>
-                        <h6 class="content_title">
-                            <span class="pull-right"></span>
+                         style="border-left: 10px solid #b31b1b; position: relative;background-color: {{ $colors->nav ?? '' }}">
+                        {{ __('Video Gallery') }}<h6 class="content_title"><span class="pull-right"></span>
                         </h6>
                     </div>
 
@@ -224,15 +235,15 @@
                         <div class="carousel-inner" role="listbox">
                             @foreach($videoGalleries as $videoGallery)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                        <a href="{{ $videoGallery->url }}" target="_blank" rel="noopener noreferrer">
-                                            <iframe width="100%" height="255" src="{!!$videoGallery->url!!}"
-                                                    title="YouTube video player" frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowfullscreen></iframe>
-                                        </a>
-                                        <div class="carousel-caption d-none d-md-block">
-                                            {{ request()->language == 'en' ? $videoGallery->title_en : $videoGallery->title }}
-                                        </div>
+                                    <a href="{{ $videoGallery->url }}" target="_blank" rel="noopener noreferrer">
+                                        <iframe width="100%" height="255" src="{!!$videoGallery->url!!}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        {{ request()->language == 'en' ? $videoGallery->title_en : $videoGallery->title }}
+                                    </div>
                                 </div>
 
                             @endforeach

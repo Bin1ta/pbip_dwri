@@ -27,12 +27,13 @@
             </div>
         </div>
     </div>
-
     <div class="card-style mb-30">
         <div class="card-body">
-            <div class="card" style="border: 1px solid #343a40;">
-                <div class="card-body">
-                    <h5 class="card-title">Invoice Details</h5>
+            <div class="card border-dark mb-3">
+                <div class="card-header bg-dark text-white">
+                    दर्ता विवरण
+                </div>
+        <div class="card-body">
 
                     <div class="row mb-3">
                         <div class="col-md-4"><strong>चलानी नं.</strong></div>
@@ -76,7 +77,7 @@
 
                         <div class="card p-3 shadow-sm" style="width: 100%; position: relative;">
                             <div class="card-header">
-                                <form action="#" method="POST"
+                                <form action="{{ route('admin.invoice.deletePhoto', $doc->id) }}" method="POST"
                                       style="position: absolute; top: 5px; right: 10px;">
                                     @csrf
                                     @method('DELETE')
@@ -88,6 +89,7 @@
                             </div>
                             <!-- Content -->
                             <div class="card-body">
+
                                 @if(Str::endsWith($doc->doc, ['jpg', 'jpeg', 'png', 'gif']))
                                     <img src="{{ asset('storage/' . $doc->doc) }}" alt="Document"
                                          style=" width:100%; height: 100%; object-fit: contain;">

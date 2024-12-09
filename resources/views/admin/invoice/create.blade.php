@@ -139,9 +139,9 @@
                 <!-- Photo -->
                 <div class="col-md-6">
                     <div class="input-style-1">
-                        <label for="files">पत्रको फोटो  </label>
-                        <input type="file" id="files" name="files[]" class="form-control" placeholder="पत्रको फोटो"   multiple>
-                        @error('files')
+                        <label for="docs">पत्रको फोटो  </label>
+                        <input type="file" id="docs" name="docs[]" class="form-control" placeholder="पत्रको फोटो"   multiple>
+                        @error('docs')
                         <div class="error text-danger">
                             {{$message}}
                         </div>

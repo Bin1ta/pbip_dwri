@@ -30,21 +30,25 @@
 
     <div class="card-style mb-30">
         <div class="card-body">
-            <div class="row">
-                <!-- Title -->
+            <div class="card border-dark mb-3">
+                <div class="card-header bg-dark text-white">
+                    दर्ता विवरण
+                </div>
+                <div class="card-body">
+
                 <div class="col-md-6">
                     <p><strong>Title:</strong> {{ $administration->title }}</p>
                 </div>
 
-                <!-- Date -->
                 <div class="col-md-6">
                     <p><strong>Date:</strong> {{ $administration->date }}</p>
                 </div>
 
-                <!-- Remarks -->
                 <div class="col-md-12">
                     <p><strong>Remarks:</strong> {{ $administration->remarks }}</p>
                 </div>
+                </div>
+            </div>
 
                 <div class="row">
                     @foreach($administration->docs as $doc)
@@ -52,12 +56,10 @@
 
                             <div class="card p-3 shadow-sm" style="width: 100%; position: relative;">
                                 <div class="card-header">
-                                    <form action="#" method="POST"
-                                          style="position: absolute; top: 5px; right: 10px;">
+                                    <form action="{{ route('admin.administration.deletePhoto', ['type' => $documentType, 'administration' => $administration->id]) }}" method="POST" style="position: absolute; top: 5px; right: 10px;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete"
-                                                onclick="return confirm('Are you sure you want to delete this document?')">
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this document?')">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>

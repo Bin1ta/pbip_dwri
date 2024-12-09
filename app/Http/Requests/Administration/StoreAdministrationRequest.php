@@ -20,8 +20,8 @@ class StoreAdministrationRequest extends FormRequest
             'date' => ['required', 'string'],
             'user_id' => ['nullable',Rule::exists('users', 'id')->withoutTrashed()],
             'remarks' => ['nullable', 'string'],
-            'files' => ['nullable', 'array'],
-            'files.*' => ['file']
+            'docs' => ['nullable', 'array'],
+            'docs.*' => ['file', 'mimes:pdf,jpg,jpeg,png'],
         ];
     }
 

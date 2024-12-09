@@ -1,3 +1,4 @@
+@php use App\Helpers\Helpers; @endphp
 @extends('layouts.master')
 @section('content')
     <div class="container-fluid mt-2">
@@ -9,8 +10,10 @@
         </nav>
     </div>
     <div class="container-fluid mt-2">
-        <div class="well-heading" style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
-            <i class="fa fa-users"></i>{{__('Employee details')}}<h6 class="content_title">  <span class="pull-right"></span>
+        <div class="well-heading"
+             style="border-left: 10px solid #b31b1b; position: relative;background-color: {{$colors->nav}};">
+            <i class="fa fa-users"></i>{{__('Employee details')}}<h6 class="content_title"><span
+                    class="pull-right"></span>
             </h6>
         </div>
         <div class="row">
@@ -19,35 +22,41 @@
                     <img class="rounded" src="{{$employees->first()->photo ?? ''}}" height="120" weight="120"
                          alt="{{$employees->first()->name ?? ''}}">
                     @if(request()->language=='en')
-                    <p>{{$employees->first()->name_en ?? ''}}</p>
-                    <p>{{$employees->first()->designation->title_en ?? ''}}</p>
+                        <p>{{$employees->first()->name_en ?? ''}}</p>
+                        <p>{{$employees->first()->designation->title_en ?? ''}}</p>
+                        <p>{{Helpers::getEnglishNumber($employees->first()->phone ?? '')}}</p>
                     @else
                         <p>{{$employees->first()->name ?? ''}}</p>
                         <p>{{$employees->first()->designation->title ?? ''}}</p>
+                        <p>{{Helpers::getNepaliNumber($employees->first()->phone ?? '')}}</p>
+
                     @endif
-                    <p>{{$employees->first()->phone ?? ''}}</p>
+
                     <p>{{$employees->first()->email ?? ''}}</p>
                 </div>
             </div>
         </div>
         <div class="row">
             @foreach($employees->skip(1) as $employee)
-            <div class="col-md-3">
-                <div class="card-container">
-                    <img class="rounded" src="{{$employee->photo}}" height="120" width="120"
-                         alt="{{$employee->name ?? ''}}">
-                    @if(request()->language=='en')
-                        <p>{{$employee->name_en ?? ''}}</p>
-                        <p>{{$employee->designation->title_en ?? ''}}</p>
-                    @else
-                        <p>{{$employee->name ?? ''}}</p>
-                        <p>{{$employee->designation->title ?? ''}}</p>
-                    @endif
-
-                    <p>{{$employee->phone ?? ''}}</p>
-                    <p>{{$employee->email ?? ''}}</p>
+                <div class="col-md-3">
+                    <div class="card-container">
+                        <img class="rounded" src="{{$employee->photo}}" height="120" width="120"
+                             alt="{{$employee->name ?? ''}}">
+                        @if(request()->language=='en')
+                            <p>{{$employee->name_en ?? ''}}</p>
+                            <p>{{$employee->designation->title_en ?? ''}}</p>
+                        @else
+                            <p>{{$employee->name ?? ''}}</p>
+                            <p>{{$employee->designation->title ?? ''}}</p>
+                        @endif
+                        @if(request()->language=='en')
+                            <p> {{Helpers::getEnglishNumber($employee->phone ?? '')}}</p>
+                        @else
+                            <p>{{Helpers::getNepaliNumber($employee->phone ?? '')}}</p>
+                        @endif
+                        <p>{{$employee->email ?? ''}}</p>
+                    </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>

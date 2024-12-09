@@ -1,3 +1,4 @@
+@php use App\Helpers\Helpers; @endphp
 @extends('layouts.master')
 @section('content')
     <div class="container-fluid mt-2">
@@ -28,14 +29,19 @@
                             <p>{{$employee->name ?? ''}}</p>
                             <p>{{$employee->designation?? ''}}</p>
                         @endif
-                        <p>{{$employee->phone ?? ''}}</p>
+                        @if(request()->language=='en')
+                        <p> {{Helpers::getEnglishNumber($employee->phone ?? '')}}</p>
+                        @else
+                        <p>{{Helpers::getNepaliNumber($employee->phone ?? '')}}</p>
+                        @endif
                         <p>{{$employee->email ?? ''}}</p>
                         <p>
-                            {{request()->language=='en' ? 'From' : ''}}
-                            {{$employee->joining_date->todateString()}}
-                            {{request()->language=='en' ? 'To' : 'देखि'}}
-                            {{$employee->leaving_date->todateString()}}
-                            {{request()->language=='en' ? '' : 'सम्म'}}  </p>
+                            {{ request()->language == 'en' ? 'From' : 'देखि' }}
+                            {{ request()->language == 'en' ? $employee->joining_date->toDateString() : Helpers::getNepaliNumber($employee->joining_date->toDateString()) }}
+                            {{ request()->language == 'en' ? 'To' : 'सम्म' }}
+                            {{ request()->language == 'en' ? $employee->leaving_date->toDateString() : Helpers::getNepaliNumber($employee->leaving_date->toDateString()) }}
+                        </p>
+
                     </div>
 
                 </div>

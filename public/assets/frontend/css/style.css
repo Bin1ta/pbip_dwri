@@ -245,6 +245,7 @@ body{
     border-top: 1px solid #fff;
 }
 
+
 .home-contact-card ul > li {
     display: block;
     border: 1px solid #fff;
@@ -257,7 +258,13 @@ body{
 
 .home-contact-card h6 {
     color: #fff !important;
-    font-size: 12px;
+    font-size: 14px;
+}
+
+
+.home-contact-card h6:hover {
+    color: red !important;
+    font-size: 14px;
 }
 
 .footerbg {
@@ -296,7 +303,7 @@ body{
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Kalimati', sans-serif;
     margin-bottom: 0;
 }
 
