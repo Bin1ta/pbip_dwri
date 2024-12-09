@@ -34,8 +34,8 @@
                     <h6 class="mb-10">Current Contract</h6>
                     <a href="{{ route('admin.current-contract.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
-                <div class=" table-responsive table-hover">
-                    <table class="table" style="width: 100rem;">
+                <div class=" table-responsive">
+                    <table class="table table-striped  table-hover align-middle text-center">
                         <thead>
                             <tr>
                                 <th>SN</th>

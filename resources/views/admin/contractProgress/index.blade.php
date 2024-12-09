@@ -30,13 +30,14 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="card-style mb-30">
-                <div style="display: flex;justify-content: space-between">
-                    <h6 class="mb-10">Contact Progress</h6>
+            <div class="card card-style mb-30  border-0">
+                <div class=" d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Contact Progress</h6>
                     <a href="{{ route('admin.contract-progress.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
-                <div class=" table-responsive table-hover">
-                    <table class="table" style="width: 100rem;">
+
+                <div class=" table-responsive">
+                    <table class="table table-striped  table-hover align-middle text-center">
                         <thead>
                             <tr>
                                 <th>SN</th>
