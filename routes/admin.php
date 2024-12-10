@@ -119,8 +119,8 @@ Route::resource('officeSettingHeader', OfficeSettingHeaderController::class);
 
 
 Route::prefix('registrations')->group(function (){
-    Route::delete('registration/{registration}/delete', [RegistrationController::class, 'deletePhoto'])->name('registration.deletePhoto');
-    Route::delete('invoice/{invoice}/delete', [InvoiceController::class, 'deletePhoto'])->name('invoice.deletePhoto');
+    Route::delete('registration/registrationDoc/{registrationDoc}/delete', [RegistrationController::class, 'deletePhoto'])->name('registration.deletePhoto');
+    Route::delete('invoice/invoiceDoc/{invoiceDoc}/delete', [InvoiceController::class, 'deletePhoto'])->name('invoice.deletePhoto');
     Route::resource('registration', RegistrationController::class);
     Route::resource('invoice', InvoiceController::class);
 

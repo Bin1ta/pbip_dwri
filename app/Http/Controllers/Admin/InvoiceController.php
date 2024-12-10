@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\Http\Requests\Invoice\UpdateInvoiceRequest;
 use App\Models\Invoice;
+use App\Models\InvoiceDoc;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,7 @@ class InvoiceController extends BaseController
     public function index()
     {
         abort_if(
-            Gate::denies('registration_access'),
+            Gate::denies('invoice_access'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
@@ -27,7 +28,7 @@ class InvoiceController extends BaseController
     public function create()
     {
         abort_if(
-            Gate::denies('registration_create'),
+            Gate::denies('invoice_create'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
@@ -38,7 +39,7 @@ class InvoiceController extends BaseController
     {
 
         abort_if(
-            Gate::denies('registration_create'),
+            Gate::denies('invoice_create'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
@@ -73,7 +74,7 @@ class InvoiceController extends BaseController
     public function show(Invoice $invoice)
     {
         abort_if(
-            Gate::denies('registration_access'),
+            Gate::denies('invoice_access'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
@@ -84,7 +85,7 @@ class InvoiceController extends BaseController
     public function edit(Invoice $invoice)
     {
         abort_if(
-            Gate::denies('registration_edit'),
+            Gate::denies('invoice_edit'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
@@ -94,7 +95,7 @@ class InvoiceController extends BaseController
     public function update(UpdateInvoiceRequest $request, Invoice $invoice)
     {
         abort_if(
-            Gate::denies('registration_edit'),
+            Gate::denies('invoice_edit'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
@@ -107,18 +108,10 @@ class InvoiceController extends BaseController
     public function destroy(Invoice $invoice)
     {
         abort_if(
-            Gate::denies('registration_delete'),
+            Gate::denies('invoice_delete'),
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
-        $invoice->delete();
-        toast('Invoice Deleted Successfully', 'success');
-        return redirect(route('admin.invoice.index'));
-    }
-
-    public function deletePhoto(Invoice $invoice)
-    {
-
         foreach ($invoice->docs as $doc) {
             if (Storage::disk('public')->exists($doc->doc)) {
                 Storage::disk('public')->delete($doc->doc);
@@ -127,6 +120,17 @@ class InvoiceController extends BaseController
         }
 
         $invoice->delete();
+        toast('Invoice Deleted Successfully', 'success');
+        return redirect(route('admin.invoice.index'));
+    }
+
+    public function deletePhoto(InvoiceDoc $invoiceDoc)
+    {
+            if (Storage::disk('public')->exists($invoiceDoc->doc)) {
+                Storage::disk('public')->delete($invoiceDoc->doc);
+            }
+        $invoiceDoc->delete();
+
         toast('Invoice Document Deleted Successfully', 'success');
         return redirect()->back();
     }
