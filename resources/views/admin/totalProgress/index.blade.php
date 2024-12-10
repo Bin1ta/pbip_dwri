@@ -34,18 +34,16 @@
                     <h6 class="mb-10">Total Progress</h6>
                     <a href="{{ route('admin.total-progress.create') }}" class="btn btn-sm btn-primary">Add New</a>
                 </div>
-                <div class=" table-responsive table-hover">
-                    <table class="table" style="width:100rem;">
+                <div class=" table-responsive">
+                    <table class="table table-striped  table-hover align-middle text-center">
                         <thead>
                             <tr>
                                 <th>SN</th>
                                 <th> Year</th>
                                 <th>periodicity</th>
-                                <th>financial progress periodic</th>
-
                                 <th>financial progress Amount</th>
                                 <th>periodic percentage</th>
-                                <th>yearly percentage </th>
+
                                 <th>periodic physical progress</th>
                                 <th>Action</th>
                             </tr>
@@ -59,16 +57,9 @@
                                     </td>
                                     <td>{{ $totalProgress->year ?? '' }}</td>
                                     <td>{{ $totalProgress->periodicity ?? '' }}</td>
-                                    <td>{{ $totalProgress->financial_progress_periodic ?? '' }}</td>
-
                                     <td>Rs.{{ $totalProgress->financial_progress_rs ?? '' }}</td>
-
                                     <td>{{ $totalProgress->periodic_percentage ?? '' }}%</td>
-
-                                    <td>{{ $totalProgress->yearly_percentage ?? '' }}</td>
                                     <td>{{ $totalProgress->periodic_physical_progress ?? '' }}</td>
-
-
                                     <td>
                                         <div class="action">
                                             <a href="{{ route('admin.total-progress.edit', $totalProgress) }}"
