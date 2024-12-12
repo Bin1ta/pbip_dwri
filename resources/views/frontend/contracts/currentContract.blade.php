@@ -80,8 +80,10 @@
                             </div>
 
                             <!-- Search Form -->
-                            <form class="form-inline mt-2 mt-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <!-- Search Form -->
+                            <form class="form-inline mt-2 mt-lg-0" method="GET" action="{{ url()->current() }}">
+                                <input class="form-control mr-sm-2" type="search" name="search"
+                                       placeholder="Search" value="{{ request('search') }}" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
@@ -148,7 +150,7 @@
                                         <td>{{ $currentContract->agreement_date ?? '' }}</td>
                                         <td>{{ $currentContract->agreement_amount ?? '' }}</td>
                                         <td>{{ $currentContract->completion_date }}</td>
-                                        <td></td>
+                                        <td> </td>
                                         <td>{{ $currentContract->extension_duration }}</td>
                                         <td>{{ $currentContract->completion_date_revised }}</td>
                                         <td>

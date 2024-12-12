@@ -64,8 +64,8 @@ class FrontendController extends BaseController
             $noticePopups = Document::with('files')->where('popUp', 1)->get();
             $employees = Employee::with('designation', 'department')->orderBy('position')->get();
             $audios = Audio::latest()->get();
-            $videoGalleries = VideoGallery ::latest()->get();
-            return view('frontend.index', compact('audios', 'employees', 'officeDetail','videoGalleries', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries',  'noticePopups'));
+            $videoGalleries = VideoGallery::latest()->get();
+            return view('frontend.index', compact('audios', 'employees', 'officeDetail', 'videoGalleries', 'tickerFiles', 'sliders', 'canals', 'categories', 'galleries',  'noticePopups'));
         } else {
             $officeDetail = OfficeDetail::whereShowOnIndex(1)->whereType('Introduction')->first();
             $tickerFiles = Document::whereMarkAsNew(1)->orderBy('published_date')->get();
@@ -174,17 +174,65 @@ class FrontendController extends BaseController
             case 'totalProgress':
                 $totalProgresses = TotalProgress::latest()->get();
                 return view('frontend.contracts.totalProgress', compact('totalProgresses'));
+
             case 'finishedContract_badkapath':
-                $finishedContracts = FinishedContract::where('contractors_liability_status',1)->where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
+                $query = FinishedContract::where('contractors_liability_status', 1)->where('current_status', 1)->where('place_id', ProjectTypeEnum::BADKAPATH->value);
+                if ($search = request('search')) {
+                    $query->where(function ($q) use ($search) {
+                        $q->orWhere('name', 'like', "%{$search}%")
+                            ->orWhere('work', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('agreement_date', 'like', "%{$search}%")
+                            ->orWhere('contractor_detail', 'like', "%{$search}%");
+                    });
+                }
+                $finishedContracts = $query->latest()->paginate(10);
                 return view('frontend.contracts.finishedContract', compact('finishedContracts'));
+
             case 'finishedContract_praganna':
-                $finishedContracts = FinishedContract::where('contractors_liability_status',1)->where('current_status',1)->where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
+                $query = FinishedContract::where('contractors_liability_status', 1)->where('current_status', 1)->where('place_id', ProjectTypeEnum::PRAGANNA->value);
+                if ($search = request('search')) {
+                    $query->where(function ($q) use ($search) {
+                        $q->orWhere('name', 'like', "%{$search}%")
+                            ->orWhere('work', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('agreement_date', 'like', "%{$search}%")
+                            ->orWhere('contractor_detail', 'like', "%{$search}%");
+                    });
+                }
+                $finishedContracts = $query->latest()->paginate(10);
                 return view('frontend.contracts.finishedContract', compact('finishedContracts'));
+
             case 'currentContract_badkapath':
-                $currentContracts = CurrentContract::where('current_status',1)->where('place_id', ProjectTypeEnum::BADKAPATH->value)->latest()->paginate(10);
+                $query = CurrentContract::where('current_status', 1)->where('place_id', ProjectTypeEnum::BADKAPATH->value);
+                if ($search = request('search')) {
+                    $query->where(function ($q) use ($search) {
+                        $q->orWhere('name', 'like', "%{$search}%")
+                            ->orWhere('work', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('agreement_date', 'like', "%{$search}%")
+                            ->orWhere('contractor_detail', 'like', "%{$search}%");
+                    });
+                }
+                $currentContracts = $query->latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
+
             case 'currentContract_praganna':
-                $currentContracts = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value)->latest()->paginate(10);
+                $query = CurrentContract::where('place_id', ProjectTypeEnum::PRAGANNA->value);
+                if($search= request('search')){
+                    $query->where(function ($q) use ($search) {
+                        $q->orWhere('name', 'like', "%{$search}%")
+                            ->orWhere('work', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('identification_no', 'like', "%{$search}%")
+                            ->orWhere('agreement_date', 'like', "%{$search}%")
+                            ->orWhere('contractor_detail', 'like', "%{$search}%");
+                    });
+                }
+               $currentContracts=$query->latest()->paginate(10);
                 return view('frontend.contracts.currentContract', compact('currentContracts'));
             case 'workPlan_progress':
                 $workPlanProgresses = WorkPlanProgress::latest()->paginate(10);

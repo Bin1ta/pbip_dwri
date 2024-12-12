@@ -96,10 +96,12 @@
 
 
                             <!-- Search Form -->
-                            <form class="form-inline mt-2 mt-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <form class="form-inline mt-2 mt-lg-0" method="GET" action="{{ url()->current() }}">
+                                <input class="form-control mr-sm-2" type="search" name="search"
+                                       placeholder="Search" value="{{ request('search') }}" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
+
                         </div>
                         <table class="contract myTable table table-stripped dataTable no-footer" id="DataTables_Table_0"
                             aria-describedby="DataTables_Table_0_info">
