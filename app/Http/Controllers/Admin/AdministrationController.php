@@ -5,6 +5,8 @@ use App\Enums\DocumentTypeEnum;
 use App\Http\Requests\Administration\StoreAdministrationRequest;
 use App\Http\Requests\Administration\UpdateAdministrationRequest;
 use App\Models\Administration;
+use App\Models\AdministrationDoc;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -112,13 +114,6 @@ class AdministrationController extends BaseController
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
-        $administration->delete();
-        toast('Administration Deleted Successfully', 'success');
-        return redirect(route('admin.administration.index',$documentType));
-    }
-    public function deletePhoto($documentType, Administration $administration)
-    {
-
         foreach ($administration->docs as $doc) {
             if (Storage::disk('public')->exists($doc->doc)) {
                 Storage::disk('public')->delete($doc->doc);
@@ -127,6 +122,17 @@ class AdministrationController extends BaseController
         }
 
         $administration->delete();
+        toast('Administration Deleted Successfully', 'success');
+        return redirect(route('admin.administration.index',$documentType));
+    }
+    public function deletePhoto($documentType, AdministrationDoc $administrationDoc): RedirectResponse
+    {
+        if (Storage::disk('public')->exists($administrationDoc->doc)) {
+            Storage::disk('public')->delete($administrationDoc->doc);
+        }
+        $administrationDoc->delete();
+
+        $administrationDoc->delete();
         toast('Invoice Document Deleted Successfully', 'success');
         return redirect()->back();
     }

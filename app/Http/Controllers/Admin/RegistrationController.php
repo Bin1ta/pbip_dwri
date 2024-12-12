@@ -6,6 +6,7 @@ use App\Http\Requests\Registration\StoreRegistrationRequest;
 use App\Http\Requests\Registration\UpdateRegistrationRequest;
 use App\Models\Registration;
 use App\Http\Controllers\Controller;
+use App\Models\RegistrationDoc;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -111,13 +112,6 @@ class RegistrationController extends BaseController
             ResponseAlias::HTTP_FORBIDDEN,
             '403 Forbidden | you are not allowed to access this resource'
         );
-        $registration->delete();
-        toast('Registration Deleted Successfully', 'success');
-        return redirect(route('admin.registration.index'));
-    }
-
-    public function deletePhoto(Registration $registration)
-    {
         foreach ($registration->docs as $doc) {
             if (Storage::disk('public')->exists($doc->doc)) {
                 Storage::disk('public')->delete($doc->doc);
@@ -126,6 +120,17 @@ class RegistrationController extends BaseController
         }
 
         $registration->delete();
+        toast('Registration Deleted Successfully', 'success');
+        return redirect(route('admin.registration.index'));
+    }
+
+    public function deletePhoto(RegistrationDoc $registrationDoc)
+    {
+        if (Storage::disk('public')->exists($registrationDoc->doc)) {
+            Storage::disk('public')->delete($registrationDoc->doc);
+        }
+        $registrationDoc->delete();
+
         toast('Registration Document Deleted Successfully', 'success');
         return redirect()->back();
     }
